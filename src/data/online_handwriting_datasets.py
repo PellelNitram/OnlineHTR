@@ -9,3 +9,10 @@ class OnlineHandwritingDataset:
     #       Caching them is useful nevertheless.
 
     pass
+
+class IAMonDB_Dataset(OnlineHandwritingDataset):
+
+    # TODO: Should be compatible with the plain IAMonDB
+    #       folder structure.
+
+    pass
