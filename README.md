@@ -1,5 +1,21 @@
 <div align="center">
 
+# Carbune2020 Implementation
+
+</div>
+
+In this repository I provide a [PyTorch](https://pytorch.org/) implementation of the paper "Fast multi-language [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory)-based online handwriting recognition" by Victor Carbune *et al.* (see paper here: [10.1007/s10032-020-00350-4](http://doi.org/10.1007/s10032-020-00350-4)), hence the name of this repository.
+
+This work is part of my attempt to build a handwriting recognition system for [Xournal++](https://github.com/xournalpp/xournalpp), a fabulous open-source handwriting notetaking software. Most of this aforementioned attempt is captured in the [Xournal++ HTR](https://github.com/PellelNitram/xournalpp_htr) repository where I publish working solutions.
+
+## Goals
+
+- [ ] Train model using the awesome [lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template/generate) by [ashleve](https://github.com/ashleve).
+- [ ] Implement Bezier curve fitting algorithm.
+- [ ] Publish trained model on [Hugging Face](https://huggingface.co/) for easy access.
+
+<div align="center">
+
 # Lightning-Hydra-Template
 
 [![python](https://img.shields.io/badge/-Python_3.8_%7C_3.9_%7C_3.10-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
