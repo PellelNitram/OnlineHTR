@@ -14,6 +14,10 @@ This work is part of my attempt to build a handwriting recognition system for [X
 - [ ] Implement Bezier curve fitting algorithm.
 - [ ] Publish trained model on [Hugging Face](https://huggingface.co/) for easy access.
 
+## Contributing
+
+I would love you to contribute! Let's make it a great project that people can benefit from :-).
+
 <div align="center">
 
 # Lightning-Hydra-Template
