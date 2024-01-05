@@ -14,6 +14,11 @@ This work is part of my attempt to build a handwriting recognition system for [X
 - [ ] Implement Bezier curve fitting algorithm.
 - [ ] Publish trained model on [Hugging Face](https://huggingface.co/) for easy access.
 
+## Training from scratch
+
+1. Follow installation procedure provided in [Installation](#installation).
+2. TODO: Add online db data
+
 ## Installation
 
 *(TODO)*
