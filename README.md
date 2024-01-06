@@ -17,7 +17,7 @@ This work is part of my attempt to build a handwriting recognition system for [X
 ## Training from scratch
 
 1. Follow installation procedure provided in [Installation](#installation).
-2. TODO: Add online db data
+2. Copy the [IAM-OnDB](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) dataset to `{data_dir}/datasets/IAM-OnDB` where `{data_dir}` is defined in the [paths config](configs/paths/default.yaml). TODO(explain what copying means!)
 
 ## Installation
 
