@@ -21,7 +21,7 @@ This work is part of my attempt to build a handwriting recognition system for [X
 
 ## Installation
 
-*(TODO)*
+*(TODO)*: I will show how to install it via conda as that's how I like to install PyTorch, which is the base for this repository.
 
 ## Contributing
 
