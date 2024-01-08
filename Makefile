@@ -28,3 +28,6 @@ test-full: ## Run all tests
 
 train: ## Train the model
 	python src/train.py
+
+docs: ## Render docs w/ MMkDocs similar to https://docs.kidger.site/diffrax/
+	# TODO!
