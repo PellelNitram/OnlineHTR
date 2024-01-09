@@ -27,6 +27,10 @@ This work is part of my attempt to build a handwriting recognition system for [X
 
 I would love you to contribute! Let's make it a great project that people can benefit from :-).
 
+## Acknowledgments
+
+*(TODO)*.
+
 <div align="center">
 
 # Lightning-Hydra-Template
