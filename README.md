@@ -29,6 +29,10 @@ The installation process is for now:
 4. `pip install -r requirements.txt`
 5. `pip install -e .` (do not forget the dot, `.`)
 
+Test installations with those commands:
+1. `make test`
+2. `python src/train.py`
+
 ## Contributing
 
 I would love you to contribute! Let's make it a great project that people can benefit from :-).
