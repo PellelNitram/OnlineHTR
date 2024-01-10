@@ -21,7 +21,13 @@ This work is part of my attempt to build a handwriting recognition system for [X
 
 ## Installation
 
-*(TODO)*: I will show how to install it via conda as that's how I like to install PyTorch, which is the base for this repository.
+The installation process is for now:
+
+1. `conda create --prefix <path> python=3.10.11`
+2. `conda activate <path>`
+3. `pip3 install torch torchvision torchaudio`
+4. `pip install -r requirements.txt`
+5. `pip install -e .` (do not forget the dot, `.`)
 
 ## Contributing
 
