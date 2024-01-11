@@ -16,3 +16,11 @@ class IAMonDB_Dataset(OnlineHandwritingDataset):
     #       folder structure.
 
     pass
+
+class XournalPagewiseDataset(OnlineHandwritingDataset):
+
+    # TODO: load an online text from pages of a Xournal file
+
+    # TODO: This class allows easy testing on real data.
+
+    pass
