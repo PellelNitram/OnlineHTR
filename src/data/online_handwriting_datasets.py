@@ -10,6 +10,11 @@ class OnlineHandwritingDataset:
 
     pass
 
+    # Methods that might be useful:
+    # - (abstract) load()
+    # - some visualisation methods - plot image and also animated 2d and 3d video
+    # - fit to bezier curve
+
 class IAMonDB_Dataset(OnlineHandwritingDataset):
 
     # TODO: Should be compatible with the plain IAMonDB
