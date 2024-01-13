@@ -14,6 +14,7 @@ class OnlineHandwritingDataset:
     # - (abstract) load()
     # - some visualisation methods - plot image and also animated 2d and 3d video
     # - fit to bezier curve
+    # - (maybe) save to disk
 
 class IAMonDB_Dataset(OnlineHandwritingDataset):
 
