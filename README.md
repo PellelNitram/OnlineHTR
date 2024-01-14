@@ -17,7 +17,9 @@ This work is part of my attempt to build a handwriting recognition system for [X
 ## Training from scratch
 
 1. Follow installation procedure provided in [Installation](#installation).
-2. Copy the [IAM-OnDB](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) dataset to `{data_dir}/datasets/IAM-OnDB` where `{data_dir}` is defined in the [paths config](configs/paths/default.yaml). TODO(explain what copying means!)
+2. Download the [IAM-OnDB](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) dataset to `{data_dir}/datasets/IAM-OnDB` where `{data_dir}` is defined in the [paths config](configs/paths/default.yaml). This download process is as follows:
+   1. Download the following files that are listed on the above stated dataset website: `data/original-xml-part.tar.gz`, `data/writers.xml`, `data/lineStrokes-all.tar.gz`, `data/lineImages-all.tar.gz`, `data/original-xml-all.tar.gz`, `data/forms.txt` & `ascii-all.tar.gz`.
+   2. Extract the content of each of those files into the `{data_dir}/datasets/IAM-OnDB/<file_base_name>` folder where `<file_base_name>` denote the basenames of all downloaded files.
 
 ## Installation
 
