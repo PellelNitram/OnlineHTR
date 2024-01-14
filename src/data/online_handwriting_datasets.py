@@ -48,6 +48,27 @@ class OnlineHandwritingDataset:
                 for key, value in sample.items():
                     group.create_dataset(key, data=value)
 
+    def from_disc(self, path: Path) -> None:
+        """
+        Load OnlineHandwritingDataset from disc.
+
+        The dataset must be in the format that is used in `to_disc()` to save the dataset.
+        The data from disc is appended to the `data` attribute.
+
+        :param path: Path to load dataset from.
+        """
+        with h5py.File(path, 'r') as f:
+            for group_name in f:
+                group = f[group_name]
+                storage = {}
+                for feature in group:
+                    feature_dataset = group[feature]
+                    value = feature_dataset[()]
+                    if type(value) == bytes: # Convert bytes to string
+                        value = value.decode('utf-8')
+                    storage[feature] = value
+                self.data.append(storage)
+
 class IAMonDB_Dataset(OnlineHandwritingDataset):
 
     # TODO: Should be compatible with the plain IAMonDB
