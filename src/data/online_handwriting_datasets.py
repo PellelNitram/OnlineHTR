@@ -8,6 +8,13 @@ class OnlineHandwritingDataset:
     #
     #       Caching them is useful nevertheless.
 
+    """
+    TODO
+
+    This class serves as dataset provider to other machine learning library dataset classes
+    like those from PyTorch or PyTorch Lightning.
+    """
+
     pass
 
     # Methods that might be useful:
