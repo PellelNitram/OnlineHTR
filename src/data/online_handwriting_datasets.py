@@ -18,10 +18,15 @@ class OnlineHandwritingDataset:
     pass
 
     # Methods that might be useful:
-    # - (abstract) load()
     # - some visualisation methods - plot image and also animated 2d and 3d video
     # - fit to bezier curve
     # - (maybe) save to disk
+
+    def load_data(self) -> None:
+        """
+        Needs to be implemented in subclasses.
+        """
+        raise NotImplementedError
 
 class IAMonDB_Dataset(OnlineHandwritingDataset):
 
