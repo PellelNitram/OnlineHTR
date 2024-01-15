@@ -62,6 +62,9 @@ class OnlineHandwritingDataset:
         """
         raise NotImplementedError
 
+    def set_data(self, data):
+        self.data = data
+
     def to_disc(self, path: Path) -> None:
         """
         Store OnlineHandwritingDataset to disc.
