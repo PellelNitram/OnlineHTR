@@ -22,6 +22,8 @@ class OnlineHandwritingDataset:
 
     pass
 
+    FAILED_SAMPLE = -1
+
     # Methods that might be useful:
     # - some visualisation methods - plot image and also animated 2d and 3d video
     # - fit to bezier curve
