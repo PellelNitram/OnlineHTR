@@ -28,3 +28,16 @@ def test_set_data():
         assert d_ds.keys() == d_test.keys()
         for k in d_ds.keys():
             assert d_ds[k] == d_test[k]
+
+def test_to_disc(tmpdir):
+
+    logger = logging.getLogger('test_to_disc')
+    logger.setLevel(logging.INFO)
+
+    ds = OnlineHandwritingDataset(logger=logger)
+
+    test_data = [ { 'a vector': [ 0, 1 ], 'one_number': 3.2, 'str': 'this is a test string' } ]
+
+    ds.set_data(test_data)
+
+    ds.to_disc( tmpdir / 'test_to_disc.h5' )
