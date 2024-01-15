@@ -101,6 +101,26 @@ class OnlineHandwritingDataset:
                     storage[feature] = value
                 self.data.append(storage)
 
+    def map(self, fct, logger=None):
+        """
+        Applies a function to each sample and creates a new Dataset based on that.
+
+        If the function indicates that the transformation of the sample has failed,
+        then it is not added to the list of mapped samples.
+
+        :param fct: The function that is applied. Its signature is `fct(sample)` with
+                    `sample` being an element from `self.data`.
+        :returns: New dataset.
+        """
+        new_dataset = OnlineHandwritingDataset(logger)
+        data = []
+        for sample in self.data:
+            sample_mapped = fct( sample )
+            if sample_mapped != self.FAILED_SAMPLE:
+                data.append( sample_mapped )
+        new_dataset.set_data( data )
+        return new_dataset
+
 class IAMonDB_Dataset(OnlineHandwritingDataset):
 
     # TODO: Should be compatible with the plain IAMonDB
