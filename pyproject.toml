@@ -12,6 +12,7 @@ filterwarnings = [
 log_cli = "True"
 markers = [
   "slow: slow tests",
+  "martin: implemented to customise the template by Martin Lellep",
 ]
 minversion = "6.0"
 testpaths = "tests/"
