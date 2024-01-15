@@ -26,6 +26,9 @@ test: ## Run not slow tests
 test-full: ## Run all tests
 	pytest
 
+test-martin: ## Run all tests that Martin Lellep implemented while using this template
+	pytest -k "martin"
+
 train: ## Train the model
 	python src/train.py
 
