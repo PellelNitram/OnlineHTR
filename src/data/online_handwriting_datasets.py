@@ -1,4 +1,5 @@
 from pathlib import Path
+import logging
 
 import h5py
 
@@ -27,6 +28,35 @@ class OnlineHandwritingDataset:
     # Methods that might be useful:
     # - some visualisation methods - plot image and also animated 2d and 3d video
     # - fit to bezier curve
+
+    def __init__(self, path='', logger=None):
+        """
+        A class to unify multiple datasets in a modular way.
+
+        The data is stored in the `data` field and is organised in a list that stores
+        a dict of all features. This format is well suitable for storing time series as
+        features. This class therefore only stores datasets that can fit in memory. This
+        is an example for the IAMonDB format:
+            data = [
+                    { 'x': [...], 'y': [...], 't': [...], ..., 'label': ..., 'sample_name': ..., ... }, 
+                    ...
+                   ]
+
+        The input and output data for subsequent model trainings can easily be derived
+        based on the features in each sample. Each sample should have the same features.
+        This is not checked.
+
+        :param path: Path to load raw data from.
+        """
+        self.path = path
+        if logger is None:
+            self.logger = logging.getLogger('OnlineHandwritingDataset')
+        else:
+            self.logger = logger
+
+        self.logger.info('Dataset created')
+
+        self.data = []
 
     def load_data(self) -> None:
         """
