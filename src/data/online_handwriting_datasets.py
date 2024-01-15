@@ -110,6 +110,7 @@ class OnlineHandwritingDataset:
 
         :param fct: The function that is applied. Its signature is `fct(sample)` with
                     `sample` being an element from `self.data`.
+        :param logger: Logger that is used for resulting new dataset.
         :returns: New dataset.
         """
         new_dataset = OnlineHandwritingDataset(logger)
