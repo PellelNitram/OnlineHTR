@@ -2,10 +2,11 @@ from pathlib import Path
 import logging
 
 import numpy as np
+import pytest
 
 from src.data.online_handwriting_datasets import OnlineHandwritingDataset
 
-
+@pytest.mark.martin
 def test_construction():
 
     logger = logging.getLogger('test_construction')
@@ -13,6 +14,7 @@ def test_construction():
 
     ds = OnlineHandwritingDataset(logger=logger)
 
+@pytest.mark.martin
 def test_set_data():
 
     logger = logging.getLogger('test_set_data')
@@ -29,6 +31,7 @@ def test_set_data():
         for k in d_ds.keys():
             assert d_ds[k] == d_test[k]
 
+@pytest.mark.martin
 def test_to_disc(tmpdir):
 
     logger = logging.getLogger('test_to_disc')
@@ -42,6 +45,7 @@ def test_to_disc(tmpdir):
 
     ds.to_disc( tmpdir / 'test_to_disc.h5' )
 
+@pytest.mark.martin
 def test_from_disc(tmpdir):
 
     logger = logging.getLogger('test_from_disc')
@@ -65,6 +69,7 @@ def test_from_disc(tmpdir):
             value_loaded = s_loaded[key]
             assert np.alltrue( value == value_loaded )
 
+@pytest.mark.martin
 def test_map():
 
     # Tests map function, including skipping failed samples
