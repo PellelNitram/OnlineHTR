@@ -21,8 +21,6 @@ class OnlineHandwritingDataset:
     like those from PyTorch or PyTorch Lightning.
     """
 
-    pass
-
     FAILED_SAMPLE = -1
 
     # Methods that might be useful:
