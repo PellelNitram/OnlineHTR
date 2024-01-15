@@ -64,3 +64,28 @@ def test_from_disc(tmpdir):
             value = s[key]
             value_loaded = s_loaded[key]
             assert np.alltrue( value == value_loaded )
+
+def test_map():
+
+    # Tests map function, including skipping failed samples
+
+    logger = logging.getLogger('test_map')
+    logger.setLevel(logging.INFO)
+
+    # Create base dataset
+    ds = OnlineHandwritingDataset(logger=logger)
+    test_data = [
+        {'a': 0.0, 'b': 1.0 },
+        {'a': 2.0, 'b': 3.0 },
+        {'a': 4.0, 'b': 5.0 },
+    ]
+    ds.set_data(test_data)
+
+    # Apply map function
+    def mapping_function(sample):
+        result = { 'c': sample['a']+sample['b'] }
+        return OnlineHandwritingDataset.FAILED_SAMPLE if result['c'] == 9.0 else result
+    ds_mapped = ds.map(mapping_function)
+
+    # Check for expected result
+    assert ds_mapped.data == [{ 'c': 1.0 }, { 'c': 5.0 }]
