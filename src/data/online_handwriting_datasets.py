@@ -27,7 +27,7 @@ class OnlineHandwritingDataset:
     # - some visualisation methods - plot image and also animated 2d and 3d video
     # - fit to bezier curve
 
-    def __init__(self, path='', logger=None):
+    def __init__(self, path=None, logger=None):
         """
         A class to unify multiple datasets in a modular way.
 
