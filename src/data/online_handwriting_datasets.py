@@ -25,7 +25,6 @@ class OnlineHandwritingDataset:
 
     # Methods that might be useful:
     # - some visualisation methods - plot image and also animated 2d and 3d video
-    # - fit to bezier curve
 
     def __init__(self, path=None, logger=None):
         """
@@ -122,6 +121,11 @@ class OnlineHandwritingDataset:
                 data.append( sample_mapped )
         new_dataset.set_data( data )
         return new_dataset
+
+    def fit_bezier_curve(self):
+        # TODO.
+        # Idea: Fit bezier curves recursively just as [Carbune2020] does.
+        raise NotImplementedError
 
 class IAMonDB_Dataset(OnlineHandwritingDataset):
 
