@@ -23,9 +23,6 @@ class OnlineHandwritingDataset:
 
     FAILED_SAMPLE = -1
 
-    # Methods that might be useful:
-    # - some visualisation methods - plot image and also animated 2d and 3d video
-
     def __init__(self, path=None, logger=None):
         """
         A class to unify multiple datasets in a modular way.
@@ -125,6 +122,11 @@ class OnlineHandwritingDataset:
     def fit_bezier_curve(self):
         # TODO.
         # Idea: Fit bezier curves recursively just as [Carbune2020] does.
+        raise NotImplementedError
+
+    def visualise(self):
+        # TODO
+        # Idea: some visualisation methods, e.g. to plot image and also animated 2d and 3d video
         raise NotImplementedError
 
 class IAMonDB_Dataset(OnlineHandwritingDataset):
