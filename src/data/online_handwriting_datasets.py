@@ -98,7 +98,7 @@ class OnlineHandwritingDataset:
                     storage[feature] = value
                 self.data.append(storage)
 
-    def map(self, fct, logger=None):
+    def map(self, fct, logger=None) -> OnlineHandwritingDataset:
         """
         Applies a function to each sample and creates a new Dataset based on that.
 
