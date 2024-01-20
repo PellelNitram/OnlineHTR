@@ -56,6 +56,11 @@ class OnlineHandwritingDataset:
         raise NotImplementedError
 
     def set_data(self, data):
+        """
+        Set the data of this instance.
+
+        :param data: Data to set as `self.data`.
+        """
         self.data = data
 
     def to_disc(self, path: Path) -> None:
