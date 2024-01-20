@@ -10,26 +10,18 @@ import h5py
 
 class OnlineHandwritingDataset:
 
-    # TODO: Should be compatible with PyTorch dataset and/or
-    #       HuggingFace Dataset where I prefer the former.
-    #
-    #       The existing online handwriting datasets tend to be
-    #       relatively small so that they easily fit in RAM memory.
-    #
-    #       Caching them is useful nevertheless.
-
-    """
-    Class to represent an online handwriting dataset.
-
-    This class serves as dataset provider to other machine learning library dataset classes
-    like those from PyTorch or PyTorch Lightning.
-    """
-
     FAILED_SAMPLE = -1
 
     def __init__(self, path=None, logger=None):
         """
-        A class to unify multiple datasets in a modular way.
+        A class to represent an online handwriting dataset that is to be subclassed
+        to unify multiple datasets in a modular way.
+
+        This class serves as dataset provider to other machine learning library dataset classes
+        like those from PyTorch, PyTorch Lightning or HuggingFace.
+
+        This class keeps all data in RAM memory because the existing online handwriting datasets
+        tend to be relatively small so that they easily fit in RAM memory.
 
         The data is stored in the `data` field and is organised in a list that stores
         a dict of all features. This format is well suitable for storing time series as
