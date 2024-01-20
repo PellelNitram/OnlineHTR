@@ -1,4 +1,6 @@
-from __future__ import annotations
+from __future__ import annotations # See https://stackoverflow.com/a/33533514 why
+                                   # I use it for OnlineHandwritingDataset.map()
+                                   # type annotation.
 
 from pathlib import Path
 import logging
