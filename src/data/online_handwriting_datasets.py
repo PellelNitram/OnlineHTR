@@ -37,6 +37,7 @@ class OnlineHandwritingDataset:
         This is not checked.
 
         :param path: Path to load raw data from.
+        :param logger: Logger to use. A new one is created if set to None.
         """
         self.path = path
         if logger is None:
