@@ -129,8 +129,11 @@ class OnlineHandwritingDataset:
         raise NotImplementedError
 
     def visualise(self):
-        # TODO
-        # Idea: some visualisation methods, e.g. to plot image and also animated 2d and 3d video
+        """
+        TODO: Implement it.
+
+        Idea: some visualisation methods, e.g. to plot image and also animated 2d and 3d video
+        """
         raise NotImplementedError
 
 class IAMonDB_Dataset(OnlineHandwritingDataset):
