@@ -124,8 +124,11 @@ class OnlineHandwritingDataset:
         return new_dataset
 
     def fit_bezier_curve(self):
-        # TODO.
-        # Idea: Fit bezier curves recursively just as [Carbune2020] does.
+        """
+        TODO: Implement it.
+
+        Idea: Fit bezier curves recursively just as [Carbune2020] does.
+        """
         raise NotImplementedError
 
     def visualise(self):
