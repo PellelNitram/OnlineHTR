@@ -150,4 +150,6 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
 
     # TODO: This class allows easy testing on real data.
 
+    # TODO: Given that I extend the Dataset, how do I extend the documentation?
+
     pass
