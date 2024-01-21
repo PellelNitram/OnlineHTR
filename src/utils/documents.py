@@ -22,3 +22,8 @@ class Page:
     meta_data: dict
     background: dict
     layers: list
+
+@dataclass
+class Layer:
+    """Class for keeping track of document page layer."""
+    strokes: list
