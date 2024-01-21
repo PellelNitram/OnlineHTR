@@ -5,3 +5,12 @@ This module was initially based on https://github.com/PellelNitram/xournalpp_htr
 """
 
 # TODO: Add tests for this module from the same source, namely xournalpp_htr.
+
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
+import gzip
+from pathlib import Path
+
+import numpy as np
+from bs4 import BeautifulSoup as bs
+import matplotlib.pyplot as plt
