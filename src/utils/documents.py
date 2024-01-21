@@ -27,3 +27,10 @@ class Page:
 class Layer:
     """Class for keeping track of document page layer."""
     strokes: list
+
+@dataclass
+class Stroke:
+    """Class for keeping track of strokes."""
+    x: np.array
+    y: np.array
+    meta_data: dict
