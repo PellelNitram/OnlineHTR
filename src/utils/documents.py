@@ -14,3 +14,11 @@ from pathlib import Path
 import numpy as np
 from bs4 import BeautifulSoup as bs
 import matplotlib.pyplot as plt
+
+
+@dataclass
+class Page:
+    """Class for keeping track of document page."""
+    meta_data: dict
+    background: dict
+    layers: list
