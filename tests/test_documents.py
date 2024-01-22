@@ -32,3 +32,12 @@ def test_Stroke_class():
                                   test_meta_data.keys())
     for key in stroke.meta_data:
         assert stroke.meta_data[key] == test_meta_data[key]
+
+@pytest.mark.martin
+def test_XournalDocument():
+
+    # TODO
+
+    raise NotImplementedError
+
+    x_document = documents.XournalDocument(path=Path.home() / Path('data/code/carbune2020_implementation/data/datasets/2024-01-20-xournal_dataset.xoj'))
