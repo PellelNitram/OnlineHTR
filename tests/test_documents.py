@@ -41,3 +41,5 @@ def test_XournalDocument():
     raise NotImplementedError
 
     x_document = documents.XournalDocument(path=Path.home() / Path('data/code/carbune2020_implementation/data/datasets/2024-01-20-xournal_dataset.xoj'))
+
+    assert len(x_document.pages) == 2
