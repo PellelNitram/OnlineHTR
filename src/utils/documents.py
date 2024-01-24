@@ -27,6 +27,7 @@ class Page:
 class Layer:
     """Class for keeping track of document page layer."""
     strokes: list
+    texts: list
 
 @dataclass
 class Stroke:
