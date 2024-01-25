@@ -107,13 +107,19 @@ class XournalDocument(Document):
 
             layers = []
             for layer in page.find_all('layer'):
+
                 strokes = []
                 for stroke in layer.find_all('stroke'):
                     x, y = np.fromstring(stroke.text, sep=' ').reshape(-1, 2).T
                     s = Stroke(x, y, stroke.attrs)
                     strokes.append(s)
 
-                layers.append( Layer(strokes) )
+                texts = []
+                for text in layer.find_all('text'):
+                    t = Text(text.text, text.attrs)
+                    texts.append(t)
+
+                layers.append( Layer(strokes, texts) )
 
             background = page.find_all('background')
             assert len( background ) == 1
