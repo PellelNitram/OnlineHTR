@@ -43,3 +43,9 @@ def test_XournalDocument():
     x_document = documents.XournalDocument(path=Path.home() / Path('data/code/carbune2020_implementation/data/datasets/2024-01-20-xournal_dataset.xoj'))
 
     assert len(x_document.pages) == 2
+
+    assert len( x_document.pages[0].layers[0].strokes ) == 0
+
+    assert x_document.pages[1].layers[0].texts[0].text == 'sample_name: hello_world'
+    assert x_document.pages[1].layers[0].texts[1].text == 'label: Hello World!'
+    # TODO: Add some check about length of strokes
