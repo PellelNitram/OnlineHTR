@@ -36,6 +36,12 @@ class Stroke:
     y: np.array
     meta_data: dict
 
+@dataclass
+class Text:
+    """Class for keeping track of strokes."""
+    text: str
+    meta_data: dict
+
 class Document(ABC):
 
     def __init__(self, path: Path):
