@@ -5,6 +5,7 @@ import pytest
 
 from src.data.online_handwriting_datasets import XournalPagewiseDataset
 
+
 @pytest.mark.martin
 def test_construction():
 
