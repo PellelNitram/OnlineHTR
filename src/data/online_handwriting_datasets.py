@@ -147,6 +147,9 @@ class IAMonDB_Dataset(OnlineHandwritingDataset):
     pass
 
 class XournalPagewiseDataset(OnlineHandwritingDataset):
+    """
+    TODO: add class docstring.
+    """
 
     # TODO: load an online text from pages of a Xournal file
 
