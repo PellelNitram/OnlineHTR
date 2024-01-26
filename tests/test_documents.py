@@ -47,3 +47,12 @@ def test_XournalDocument():
     assert x_document.pages[1].layers[0].texts[0].text == 'sample_name: hello_world'
     assert x_document.pages[1].layers[0].texts[1].text == 'label: Hello World!'
     # TODO: Add some check about length of strokes
+
+    # TODO: Check all other parameters like background and pagea attributes; check load_data of XournalDocument for that. Also DPI.
+    # TODO: Maybe check save_page_as_image?
+    # TODO: Check path.
+
+    # TODO: note that I won't test the dataclasses in excess to what I have done so already for Stroke class above.
+
+    # TODO: Next: Implement and test XournalPagewiseDataset.
+    # TODO: Next: Build model and test on XournalPagewiseDataset!
