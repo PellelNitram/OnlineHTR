@@ -7,6 +7,8 @@ import logging
 
 import h5py
 
+from src.utils.documents import XournalDocument
+
 
 class OnlineHandwritingDataset:
 
@@ -152,4 +154,53 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
 
     # TODO: Given that I extend the Dataset, how do I extend the documentation?
 
-    pass
+    def load_data(self):
+        """
+        Loads a page-wise Xournal-based dataset.
+        
+        Loading is performed by parsing the XML files and reading the text files.
+        """
+
+        raise NotImplementedError
+
+        self.logger.info('load_data: Start')
+
+        xournal_document = XournalDocument(self.path)
+
+        sample_name = xournal_document.pages[1].layers[0].texts[0].text.replace('sample_name: ', '').strip()
+        label = xournal_document.pages[1].layers[0].texts[1].text.replace('label: ', '').strip()
+
+        print(sample_name, label)
+
+        # ctr = 0 # Starts at 1
+
+        # for root, dirs, files in os.walk(self.path / 'lineStrokes-all'):
+        #     for f in files:
+        #         if f.endswith('.xml'):
+
+        #             ctr += 1
+
+        #             sample_name = f.replace('.xml', '')
+
+        #             self.logger.debug(f'Process {sample_name=} ({ctr})')
+
+        #             if sample_name in self.SAMPLES_NOT_TO_STORE:
+        #                 self.logger.warning(f'Skipped: {sample_name=}')
+        #                 continue
+
+        #             df, text_line = load_sample(sample_name, self.path)
+
+        #             self.data.append( {
+        #                 'x': df['x'].to_numpy(),
+        #                 'y': df['y'].to_numpy(),
+        #                 't': df['t'].to_numpy(),
+        #                 'stroke_nr': list( df['stroke_nr'] ),
+        #                 'label': text_line,
+        #                 'sample_name': sample_name,
+        #             } )
+
+        # TODO: Check stroke_nr channel
+
+        # TODO: check if x, y, t, stroke_nr are a single time series?
+
+        self.logger.info(f'load_data: Finished')
