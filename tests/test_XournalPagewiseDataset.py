@@ -30,4 +30,8 @@ def test_load_data():
 
     ds.load_data()
 
+    assert len( ds.data ) == 1
+
+    # TODO: Add asserts to ds.data[0] content. More tests shouldn't be necessary b/c the parent class was tested already.
+
     raise NotImplementedError
