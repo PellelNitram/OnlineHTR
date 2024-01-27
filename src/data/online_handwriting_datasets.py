@@ -6,6 +6,7 @@ from pathlib import Path
 import logging
 
 import h5py
+import numpy as np
 
 from src.utils.documents import XournalDocument
 
@@ -164,10 +165,10 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
         """
         Loads a page-wise Xournal-based dataset.
         
-        Loading is performed by parsing the XML files and reading the text files.
+        Loading is performed by constructing an `XournalDocument` instance and reading the
+        data from there in line with the data format expected by `OnlineHandwritingDataset`
+        class.
         """
-
-        raise NotImplementedError
 
         self.logger.info('load_data: Start')
 
@@ -176,7 +177,28 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
         sample_name = xournal_document.pages[1].layers[0].texts[0].text.replace('sample_name: ', '').strip()
         label = xournal_document.pages[1].layers[0].texts[1].text.replace('label: ', '').strip()
 
-        print(sample_name, label)
+        x_data = []
+        y_data = []
+        stroke_nr_data = []
+        # Note: There is no time data available! - TOOD: Add to docstring.
+
+        stroke_nr = 0
+        for stroke in xournal_document.pages[1].layers[0].strokes:
+            assert len(stroke.x) == len(stroke.y)
+            for i_point in range( len(stroke.x) ):
+                x_data.append( stroke.x[i_point] )
+                y_data.append( stroke.y[i_point] )
+                stroke_nr_data.append( stroke_nr )
+            stroke_nr += 1
+
+        # Note: There is only one sample! - TOOD: Add to docstring.
+        self.data.append( {
+            'x': np.array(x_data),
+            'y': np.array(y_data),
+            'stroke_nr': stroke_nr_data,
+            'label': label,
+            'sample_name': sample_name,
+        } )
 
         # ctr = 0 # Starts at 1
 
