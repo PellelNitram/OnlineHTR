@@ -42,5 +42,22 @@ def test_load_data():
     assert ds.data[0]['sample_name'] == 'hello_world'
 
 @pytest.mark.martin
-def test_visualise():
-    pass
+def test_to_images(tmp_path):
+
+    logger = logging.getLogger('test_to_images')
+    logger.setLevel(logging.INFO)
+
+    ds = XournalPagewiseDataset(
+        path=Path.home() / Path('data/code/carbune2020_implementation/data/datasets/2024-01-20-xournal_dataset.xoj'),
+        logger=logger
+    )
+    ds.load_data()
+
+    # TODO PATCH
+    tmp_path = Path.home() / '00_TMP_2024-01-28_deleteMe'
+
+    ds.to_images(path=tmp_path, format='jpg')
+
+    print(tmp_path)
+
+    raise NotImplementedError
