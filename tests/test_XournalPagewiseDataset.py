@@ -32,6 +32,11 @@ def test_load_data():
 
     assert len( ds.data ) == 1
 
-    # TODO: Add asserts to ds.data[0] content. More tests shouldn't be necessary b/c the parent class was tested already.
+    assert min( ds.data[0]['stroke_nr'] ) == 0
+    assert max( ds.data[0]['stroke_nr'] ) == 9
 
-    raise NotImplementedError
+    assert len( ds.data[0]['stroke_nr'] ) == len( ds.data[0]['x'] ) == len( ds.data[0]['y'] ) == 1026
+
+    assert ds.data[0]['label'] == 'Hello World!'
+
+    assert ds.data[0]['sample_name'] == 'hello_world'
