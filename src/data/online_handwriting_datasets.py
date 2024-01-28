@@ -200,8 +200,8 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
             for stroke in page.layers[0].strokes:
                 assert len(stroke.x) == len(stroke.y)
                 for i_point in range( len(stroke.x) ):
-                    x_data.append( stroke.x[i_point] )
-                    y_data.append( stroke.y[i_point] )
+                    x_data.append( +stroke.x[i_point] )
+                    y_data.append( -stroke.y[i_point] )
                     stroke_nr_data.append( stroke_nr )
                 stroke_nr += 1
 
