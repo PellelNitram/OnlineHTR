@@ -132,6 +132,17 @@ class OnlineHandwritingDataset:
         """
         raise NotImplementedError
 
+    def to_images(self, path: Path, format: str = 'jpg') -> None:
+        """
+        Store dataset as images.
+
+        :param path: Path to store the images at. Is created if it does not exist.
+        :param format: The format to save the images with.
+
+        Needs to be implemented in subclasses.
+        """
+        raise NotImplementedError
+
     def visualise(self):
         """
         TODO: Implement it.
