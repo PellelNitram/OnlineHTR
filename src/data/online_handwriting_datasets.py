@@ -179,29 +179,34 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
 
         xournal_document = XournalDocument(self.path)
 
-        sample_name = xournal_document.pages[1].layers[0].texts[0].text.replace('sample_name: ', '').strip()
-        label = xournal_document.pages[1].layers[0].texts[1].text.replace('label: ', '').strip()
+        for i_page in range(1, len( xournal_document.pages )):
 
-        x_data = []
-        y_data = []
-        stroke_nr_data = []
+            page = xournal_document.pages[i_page]
 
-        stroke_nr = 0
-        for stroke in xournal_document.pages[1].layers[0].strokes:
-            assert len(stroke.x) == len(stroke.y)
-            for i_point in range( len(stroke.x) ):
-                x_data.append( stroke.x[i_point] )
-                y_data.append( stroke.y[i_point] )
-                stroke_nr_data.append( stroke_nr )
-            stroke_nr += 1
+            sample_name = page.layers[0].texts[0].text.replace('sample_name: ', '').strip()
+            label = page.layers[0].texts[1].text.replace('label: ', '').strip()
 
-        # Note: There is only one sample! - TOOD: Add to docstring.
-        self.data.append( {
-            'x': np.array(x_data),
-            'y': np.array(y_data),
-            'stroke_nr': stroke_nr_data,
-            'label': label,
-            'sample_name': sample_name,
-        } )
+            x_data = []
+            y_data = []
+            stroke_nr_data = []
+
+            stroke_nr = 0
+            for stroke in page.layers[0].strokes:
+                assert len(stroke.x) == len(stroke.y)
+                for i_point in range( len(stroke.x) ):
+                    x_data.append( stroke.x[i_point] )
+                    y_data.append( stroke.y[i_point] )
+                    stroke_nr_data.append( stroke_nr )
+                stroke_nr += 1
+
+            self.data.append( {
+                'x': np.array(x_data),
+                'y': np.array(y_data),
+                'stroke_nr': stroke_nr_data,
+                'label': label,
+                'sample_name': sample_name,
+            } )
+
+            self.logger.info(f'load_data: Stored {sample_name=}')
 
         self.logger.info(f'load_data: Finished')
