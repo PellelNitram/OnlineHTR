@@ -156,7 +156,7 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
 
     # TODO: Given that I extend the Dataset, how do I extend the documentation?
 
-    def load_data(self):
+    def load_data(self) -> None:
         """
         Loads a page-wise Xournal-based dataset.
         

@@ -40,3 +40,7 @@ def test_load_data():
     assert ds.data[0]['label'] == 'Hello World!'
 
     assert ds.data[0]['sample_name'] == 'hello_world'
+
+@pytest.mark.martin
+def test_visualise():
+    pass
