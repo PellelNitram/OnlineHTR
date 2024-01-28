@@ -156,9 +156,6 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
 
     # TODO: Given that I extend the Dataset, how do I extend the documentation?
 
-    # TODO: Next: Implement and test XournalPagewiseDataset.
-    # TODO: Next: Build model and test on XournalPagewiseDataset!
-
     def load_data(self):
         """
         Loads a page-wise Xournal-based dataset.
