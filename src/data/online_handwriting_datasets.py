@@ -7,6 +7,7 @@ import logging
 
 import h5py
 import numpy as np
+import matplotlib.pyplot as plt
 
 from src.utils.documents import XournalDocument
 
@@ -216,3 +217,34 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
             self.logger.info(f'load_data: Stored {sample_name=}')
 
         self.logger.info(f'load_data: Finished')
+
+    def to_images(self, path: Path, format: str = 'jpg') -> None:
+        """
+        Store dataset as images.
+
+        :param path: Path to store the images at. Is created if it does not exist,
+                     with parents created as well and no error raised if it already
+                     exists.
+        :param format: The format to save the images with.
+        """
+
+        path.mkdir(parents=True, exist_ok=True)
+
+        for i_sample, sample in enumerate( self.data ):
+
+            file_name = path / f'{i_sample}_{sample["sample_name"]}.{format}'
+
+            plt.figure(dpi=300)
+            plt.gca().set_aspect('equal')
+            plt.scatter(sample['x'], sample['y'], c=sample['stroke_nr'],
+                        cmap=plt.cm.get_cmap('Set1'),
+                        s=1)
+            plt.xlabel('x')
+            plt.ylabel('y')
+            plt.title(f'{sample["sample_name"]=}')
+            plt.savefig(file_name)
+            plt.close()
+
+            print(file_name)
+
+            raise NotImplementedError
