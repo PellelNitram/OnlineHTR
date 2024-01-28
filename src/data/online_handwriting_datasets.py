@@ -170,6 +170,9 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
         class.
 
         Note: There is no time channel available.
+
+        Data storage format is explained in the example dataset file and data generally
+        starts on page 2.
         """
 
         self.logger.info('load_data: Start')
