@@ -149,12 +149,10 @@ class IAMonDB_Dataset(OnlineHandwritingDataset):
 
 class XournalPagewiseDataset(OnlineHandwritingDataset):
     """
-    TODO: add class docstring.
+    Load an online text dataset from pages of a Xournal file.
+
+    This class allows easy testing on real data.
     """
-
-    # TODO: load an online text from pages of a Xournal file
-
-    # TODO: This class allows easy testing on real data.
 
     # TODO: Given that I extend the Dataset, how do I extend the documentation?
 
