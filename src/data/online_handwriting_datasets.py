@@ -168,6 +168,8 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
         Loading is performed by constructing an `XournalDocument` instance and reading the
         data from there in line with the data format expected by `OnlineHandwritingDataset`
         class.
+
+        Note: There is no time channel available.
         """
 
         self.logger.info('load_data: Start')
@@ -180,7 +182,6 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
         x_data = []
         y_data = []
         stroke_nr_data = []
-        # Note: There is no time data available! - TOOD: Add to docstring.
 
         stroke_nr = 0
         for stroke in xournal_document.pages[1].layers[0].strokes:
