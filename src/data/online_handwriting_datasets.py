@@ -222,6 +222,8 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
         """
         Store dataset as images.
 
+        The strokes are colour-coded.
+
         :param path: Path to store the images at. Is created if it does not exist,
                      with parents created as well and no error raised if it already
                      exists.
