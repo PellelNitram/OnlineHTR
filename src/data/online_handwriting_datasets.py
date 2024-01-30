@@ -234,7 +234,7 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
 
         for i_sample, sample in enumerate( self.data ):
 
-            file_name = path / f'{i_sample}_{sample["sample_name"]}.{format}'
+            file_name = path / f'{i_sample}.{format}'
 
             plt.figure(dpi=300)
             plt.gca().set_aspect('equal')
