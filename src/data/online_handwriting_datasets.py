@@ -248,5 +248,3 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
             plt.close()
 
             self.logger.info(f'to_images: Saved sample {i_sample} to {file_name}')
-
-            raise NotImplementedError
