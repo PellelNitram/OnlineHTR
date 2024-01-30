@@ -243,7 +243,7 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
                         s=1)
             plt.xlabel('x')
             plt.ylabel('y')
-            plt.title(f'{sample["sample_name"]=}')
+            plt.title(f'{sample["sample_name"]=}\n{sample["label"]=}')
             plt.savefig(file_name)
             plt.close()
 
