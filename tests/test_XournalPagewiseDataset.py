@@ -54,5 +54,3 @@ def test_to_images(tmp_path):
     ds.load_data()
 
     ds.to_images(path=tmp_path, format='jpg')
-
-    raise NotImplementedError
