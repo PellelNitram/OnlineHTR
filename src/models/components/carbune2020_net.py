@@ -13,6 +13,7 @@ class Carbune2020Net(nn.Module):
         alphabet: list,
     ) -> None:
         """TODO. Check SimpleDenseNet for inspiration."""
+        # TODO: Try to replicate also my previous TensorFlow attempt that worked (up to memory leakage).
         raise NotImplementedError # Check SimpleDenseNet for inspiration.
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
