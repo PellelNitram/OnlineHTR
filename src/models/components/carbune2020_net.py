@@ -6,7 +6,11 @@ class Carbune2020Net(nn.Module):
     """TODO. Check SimpleDenseNet for inspiration."""
 
     def __init__(
-        self,
+        number_of_channels: int,
+        nodes_per_layer: int,
+        number_of_layers: int,
+        dropout: float,
+        alphabet: list,
     ) -> None:
         """TODO. Check SimpleDenseNet for inspiration."""
         raise NotImplementedError # Check SimpleDenseNet for inspiration.
