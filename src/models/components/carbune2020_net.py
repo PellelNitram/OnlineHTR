@@ -13,7 +13,10 @@ class Carbune2020Net(nn.Module):
         dropout: float,
         alphabet: list,
     ) -> None:
-        """TODO. Check SimpleDenseNet for inspiration."""
+        """TODO. Check SimpleDenseNet for inspiration.
+
+        :param number_of_channels: The number of channels per step in the time series.
+        """
         # TODO: Try to replicate also my previous TensorFlow attempt that worked (up to memory leakage).
         raise NotImplementedError # Check SimpleDenseNet for inspiration.
 
