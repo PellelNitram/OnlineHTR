@@ -25,7 +25,8 @@ class Carbune2020NetAttempt1(nn.Module):
         # according to https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html
         # with shape (T, N, C) where C is the number of classes (= here alphabet letters)
         # N is the batch size and T is the sequence length
-        self.log_softmax = nn.LogSoftmax(dim=2)
+        self.log_softmax = nn.LogSoftmax(dim=2) # See this documentation:
+                                                # https://pytorch.org/docs/stable/generated/torch.nn.LogSoftmax.html#torch.nn.LogSoftmax
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """TODO. Check SimpleDenseNet for inspiration."""
