@@ -21,6 +21,12 @@ class Carbune2020NetAttempt1(nn.Module):
         # TODO: Try to replicate also my previous TensorFlow attempt that worked (up to memory leakage).
         raise NotImplementedError # Check SimpleDenseNet for inspiration.
 
+        # Output layer to be fed into CTC loss; the output must be log probabilities
+        # according to https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html
+        # with shape (T, N, C) where C is the number of classes (= here alphabet letters)
+        # N is the batch size and T is the sequence length
+        self.log_softmax = nn.LogSoftmax(dim=2)
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """TODO. Check SimpleDenseNet for inspiration."""
         raise NotImplementedError # Check SimpleDenseNet for inspiration.
