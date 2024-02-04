@@ -28,6 +28,18 @@ class Carbune2020NetAttempt1(nn.Module):
         self.log_softmax = nn.LogSoftmax(dim=2) # See this documentation:
                                                 # https://pytorch.org/docs/stable/generated/torch.nn.LogSoftmax.html#torch.nn.LogSoftmax
 
+        # Documentation: https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html
+        self.lstm_stack = torch.nn.LSTM(
+            input_size=number_of_channels,
+            hidden_size=nodes_per_layer,
+            num_layers=number_of_layers,
+            bias=True,
+            batch_first=False,
+            dropout=dropout,
+            bidirectional=True,
+            proj_size=0,
+        )
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """TODO. Check SimpleDenseNet for inspiration."""
         raise NotImplementedError # Check SimpleDenseNet for inspiration.
