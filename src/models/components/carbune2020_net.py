@@ -40,6 +40,13 @@ class Carbune2020NetAttempt1(nn.Module):
             proj_size=0,
         )
 
+        # Documentation: https://pytorch.org/docs/stable/generated/torch.nn.Linear.html
+        self.linear = torch.nn.Linear(
+            in_features=2 * nodes_per_layer, # 2 b/c bidirectional=True
+            out_features=len(alphabet) + 1, # +1 for blank
+            bias=True,
+        )
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """TODO. Check SimpleDenseNet for inspiration."""
         raise NotImplementedError # Check SimpleDenseNet for inspiration.
