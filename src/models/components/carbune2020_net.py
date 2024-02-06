@@ -19,7 +19,6 @@ class Carbune2020NetAttempt1(nn.Module):
         :param number_of_layers: The number of LSTM layers.
         """
         # TODO: Try to replicate also my previous TensorFlow attempt that worked (up to memory leakage).
-        raise NotImplementedError # Check SimpleDenseNet for inspiration.
 
         # Output layer to be fed into CTC loss; the output must be log probabilities
         # according to https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html
