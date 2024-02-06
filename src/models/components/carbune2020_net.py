@@ -3,7 +3,10 @@ from torch import nn
 
 
 class Carbune2020NetAttempt1(nn.Module):
-    """TODO. Check SimpleDenseNet for inspiration."""
+    """Attempt 1 of neural network described in [Carbune2020] paper.
+
+    TODO: Explain what I mean with first attempt.
+    """
 
     def __init__(
         self,
