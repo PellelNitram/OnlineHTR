@@ -6,6 +6,8 @@ import pytest
 from src.models.components.carbune2020_net import Carbune2020NetAttempt1
 
 
+# Note: I only test functions that I overwrote myself.
+
 @pytest.mark.martin
 def test_construction():
 
