@@ -18,7 +18,6 @@ class Carbune2020NetAttempt1(nn.Module):
         :param number_of_channels: The number of channels per step in the time series.
         :param number_of_layers: The number of LSTM layers.
         """
-        # TODO: Try to replicate also my previous TensorFlow attempt that worked (up to memory leakage).
         super().__init__()
 
         # Output layer to be fed into CTC loss; the output must be log probabilities
