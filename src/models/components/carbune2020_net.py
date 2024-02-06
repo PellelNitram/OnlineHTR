@@ -13,10 +13,13 @@ class Carbune2020NetAttempt1(nn.Module):
         dropout: float,
         alphabet: list,
     ) -> None:
-        """TODO. Check SimpleDenseNet for inspiration.
+        """Initialize a `Carbune2020NetAttempt1` module.
 
-        :param number_of_channels: The number of channels per step in the time series.
+        :param number_of_channels: The number of input channels per time step in the time series.
+        :param nodes_per_layer: The dimension of the hidden state in the stack of LSTM cells.
         :param number_of_layers: The number of LSTM layers.
+        :param dropout: Dropout value to use in stack of LSTM cells.
+        :param alphabet: The alphabet of tokens to use.
         """
         super().__init__()
 
