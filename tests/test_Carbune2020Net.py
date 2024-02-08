@@ -42,3 +42,14 @@ def test_forward():
 
     # Call forward method
     result = net(batched_sample)
+
+    # Tests
+    assert result.shape == ( time_series_length, batch_size, len(alphabet)+1 )
+
+    assert_sum = torch.all(
+        torch.abs(
+            torch.sum( torch.exp( result ), axis=2)
+             - 1
+        ) < 3e-7
+    )
+    assert assert_sum.item()
