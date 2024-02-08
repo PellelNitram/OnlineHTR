@@ -55,7 +55,7 @@ class Carbune2020NetAttempt1(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """TODO. Check SimpleDenseNet for inspiration."""
         raise NotImplementedError # Check SimpleDenseNet for inspiration.
-        result = self.lstm_stack(x)
+        result, (h_n, c_n) = self.lstm_stack(x) # TODO: Add explicit (h_0, c_0)
         result = self.linear(result)
         result = self.log_softmax(result)
         return result
