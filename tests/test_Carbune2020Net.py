@@ -23,12 +23,13 @@ def test_construction():
 @pytest.mark.martin
 def test_forward():
 
+    alphabet = ['a', 'b', 'c', 'd']
     net = Carbune2020NetAttempt1(
         number_of_channels=4,
         nodes_per_layer=64,
         number_of_layers=3,
         dropout=0.25,
-        alphabet=['a', 'b', 'c',],
+        alphabet=alphabet,
     )
 
     # Construct synthetic data
