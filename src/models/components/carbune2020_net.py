@@ -53,7 +53,11 @@ class Carbune2020NetAttempt1(nn.Module):
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """TODO. Check SimpleDenseNet for inspiration."""
+        """Perform a single forward pass through the network.
+
+        :param x: The input tensor.
+        :return: A tensor of predictions.
+        """
         result, (h_n, c_n) = self.lstm_stack(x) # TODO: Add explicit (h_0, c_0)
         result = self.linear(result)
         result = self.log_softmax(result)
