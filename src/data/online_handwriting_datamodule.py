@@ -12,7 +12,12 @@ class OnlineHandwritingDataModule(LightningDataModule):
 
     def __init__(
         self,
-        data_dir: str = "data/",
+        data_dir: str = "data/", # TODO: Should I supply the path to build
+                                 #       OnlineHandwritingDataset in here or
+                                 #       should I supply the OnlineHandwritingDataset.
+                                 #       I prefer the latter although it requires
+                                 #       to adapt the configs accordingly to load
+                                 #       correct OnlineHandwritingDataset.
         train_val_test_split: Tuple[int, int, int] = (55_000, 5_000, 10_000),
         batch_size: int = 64,
         num_workers: int = 0,
@@ -32,6 +37,10 @@ class OnlineHandwritingDataModule(LightningDataModule):
         # also ensures init params will be stored in ckpt
         self.save_hyperparameters(logger=False)
 
+        # TODO: Fix format of online_handwriting_datasets here by switching
+        #       channels. Alternatively, do so in o_h_d (?). I do so b/c model
+        #       consumes it as such, hence o_h_d doesn't need to know about.
+        #       hence rather here. maybe w/ switch or parameter setting?
         # data transformations
         self.transforms = transforms.Compose(
             [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
