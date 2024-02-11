@@ -139,10 +139,3 @@ class OnlineHandwritingDataModule(LightningDataModule):
             Defaults to ``None``.
         """
         pass
-
-    def state_dict(self) -> Dict[Any, Any]:
-        """Called when saving a checkpoint. Implement to generate and save the datamodule state.
-
-        :return: A dictionary containing the datamodule state that you want to save.
-        """
-        return {}
