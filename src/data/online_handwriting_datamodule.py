@@ -146,11 +146,3 @@ class OnlineHandwritingDataModule(LightningDataModule):
         :return: A dictionary containing the datamodule state that you want to save.
         """
         return {}
-
-    def load_state_dict(self, state_dict: Dict[str, Any]) -> None:
-        """Called when loading a checkpoint. Implement to reload datamodule state given datamodule
-        `state_dict()`.
-
-        :param state_dict: The datamodule state returned by `self.state_dict()`.
-        """
-        pass
