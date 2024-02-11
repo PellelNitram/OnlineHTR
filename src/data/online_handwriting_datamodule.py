@@ -7,7 +7,7 @@ from torchvision.datasets import MNIST
 from torchvision.transforms import transforms
 
 
-class OnlineHandwritingDataModule(LightningDataModule):
+class SimpleOnlineHandwritingDataModule(LightningDataModule):
     """`LightningDataModule` for online handwriting datasets using `OnlineHandwritingDataset`."""
 
     def __init__(
