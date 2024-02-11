@@ -52,14 +52,6 @@ class OnlineHandwritingDataModule(LightningDataModule):
 
         self.batch_size_per_device = batch_size
 
-    @property
-    def num_classes(self) -> int:
-        """Get the number of classes.
-
-        :return: The number of MNIST classes (10).
-        """
-        return 10
-
     def prepare_data(self) -> None:
         """Download data if needed. Lightning ensures that `self.prepare_data()` is called only
         within a single process on CPU, so you can safely add your downloading logic within. In
