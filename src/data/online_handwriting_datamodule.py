@@ -41,10 +41,6 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
         #       channels. Alternatively, do so in o_h_d (?). I do so b/c model
         #       consumes it as such, hence o_h_d doesn't need to know about.
         #       hence rather here. maybe w/ switch or parameter setting?
-        # data transformations
-        self.transforms = transforms.Compose(
-            [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
-        )
 
         self.data_train: Optional[Dataset] = None
         self.data_val: Optional[Dataset] = None
