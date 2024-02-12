@@ -54,6 +54,12 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     if cfg.get("seed"):
         L.seed_everything(cfg.seed, workers=True)
 
+    # TODO: Build OHDS here and pass to PYLDM; alternatively consider not using OHDS and
+    #       just implementing a PYLDM directly and test that?!
+    #       Question: How to transform the underlying dataset then? Maybe I should consider
+    #       impementing my OHDS as PyT DS instead that allows for transformations to be added
+    #       in PYLDM?
+
     log.info(f"Instantiating datamodule <{cfg.data._target_}>")
     datamodule: LightningDataModule = hydra.utils.instantiate(cfg.data)
 
