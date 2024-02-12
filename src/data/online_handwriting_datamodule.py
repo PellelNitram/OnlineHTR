@@ -53,15 +53,8 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
         self.batch_size_per_device = batch_size
 
     def prepare_data(self) -> None:
-        """Download data if needed. Lightning ensures that `self.prepare_data()` is called only
-        within a single process on CPU, so you can safely add your downloading logic within. In
-        case of multi-node training, the execution of this hook depends upon
-        `self.prepare_data_per_node()`.
-
-        Do not use it to assign state (self.x = y).
-        """
-        MNIST(self.hparams.data_dir, train=True, download=True)
-        MNIST(self.hparams.data_dir, train=False, download=True)
+        """Not implemented because no data needs to be downloaded."""
+        pass
 
     def setup(self, stage: Optional[str] = None) -> None:
         """Load data. Set variables: `self.data_train`, `self.data_val`, `self.data_test`.
