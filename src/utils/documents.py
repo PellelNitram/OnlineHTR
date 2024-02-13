@@ -101,7 +101,7 @@ class XournalDocument(Document):
         with gzip.open(self.path, 'r') as f:
             content = f.read().decode("utf-8")
 
-        bs_content = bs(content, "lxml")
+        bs_content = bs(content, features="xml")
 
         for page in bs_content.find_all('page'):
 
