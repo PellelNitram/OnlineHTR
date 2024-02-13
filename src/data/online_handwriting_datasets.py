@@ -8,6 +8,8 @@ import logging
 import h5py
 import numpy as np
 import matplotlib.pyplot as plt
+import torch
+from torch.utils.data import Dataset, DataLoader
 
 from src.utils.documents import XournalDocument
 
@@ -248,3 +250,58 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
             plt.close()
 
             self.logger.info(f'to_images: Saved sample {i_sample} to {file_name}')
+
+class OnlineHandwritingDatasetPyTorch(Dataset):
+
+    def __init__(self, path, transform=None):
+        self.path = path
+        self.transform = transform
+        self.data = self.load_data()
+
+    def load_data(self):
+
+        xournal_document = XournalDocument(self.path)
+
+        result = []
+
+        for i_page in range(1, len( xournal_document.pages )):
+
+            page = xournal_document.pages[i_page]
+
+            sample_name = page.layers[0].texts[0].text.replace('sample_name: ', '').strip()
+            label = page.layers[0].texts[1].text.replace('label: ', '').strip()
+
+            x_data = []
+            y_data = []
+            stroke_nr_data = []
+
+            stroke_nr = 0
+            for stroke in page.layers[0].strokes:
+                assert len(stroke.x) == len(stroke.y)
+                for i_point in range( len(stroke.x) ):
+                    x_data.append( +stroke.x[i_point] )
+                    y_data.append( -stroke.y[i_point] )
+                    stroke_nr_data.append( stroke_nr )
+                stroke_nr += 1
+
+            result.append( {
+                'x': np.array(x_data),
+                'y': np.array(y_data),
+                'stroke_nr': stroke_nr_data,
+                'label': label,
+                'sample_name': sample_name,
+            } )
+
+        return result
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+
+        sample = self.data[idx]
+
+        if self.transform:
+            sample = self.transform(sample)
+
+        return sample
