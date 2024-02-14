@@ -6,6 +6,8 @@ from torch.utils.data import ConcatDataset, DataLoader, Dataset, random_split
 from torchvision.datasets import MNIST
 from torchvision.transforms import transforms
 
+from src.data.online_handwriting_datasets import XournalPagewiseDatasetPyTorch
+
 
 class SimpleOnlineHandwritingDataModule(LightningDataModule):
     """`LightningDataModule` for online handwriting datasets using `OnlineHandwritingDataset`."""
@@ -80,8 +82,22 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
         #         lengths=self.hparams.train_val_test_split,
         #         generator=torch.Generator().manual_seed(42),
         #     )
-        raise NotImplementedError
 
+        if not self.data_train and not self.data_val and not self.data_test:
+
+            dataset = XournalPagewiseDatasetPyTorch(self.hparams.data_dir)
+
+            if sum(self.hparams.train_val_test_split) > len(dataset):
+                raise RuntimeError(
+                    f"Dataset (len={len(dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
+                )
+            
+            self.data_train, self.data_val, self.data_test = random_split(
+                dataset=dataset,
+                lengths=self.hparams.train_val_test_split,
+                generator=torch.Generator().manual_seed(42),
+            )
+            
     def train_dataloader(self) -> DataLoader[Any]:
         """Create and return the train dataloader.
 
