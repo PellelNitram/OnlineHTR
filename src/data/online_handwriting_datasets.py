@@ -251,7 +251,7 @@ class XournalPagewiseDataset(OnlineHandwritingDataset):
 
             self.logger.info(f'to_images: Saved sample {i_sample} to {file_name}')
 
-class OnlineHandwritingDatasetPyTorch(Dataset):
+class XournalPagewiseDatasetPyTorch(Dataset):
 
     def __init__(self, path, transform=None):
         self.path = path
