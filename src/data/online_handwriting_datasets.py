@@ -2,6 +2,8 @@ from __future__ import annotations # See https://stackoverflow.com/a/33533514 wh
                                    # I use it for OnlineHandwritingDataset.map()
                                    # type annotation.
 
+from typing import List
+
 from pathlib import Path
 import logging
 
@@ -305,3 +307,12 @@ class XournalPagewiseDatasetPyTorch(Dataset):
             sample = self.transform(sample)
 
         return sample
+    
+def get_alphabet_from_dataset(dataset: Dataset) -> List[str]:
+    alphabet = []
+    for sample in dataset:
+        for letter in sample['label']:
+            alphabet.append(letter)
+    alphabet = list( set( alphabet ) )
+    alphabet = sorted( alphabet )
+    return alphabet
