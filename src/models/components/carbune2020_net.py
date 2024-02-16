@@ -56,7 +56,7 @@ class Carbune2020NetAttempt1(nn.Module):
         """Perform a single forward pass through the network.
 
         :param x: The input tensor.
-        :return: A tensor of predictions.
+        :return: A tensor of predictions. TODO: What's the shape? Needs to be added b/c useful.
         """
         result, (h_n, c_n) = self.lstm_stack(x) # TODO: Add explicit (h_0, c_0)
         result = self.linear(result)
