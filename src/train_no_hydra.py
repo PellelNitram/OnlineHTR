@@ -104,8 +104,6 @@ trainer: Trainer = Trainer(
     # logger=logger,
 )
 
-raise NotImplementedError('Implement transformations!')
-
 log.info("Starting training!")
 trainer.fit(
     model=model,
