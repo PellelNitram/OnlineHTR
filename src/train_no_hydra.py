@@ -13,9 +13,12 @@ from src.utils import (
     RankedLogger,
 )
 from src.data.online_handwriting_datasets import XournalPagewiseDatasetPyTorch
+from src.data.online_handwriting_datasets import get_alphabet_from_dataset
+from src.data.online_handwriting_datasets import get_number_of_channels_from_dataset
 from src.data.online_handwriting_datamodule import SimpleOnlineHandwritingDataModule
 from src.models.carbune_module import CarbuneLitModule
 from src.models.components.carbune2020_net import Carbune2020NetAttempt1
+from src.data.transforms import TwoChannels
 
 # ==============================================
 # ================== Settings ==================
@@ -37,14 +40,16 @@ output_dir = '/storage/datastore-personal/s1691089/data/code/carbune2020_impleme
 log.info(f"Wee test: XournalPagewiseDatasetPyTorch can be initialised")
 ds = XournalPagewiseDatasetPyTorch(
     path,
+    transform=TwoChannels(),
 )
 # Seems to work - good!
 # -> This can become a test later.
 # del ds
 print( ds[0] )
-# ALPHABET HACK
-alphabet = list( set( ds[0]['label'].lower() ))
-alphabet = sorted( alphabet )
+
+alphabet = get_alphabet_from_dataset( ds )
+
+number_of_channels = get_number_of_channels_from_dataset( ds )
 
 log.info(f"Instantiating datamodule")
 datamodule: LightningDataModule = SimpleOnlineHandwritingDataModule(
@@ -56,7 +61,7 @@ log.info(f"Instantiating model")
 
 # model: LightningModule = # TODO
 net = Carbune2020NetAttempt1(
-    3,
+    number_of_channels,
     nodes_per_layer=64,
     number_of_layers=3,
     dropout=0.0,
