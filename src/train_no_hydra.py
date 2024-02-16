@@ -35,6 +35,7 @@ log = RankedLogger(__name__, rank_zero_only=True)
 L.seed_everything(SEED, workers=True)
 
 path = '/storage/datastore-personal/s1691089/data/code/carbune2020_implementation/data/datasets/2024-01-20-xournal_dataset.xoj'
+path = '/storage/datastore-personal/s1691089/data/code/carbune2020_implementation/data/datasets/2024-02-16-xournal_dataset.xoj'
 output_dir = '/storage/datastore-personal/s1691089/data/code/carbune2020_implementation/data/train_no_hydra'
 
 log.info(f"Wee test: XournalPagewiseDatasetPyTorch can be initialised")
@@ -103,6 +104,18 @@ trainer: Trainer = Trainer(
     # callbacks=callbacks,
     # logger=logger,
 )
+
+datamodule.setup()
+train_dataloader = datamodule.train_dataloader()
+
+print('>>>>>>>>>>>>>>>>>>')
+print(train_dataloader)
+print(len(train_dataloader))
+print(next( iter( train_dataloader )))
+print(train_dataloader[0])
+print('>>>>>>>>>>>>>>>>>>')
+
+exit()
 
 log.info("Starting training!")
 trainer.fit(
