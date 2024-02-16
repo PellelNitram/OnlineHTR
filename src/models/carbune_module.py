@@ -104,8 +104,10 @@ class CarbuneLitModule(LightningModule):
             - A tensor of predictions.
             - A tensor of target labels.
         """
-        x, y = batch
+        x, y = batch['ink'], batch['label']
         logits = self.forward(x)
+        print(logits)
+        raise NotImplementedError('fix criterion!')
         loss = self.criterion(logits, y)
         preds = torch.argmax(logits, dim=1)
         return loss, preds, y
