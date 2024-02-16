@@ -28,7 +28,7 @@ class TwoChannels(object):
     def __call__(self, sample):
         """TODO.
 
-        :returns: { ink, label }
+        :returns: { ink, label } with ink as PyTorch tensor of float type.
         """
 
         x = sample['x']
@@ -39,6 +39,6 @@ class TwoChannels(object):
         label = sample['label']
 
         return {
-            'ink': torch.from_numpy(ink),
+            'ink': torch.from_numpy(ink).float(),
             'label': label,
         }
