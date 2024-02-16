@@ -316,3 +316,20 @@ def get_alphabet_from_dataset(dataset: Dataset) -> List[str]:
     alphabet = list( set( alphabet ) )
     alphabet = sorted( alphabet )
     return alphabet
+
+def get_number_of_channels_from_dataset(dataset: Dataset) -> List[str]:
+    """TODO.
+    
+    Assumes data to be stored in "ink" field and number_of_channels to come last.
+    This is in agreement with both LSTM and CTC loss from PyTorch.
+
+    The ink needs to provide the field `.shape`, for example either as numpy
+    array or as PyTorch tensor.
+    """
+    number_of_channels = []
+    for sample in dataset:
+        number_of_channels.append( sample['ink'].shape[-1] )
+    number_of_channels = list( set( number_of_channels ) )
+    if len(number_of_channels) > 1:
+        raise ValueError('the dataset features multiple number of channels.')
+    return number_of_channels[0]
