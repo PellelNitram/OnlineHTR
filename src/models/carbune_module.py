@@ -107,6 +107,7 @@ class CarbuneLitModule(LightningModule):
         x, y = batch['ink'], batch['label']
         logits = self.forward(x)
         print(logits)
+        print(logits.shape)
         raise NotImplementedError('fix criterion!')
         loss = self.criterion(logits, y)
         preds = torch.argmax(logits, dim=1)
