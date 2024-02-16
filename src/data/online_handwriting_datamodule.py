@@ -7,6 +7,7 @@ from torchvision.datasets import MNIST
 from torchvision.transforms import transforms
 
 from src.data.online_handwriting_datasets import XournalPagewiseDatasetPyTorch
+from src.data.transforms import TwoChannels
 
 
 class SimpleOnlineHandwritingDataModule(LightningDataModule):
@@ -50,6 +51,8 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
 
         self.batch_size_per_device = batch_size
 
+        self.transform = TwoChannels()
+
     def prepare_data(self) -> None:
         """Not implemented because no data needs to be downloaded."""
         pass
@@ -85,7 +88,7 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
 
         if not self.data_train and not self.data_val and not self.data_test:
 
-            dataset = XournalPagewiseDatasetPyTorch(self.hparams.data_dir)
+            dataset = XournalPagewiseDatasetPyTorch(self.hparams.data_dir, transform=self.transform)
 
             if sum(self.hparams.train_val_test_split) > len(dataset):
                 raise RuntimeError(
