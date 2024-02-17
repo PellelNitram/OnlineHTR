@@ -115,6 +115,8 @@ print(next( iter( train_dataloader )))
 print(train_dataloader[0])
 print('>>>>>>>>>>>>>>>>>>')
 
+# TODO: Add collate function to dataloaders.
+
 exit()
 
 log.info("Starting training!")
