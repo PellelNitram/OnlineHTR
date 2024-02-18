@@ -109,7 +109,7 @@ class CarbuneLitModule(LightningModule):
         print(logits)
         print(logits.shape)
         raise NotImplementedError('fix criterion!')
-        loss = self.criterion(logits, y)
+        loss = self.criterion(logits, y) # TODO Adapt output of network to loss.
         preds = torch.argmax(logits, dim=1)
         return loss, preds, y
 
