@@ -8,6 +8,7 @@ from torchvision.transforms import transforms
 
 from src.data.online_handwriting_datasets import XournalPagewiseDatasetPyTorch
 from src.data.transforms import TwoChannels
+from src.data.collate_functions import my_collator
 
 
 class SimpleOnlineHandwritingDataModule(LightningDataModule):
@@ -112,6 +113,7 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
             num_workers=self.hparams.num_workers,
             pin_memory=self.hparams.pin_memory,
             shuffle=True,
+            collate_fn=my_collator,
         )
 
     def val_dataloader(self) -> DataLoader[Any]:
@@ -125,6 +127,7 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
             num_workers=self.hparams.num_workers,
             pin_memory=self.hparams.pin_memory,
             shuffle=False,
+            collate_fn=my_collator,
         )
 
     def test_dataloader(self) -> DataLoader[Any]:
@@ -138,6 +141,7 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
             num_workers=self.hparams.num_workers,
             pin_memory=self.hparams.pin_memory,
             shuffle=False,
+            collate_fn=my_collator,
         )
 
     def teardown(self, stage: Optional[str] = None) -> None:
