@@ -8,6 +8,7 @@ from torchvision.transforms import transforms
 
 from src.data.online_handwriting_datasets import XournalPagewiseDatasetPyTorch
 from src.data.transforms import TwoChannels
+from src.data.transforms import CharactersToIndices
 from src.data.collate_functions import my_collator
 
 
@@ -16,6 +17,7 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
 
     def __init__(
         self,
+        alphabet: list,
         data_dir: str = "data/", # TODO: Should I supply the path to build
                                  #       OnlineHandwritingDataset in here or
                                  #       should I supply the OnlineHandwritingDataset.
@@ -52,7 +54,10 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
 
         self.batch_size_per_device = batch_size
 
-        self.transform = TwoChannels()
+        self.transform = transforms.Compose([
+            TwoChannels(),
+            CharactersToIndices(alphabet),
+        ])
 
     def prepare_data(self) -> None:
         """Not implemented because no data needs to be downloaded."""
