@@ -15,6 +15,8 @@
 import torch
 import numpy as np
 
+from src.data.tokenisers import AlphabetMapper
+
 
 class TwoChannels(object):
     """TODO.
@@ -41,4 +43,29 @@ class TwoChannels(object):
         return {
             'ink': torch.from_numpy(ink).float(),
             'label': label,
+        }
+
+
+class CharactersToIndices(object):
+    """TODO.
+
+    Return { ink: (x, y), label: label } where label is list of integers. ink remains unchanged.
+    """
+
+    def __init__(self, alphabet: list):
+        self.alphabet = alphabet
+        self.alphabet_mapper = AlphabetMapper(alphabet)
+
+    def __call__(self, sample):
+        """TODO.
+
+        :returns: { ink, label } with ink unmodified and label
+                  as list integer indices instead of characters.
+        """
+
+        raise NotImplementedError
+
+        return {
+            'ink': sample['ink'],
+            'label': sample['label'],
         }
