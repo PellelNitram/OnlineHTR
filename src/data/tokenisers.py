@@ -10,7 +10,7 @@ class AlphabetMapper:
         self.alphabet = alphabet
         self.alphabet_with_blank = [ AlphabetMapper.BLANK, ] + alphabet
 
-    def character_to_index(self, character: str):
+    def character_to_index(self, character: str) -> int:
         return self.alphabet_with_blank.index(character)
 
     def index_to_character(self, index: int):
