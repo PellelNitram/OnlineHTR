@@ -11,8 +11,8 @@ def my_collator(batch):
     labels = [ sample['label'] for sample in batch ]
     inks = [ sample['ink'] for sample in batch ]
 
-    label_lengths = None # TODO
-
+    label_lengths = [ len(label) for label in labels ]
+    max_label_length = max(label_lengths)
 
     ink_lengths = [ ink.shape[0] for ink in inks ]
     max_ink_length = max(ink_lengths)
@@ -32,7 +32,6 @@ def my_collator(batch):
     # TODO: Fill it.
 
     # y_tensor_batched = ...
-
 
     # print(inks)
     # print(labels)
