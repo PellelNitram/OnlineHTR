@@ -63,9 +63,9 @@ class CharactersToIndices(object):
                   as list integer indices instead of characters.
         """
 
-        raise NotImplementedError
+        label = [ self.alphabet_mapper.character_to_index(c) for c in sample['label']]
 
         return {
             'ink': sample['ink'],
-            'label': sample['label'],
+            'label': label,
         }
