@@ -34,7 +34,10 @@ def my_collator(batch):
     for i_batch in range(batch_size):
         X_tensor_batched[:ink_lengths[i_batch], i_batch, :] = inks[i_batch]
 
-    # y_tensor_batched = ...
+    # This is Targets parameter in CTC loss
+    y_tensor_batched = torch.zeros((batch_size, max_label_length), dtype=torch.int64)
+    for i_batch in range(batch_size):
+        y_tensor_batched[i_batch, :label_lengths[i_batch]] = labels[i_batch]
 
     # TODO: Also return the lengths as needed by CTC loss. See here https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html.
 
