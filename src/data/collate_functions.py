@@ -41,6 +41,9 @@ def my_collator(batch):
     # print(inks)
     # print(labels)
 
+    # TODO: Check https://github.com/pytorch/pytorch/blob/main/torch/utils/data/_utils/collate.py#L216 to check
+    #       if this function here is efficient and good enough and how it compares to PyTorch authors' work.
+
     # print(batch)
     exit()
     pass
