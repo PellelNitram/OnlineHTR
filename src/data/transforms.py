@@ -61,9 +61,11 @@ class CharactersToIndices(object):
 
         :returns: { ink, label } with ink unmodified and label
                   as list integer indices instead of characters.
+                  label is returned as torch.int64 tensor.
         """
 
         label = [ self.alphabet_mapper.character_to_index(c) for c in sample['label']]
+        label = torch.as_tensor(label, dtype=torch.int64)
 
         return {
             'ink': sample['ink'],
