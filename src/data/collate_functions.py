@@ -35,6 +35,8 @@ def my_collator(batch):
 
     # y_tensor_batched = ...
 
+    # TODO: Also return the lengths as needed by CTC loss.
+
     # print(inks)
     # print(labels)
 
