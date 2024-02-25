@@ -112,16 +112,6 @@ trainer: Trainer = Trainer(
     # logger=logger,
 )
 
-datamodule.setup()
-train_dataloader = datamodule.train_dataloader()
-
-print('>>>>>>>>>>>>>>>>>>')
-print(train_dataloader)
-print(len(train_dataloader))
-print(next( iter( train_dataloader )))
-print(train_dataloader[0])
-print('>>>>>>>>>>>>>>>>>>')
-
 # TODO: Add collate function to dataloaders.
 
 exit()
