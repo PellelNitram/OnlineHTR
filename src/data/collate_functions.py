@@ -21,10 +21,6 @@ def my_collator(batch):
     assert np.allclose( channel_dimensions[0], channel_dimensions )
     channel_dimension = channel_dimensions[0]
 
-    print(ink_lengths)
-    print(max_ink_length)
-    print(channel_dimension)
-
     ink_types = [ ink.dtype for ink in inks ]
     for ink_type in ink_types[1:]:
         assert ink_types[0] == ink_type
