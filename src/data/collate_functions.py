@@ -36,7 +36,7 @@ def my_collator(batch):
 
     # y_tensor_batched = ...
 
-    # TODO: Also return the lengths as needed by CTC loss.
+    # TODO: Also return the lengths as needed by CTC loss. See here https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html.
 
     # print(inks)
     # print(labels)
