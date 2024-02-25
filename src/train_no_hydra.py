@@ -54,7 +54,7 @@ number_of_channels = get_number_of_channels_from_dataset( ds )
 
 log.info(f"Instantiating datamodule")
 datamodule: LightningDataModule = SimpleOnlineHandwritingDataModule(
-    path, (1, 0, 0), 64, 0, False,
+    alphabet, path, (1, 0, 0), 64, 0, False,
 )
 
 log.info(f"Instantiating model")
