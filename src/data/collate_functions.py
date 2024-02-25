@@ -5,6 +5,11 @@ import numpy as np
 
 
 def my_collator(batch):
+    """TODO.
+
+    TODO: Check https://github.com/pytorch/pytorch/blob/main/torch/utils/data/_utils/collate.py#L216 to check
+    if this function here is efficient and good enough and how it compares to PyTorch authors' work.
+    """
 
     batch_size = len(batch)
 
@@ -43,13 +48,3 @@ def my_collator(batch):
         'ink_lengths': ink_lengths,
         'label_lengths': label_lengths,
      }
-
-    # print(inks)
-    # print(labels)
-
-    # TODO: Check https://github.com/pytorch/pytorch/blob/main/torch/utils/data/_utils/collate.py#L216 to check
-    #       if this function here is efficient and good enough and how it compares to PyTorch authors' work.
-
-    # print(batch)
-    exit()
-    pass
