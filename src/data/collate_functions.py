@@ -31,7 +31,8 @@ def my_collator(batch):
     ink_type = ink_types[0]
 
     X_tensor_batched = torch.zeros((max_ink_length, batch_size, channel_dimension), dtype=ink_type)
-    # TODO: Fill it.
+    for i_batch in range(batch_size):
+        X_tensor_batched[:ink_lengths[i_batch], i_batch, :] = inks[i_batch]
 
     # y_tensor_batched = ...
 
