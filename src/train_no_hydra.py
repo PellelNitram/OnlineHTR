@@ -57,6 +57,13 @@ datamodule: LightningDataModule = SimpleOnlineHandwritingDataModule(
     alphabet, path, (1, 0, 0), 64, 0, False,
 )
 
+# # Code for checking `datamodule`
+# datamodule.setup()
+# train_dataloader = datamodule.train_dataloader()
+# item = next(iter(train_dataloader))
+# print(item)
+# exit()
+
 log.info(f"Instantiating model")
 
 
