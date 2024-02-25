@@ -25,10 +25,12 @@ def my_collator(batch):
     print(max_ink_length)
     print(channel_dimension)
 
-    # TODO: Infer dtype.
+    ink_types = [ ink.dtype for ink in inks ]
+    for ink_type in ink_types[1:]:
+        assert ink_types[0] == ink_type
+    ink_type = ink_types[0]
 
-    X_tensor_batched = torch.zeros((max_ink_length, batch_size, channel_dimension))
-    print(X_tensor_batched)
+    X_tensor_batched = torch.zeros((max_ink_length, batch_size, channel_dimension), dtype=ink_type)
     # TODO: Fill it.
 
     # y_tensor_batched = ...
