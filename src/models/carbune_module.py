@@ -143,13 +143,11 @@ class CarbuneLitModule(LightningModule):
             labels.
         :param batch_idx: The index of the current batch.
         """
-        loss, preds, targets = self.model_step(batch)
+        loss = self.model_step(batch)
 
         # update and log metrics
         self.val_loss(loss)
-        self.val_acc(preds, targets)
         self.log("val/loss", self.val_loss, on_step=False, on_epoch=True, prog_bar=True)
-        self.log("val/acc", self.val_acc, on_step=False, on_epoch=True, prog_bar=True)
 
     def on_validation_epoch_end(self) -> None:
         "Lightning hook that is called when a validation epoch ends."
