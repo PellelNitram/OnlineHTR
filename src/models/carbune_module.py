@@ -63,11 +63,6 @@ class CarbuneLitModule(LightningModule):
         # loss function
         self.criterion = torch.nn.CTCLoss(blank=0, reduction='mean')
 
-        # metric objects for calculating and averaging accuracy across batches
-        self.train_acc = Accuracy(task="multiclass", num_classes=10)
-        self.val_acc = Accuracy(task="multiclass", num_classes=10)
-        self.test_acc = Accuracy(task="multiclass", num_classes=10)
-
         # for averaging loss across batches
         self.train_loss = MeanMetric()
         self.val_loss = MeanMetric()
