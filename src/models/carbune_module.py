@@ -104,14 +104,14 @@ class CarbuneLitModule(LightningModule):
             - A tensor of predictions.
             - A tensor of target labels.
         """
-        x, y = batch['ink'], batch['label']
-        logits = self.forward(x)
-        print(logits)
-        print(logits.shape)
-        raise NotImplementedError('fix criterion!')
-        loss = self.criterion(logits, y) # TODO Adapt output of network to loss.
-        preds = torch.argmax(logits, dim=1)
-        return loss, preds, y
+        log_softmax = self.forward(batch['ink'])
+        loss = self.criterion(
+            log_softmax,
+            batch['label'],
+            batch['ink_lengths'],
+            batch['label_lengths'],
+        )
+        return loss
 
     def training_step(
         self, batch: Tuple[torch.Tensor, torch.Tensor], batch_idx: int
