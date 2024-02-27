@@ -3,6 +3,8 @@
 # Essentially, I replicate `src/train.py::train()` but without Hydra
 # and thereby hard-coded settings like data and model.
 
+from pathlib import Path
+
 import lightning as L
 from lightning import Callback, LightningDataModule, LightningModule, Trainer
 import torch
@@ -36,7 +38,7 @@ L.seed_everything(SEED, workers=True)
 
 path = '/storage/datastore-personal/s1691089/data/code/carbune2020_implementation/data/datasets/2024-01-20-xournal_dataset.xoj'
 path = '/storage/datastore-personal/s1691089/data/code/carbune2020_implementation/data/datasets/2024-02-16-xournal_dataset.xoj'
-output_dir = '/storage/datastore-personal/s1691089/data/code/carbune2020_implementation/data/train_no_hydra'
+output_dir = Path('/storage/datastore-personal/s1691089/data/code/carbune2020_implementation/data/train_no_hydra')
 
 log.info(f"Wee test: XournalPagewiseDatasetPyTorch can be initialised")
 ds = XournalPagewiseDatasetPyTorch(
