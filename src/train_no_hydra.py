@@ -114,8 +114,6 @@ trainer: Trainer = Trainer(
     # logger=logger,
 )
 
-exit()
-
 log.info("Starting training!")
 trainer.fit(
     model=model,
