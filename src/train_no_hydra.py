@@ -114,8 +114,6 @@ trainer: Trainer = Trainer(
     # logger=logger,
 )
 
-# TODO: Add collate function to dataloaders.
-
 exit()
 
 log.info("Starting training!")
