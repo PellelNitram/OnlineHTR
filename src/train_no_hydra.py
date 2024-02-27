@@ -99,6 +99,20 @@ model: LightningModule = CarbuneLitModule(
 
 # log.info("Instantiating loggers...")
 # logger: List[Logger] = # TODO
+logger = [
+    L.pytorch.loggers.csv_logs.CSVLogger(
+        save_dir=output_dir,
+        name='csv/',
+        prefix='',
+    ),
+    L.pytorch.loggers.tensorboard.TensorBoardLogger(
+        save_dir=output_dir / 'tensorboard',
+        name=None,
+        log_graph=False,
+        default_hp_metric=True,
+        prefix='',
+    ),
+]
 
 log.info(f"Instantiating trainer")
 trainer: Trainer = Trainer(
@@ -112,7 +126,7 @@ trainer: Trainer = Trainer(
     log_every_n_steps=1,
     # Added back in later:
     # callbacks=callbacks,
-    # logger=logger,
+    logger=logger,
 )
 
 log.info("Starting training!")
