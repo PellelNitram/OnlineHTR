@@ -109,6 +109,7 @@ trainer: Trainer = Trainer(
     devices=1,
     check_val_every_n_epoch=1,
     deterministic=False,
+    log_every_n_steps=1,
     # Added back in later:
     # callbacks=callbacks,
     # logger=logger,
