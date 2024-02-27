@@ -28,6 +28,8 @@ from src.data.transforms import TwoChannels
 
 SEED = 42
 
+MAX_EPOCHS = 10
+
 # ==============================================
 # ================== Main Code =================
 # ==============================================
@@ -118,7 +120,7 @@ log.info(f"Instantiating trainer")
 trainer: Trainer = Trainer(
     default_root_dir=output_dir,
     min_epochs=1, # prevents early stopping
-    max_epochs=10,
+    max_epochs=MAX_EPOCHS,
     accelerator='gpu',
     devices=1,
     check_val_every_n_epoch=1,
