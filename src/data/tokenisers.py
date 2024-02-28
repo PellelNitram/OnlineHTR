@@ -5,6 +5,7 @@ class AlphabetMapper:
     """
 
     BLANK = '<blank>'
+    BLANK_INDEX = 0
 
     def __init__(self, alphabet: list):
         self.alphabet = alphabet
