@@ -5,6 +5,8 @@ from lightning import LightningModule
 from torchmetrics import MaxMetric, MeanMetric
 from torchmetrics.classification.accuracy import Accuracy
 
+from src.utils.decoders import GreedyCTCDecoder
+
 
 class CarbuneLitModule(LightningModule):
     """Example of a `LightningModule` for MNIST classification.
@@ -45,6 +47,7 @@ class CarbuneLitModule(LightningModule):
         optimizer: torch.optim.Optimizer,
         scheduler: torch.optim.lr_scheduler,
         compile: bool,
+        alphabet_mapper,
     ) -> None:
         """Initialize a `MNISTLitModule`.
 
@@ -59,6 +62,9 @@ class CarbuneLitModule(LightningModule):
         self.save_hyperparameters(logger=False)
 
         self.net = net
+
+        self.alphabet_mapper = alphabet_mapper
+        self.decoder = GreedyCTCDecoder()
 
         # loss function
         self.criterion = torch.nn.CTCLoss(blank=0, reduction='mean')
@@ -104,6 +110,8 @@ class CarbuneLitModule(LightningModule):
             batch['ink_lengths'],
             batch['label_lengths'],
         )
+        decoded_texts = self.decoder(log_softmax, self.alphabet_mapper)
+
         return loss
 
     def training_step(
