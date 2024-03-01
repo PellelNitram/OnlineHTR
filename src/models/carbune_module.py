@@ -126,7 +126,12 @@ class CarbuneLitModule(LightningModule):
         cer = char_error_rate(preds=decoded_texts, target=labels)
         wer = word_error_rate(preds=decoded_texts, target=labels)
 
-        return loss
+        metrics = {
+            'cer': cer,
+            'wer': wer,
+        }
+
+        return loss, metrics
 
     def training_step(
         self, batch: Tuple[torch.Tensor, torch.Tensor], batch_idx: int
