@@ -112,6 +112,15 @@ class CarbuneLitModule(LightningModule):
         )
         decoded_texts = self.decoder(log_softmax, self.alphabet_mapper)
 
+        # TODO: Could be pre-computed (using list0 in batch to avoid endless recomputation
+        labels = []
+        for i_batch in range(log_softmax.shape[1]):
+            label_length = batch['label_lengths'][i_batch]
+            label = batch['label'][i_batch, :label_length]
+            label = [ self.alphabet_mapper.index_to_character(c) for c in label ]
+            label = "".join(label)
+            labels.append(label)
+
         return loss
 
     def training_step(
