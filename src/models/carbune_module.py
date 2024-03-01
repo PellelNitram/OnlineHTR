@@ -143,7 +143,7 @@ class CarbuneLitModule(LightningModule):
         :param batch_idx: The index of the current batch.
         :return: A tensor of losses between model predictions and targets.
         """
-        loss = self.model_step(batch)
+        loss, metrics = self.model_step(batch)
 
         # update and log metrics
         self.train_loss(loss)
@@ -163,7 +163,7 @@ class CarbuneLitModule(LightningModule):
             labels.
         :param batch_idx: The index of the current batch.
         """
-        loss = self.model_step(batch)
+        loss, metrics = self.model_step(batch)
 
         # update and log metrics
         self.val_loss(loss)
@@ -180,7 +180,7 @@ class CarbuneLitModule(LightningModule):
             labels.
         :param batch_idx: The index of the current batch.
         """
-        loss = self.model_step(batch)
+        loss, metrics = self.model_step(batch)
 
         # update and log metrics
         self.test_loss(loss)
