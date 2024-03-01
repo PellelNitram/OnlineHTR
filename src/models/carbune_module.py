@@ -4,6 +4,8 @@ import torch
 from lightning import LightningModule
 from torchmetrics import MaxMetric, MeanMetric
 from torchmetrics.classification.accuracy import Accuracy
+from torchmetrics.functional.text import word_error_rate
+from torchmetrics.functional.text import char_error_rate
 
 from src.utils.decoders import GreedyCTCDecoder
 
@@ -120,6 +122,9 @@ class CarbuneLitModule(LightningModule):
             label = [ self.alphabet_mapper.index_to_character(c) for c in label ]
             label = "".join(label)
             labels.append(label)
+
+        cer = char_error_rate(preds=decoded_texts, target=labels)
+        wer = word_error_rate(preds=decoded_texts, target=labels)
 
         return loss
 
