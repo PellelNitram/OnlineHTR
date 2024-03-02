@@ -76,6 +76,16 @@ class CarbuneLitModule(LightningModule):
         self.val_loss = MeanMetric()
         self.test_loss = MeanMetric()
 
+        # for averaging wer across batches
+        self.train_wer = MeanMetric()
+        self.val_wer = MeanMetric()
+        self.test_wer = MeanMetric()
+
+        # for averaging cer across batches
+        self.train_cer = MeanMetric()
+        self.val_cer = MeanMetric()
+        self.test_cer = MeanMetric()
+
         # for tracking best so far validation accuracy
         self.val_acc_best = MaxMetric()
 
