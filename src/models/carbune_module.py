@@ -159,6 +159,12 @@ class CarbuneLitModule(LightningModule):
         self.train_loss(loss)
         self.log("train/loss", self.train_loss, on_step=False, on_epoch=True, prog_bar=True)
 
+        self.train_wer(metrics['wer'])
+        self.log("train/wer", self.train_wer, on_step=False, on_epoch=True, prog_bar=True)
+
+        self.train_cer(metrics['cer'])
+        self.log("train/cer", self.train_cer, on_step=False, on_epoch=True, prog_bar=True)
+
         # return loss or backpropagation will fail
         return loss
 
