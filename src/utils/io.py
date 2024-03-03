@@ -76,8 +76,8 @@ def load_IAM_OnDB_sample(sample, base_path):
     code1, code2, code3 = sample.split(SPLITTER)
     code2_no_letters = ''.join( [ letter for letter in code2 if letter in '0123456789' ] )
 
-    strokes_file = Path( base_path / f'lineStrokes-all/{code1}/{code1}{SPLITTER}{code2_no_letters}/{code1}{SPLITTER}{code2}{SPLITTER}{code3}.xml' )
-    text_line_file = Path( base_path / f'ascii-all/{code1}/{code1}{SPLITTER}{code2_no_letters}/{code1}{SPLITTER}{code2}.txt' )
+    strokes_file = Path( base_path / f'lineStrokes-all/lineStrokes/{code1}/{code1}{SPLITTER}{code2_no_letters}/{code1}{SPLITTER}{code2}{SPLITTER}{code3}.xml' )
+    text_line_file = Path( base_path / f'ascii-all/ascii/{code1}/{code1}{SPLITTER}{code2_no_letters}/{code1}{SPLITTER}{code2}.txt' )
 
     df = load_df_iam_ondb(strokes_file)
     df['y'] *= -1 # Correct text direction to natural direction facing upwards
