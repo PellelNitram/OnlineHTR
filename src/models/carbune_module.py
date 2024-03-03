@@ -166,11 +166,11 @@ class CarbuneLitModule(LightningModule):
         self.train_cer(metrics['cer'])
         self.log("train/cer", self.train_cer, on_step=False, on_epoch=True, prog_bar=True)
 
-        # # TODO: Add text to log like tensorboard - how to add the global step to `add_text`?
+        # # TODO: Add text to log like tensorboard - what to save exactly? saving full text is too wasteful every step - every few steps??
         # for logger in self.loggers:
         #     if isinstance(logger, TensorBoardLogger):
         #         tensorboard = logger.experiment
-        #         tensorboard.add_text('test_text', 'this is a test')
+        #         tensorboard.add_text('test_text', f'this is a test - {self.global_step}', self.global_step)
 
         # return loss or backpropagation will fail
         return loss
