@@ -6,6 +6,7 @@ from torchmetrics import MaxMetric, MeanMetric
 from torchmetrics.classification.accuracy import Accuracy
 from torchmetrics.functional.text import word_error_rate
 from torchmetrics.functional.text import char_error_rate
+from lightning.pytorch.loggers.tensorboard import TensorBoardLogger
 
 from src.utils.decoders import GreedyCTCDecoder
 
@@ -164,6 +165,12 @@ class CarbuneLitModule(LightningModule):
 
         self.train_cer(metrics['cer'])
         self.log("train/cer", self.train_cer, on_step=False, on_epoch=True, prog_bar=True)
+
+        # # TODO: Add text to log like tensorboard - how to add the global step to `add_text`?
+        # for logger in self.loggers:
+        #     if isinstance(logger, TensorBoardLogger):
+        #         tensorboard = logger.experiment
+        #         tensorboard.add_text('test_text', 'this is a test')
 
         # return loss or backpropagation will fail
         return loss
