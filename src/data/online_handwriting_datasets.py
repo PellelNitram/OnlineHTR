@@ -307,6 +307,28 @@ class XournalPagewiseDatasetPyTorch(Dataset):
             sample = self.transform(sample)
 
         return sample
+
+class IAM_OnDB_Dataset(Dataset):
+
+    def __init__(self, path, transform=None):
+        self.path = path
+        self.transform = transform
+        self.data = self.load_data()
+
+    def load_data(self):
+        raise NotImplementedError
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+
+        raise NotImplementedError
+
+        if self.transform:
+            sample = self.transform(sample)
+
+        return sample
     
 def get_alphabet_from_dataset(dataset: Dataset) -> List[str]:
     alphabet = []
