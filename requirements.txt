@@ -27,3 +27,4 @@ beautifulsoup4
 matplotlib
 lxml
 tensorboard
+pandas
