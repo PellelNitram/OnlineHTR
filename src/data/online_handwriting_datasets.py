@@ -318,6 +318,9 @@ class IAM_OnDB_Dataset(Dataset):
     - https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database
     - https://doi.org/10.1109/ICDAR.2005.132
 
+    This class encapsulates my own version of the IAM On-DB dataset in which I fixed a few small
+    samples by fixing text formatting issues.
+
     This is the raw dataset which can be further processed using downstream transformations.
     """
 
@@ -471,6 +474,6 @@ if __name__ == '__main__':
     index_list = np.arange(0, len(ds))
     rng.shuffle(index_list)
     index_list = index_list[:nr_samples]
-    
+
     for iam_index in index_list:
         ds.plot_sample_to_image_file(iam_index, pp / Path(f'iam_index.{iam_index}.png'))
