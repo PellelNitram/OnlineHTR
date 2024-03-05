@@ -419,10 +419,6 @@ class IAM_OnDB_Dataset(Dataset):
 
         sample = self[sample_index]
 
-        # TODO: each stroke gets a different colour
-        # TODO: strokes plotted as dots
-        # TODO: title is set to label
-        
         plt.figure()
         plt.scatter(
             sample['x'],
