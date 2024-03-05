@@ -461,19 +461,3 @@ def get_number_of_channels_from_dataset(dataset: Dataset) -> List[str]:
     if len(number_of_channels) > 1:
         raise ValueError('the dataset features multiple number of channels.')
     return number_of_channels[0]
-
-if __name__ == '__main__':
-    ds = IAM_OnDB_Dataset(path=Path('data/datasets/IAM-OnDB'), transform=None, limit=-1)
-
-    pp = Path('test_imgs')
-    pp.mkdir(exist_ok=True)
-
-    nr_samples = 100
-
-    rng = np.random.default_rng(1337)
-    index_list = np.arange(0, len(ds))
-    rng.shuffle(index_list)
-    index_list = index_list[:nr_samples]
-
-    for iam_index in index_list:
-        ds.plot_sample_to_image_file(iam_index, pp / Path(f'iam_index.{iam_index}.png'))
