@@ -3,6 +3,7 @@ from __future__ import annotations # See https://stackoverflow.com/a/33533514 wh
                                    # type annotation.
 
 from typing import List
+import os
 
 from pathlib import Path
 import logging
@@ -14,6 +15,7 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 
 from src.utils.documents import XournalDocument
+from src.utils.io import load_IAM_OnDB_sample
 
 
 class OnlineHandwritingDataset:
@@ -309,26 +311,121 @@ class XournalPagewiseDatasetPyTorch(Dataset):
         return sample
 
 class IAM_OnDB_Dataset(Dataset):
+    """IAM-OnDB dataset implementation in PyTorch.
 
-    def __init__(self, path, transform=None):
+    These are the links to the dataset:
+    - https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database
+    - https://doi.org/10.1109/ICDAR.2005.132
+
+    This is the raw dataset which can be further processed using downstream transformations.
+    """
+
+    SAMPLES_NOT_TO_STORE = [
+        'z01-000z-01', # There exists no text for that sample
+        'z01-000z-02', # There exists no text for that sample
+        'z01-000z-03', # There exists no text for that sample
+        'z01-000z-04', # There exists no text for that sample
+        'z01-000z-05', # There exists no text for that sample
+        'z01-000z-06', # There exists no text for that sample
+        'z01-000z-07', # There exists no text for that sample
+        'z01-000z-08', # There exists no text for that sample
+    ]
+
+    def __init__(self, path: Path, transform=None, limit: int=-1) -> None:
+        """
+        TODO: Explain how the dataset needs to be stored on disk to allow access
+        to it using this present class.
+
+        :param path: Path to dataset.
+        :param limit: Limit number of loaded samples to this value if positive.
+        """
         self.path = path
         self.transform = transform
+        self.limit = limit
         self.data = self.load_data()
+        # TODO: I'd love to add logging here to understand the skipped images
 
-    def load_data(self):
-        raise NotImplementedError
+    def load_data(self) -> List:
+        """
+        Returns IAM-OnDB data.
+         
+        In `__init__`, it is saved as `self.data`.
+        
+        Loading is performed by parsing the XML files and reading the text files.
+        """
+
+        result = []
+
+        ctr = 0 # Starts at 1
+
+        ended = False
+
+        for root, dirs, files in os.walk(self.path / 'lineStrokes-all'):
+
+            if ended:
+                break
+
+            for f in files:
+                if f.endswith('.xml'):
+
+                    sample_name = f.replace('.xml', '')
+
+                    if self.limit >= 0 and ctr >= self.limit:
+                        ended = True
+                        break
+
+                    if sample_name in self.SAMPLES_NOT_TO_STORE:
+                        continue
+
+                    df, text_line = load_IAM_OnDB_sample(sample_name, self.path)
+
+                    result.append( {
+                        'x': df['x'].to_numpy(),
+                        'y': df['y'].to_numpy(),
+                        't': df['t'].to_numpy(),
+                        'stroke_nr': list( df['stroke_nr'] ),
+                        'label': text_line,
+                        'sample_name': sample_name,
+                    } )
+
+                    ctr += 1
+
+        return result
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, idx):
 
-        raise NotImplementedError
+        sample = self.data[idx]
 
         if self.transform:
             sample = self.transform(sample)
 
         return sample
+    
+    def plot_sample_to_image_file(self, sample_index: int, file_path: Path) -> None:
+        """Plot sample data to image file.
+        
+        Helpful for debugging. It uses the `__getitem__` function and thereby applies transforms.
+        
+        :param sample_index: Index of sample to plot.
+        :param file_path: Path to store image file as. Needs to come with suffix (this is not checked).
+        """
+
+        sample = self(sample_index)
+
+        # TODO: each stroke gets a different colour
+        # TODO: strokes plotted as dots
+        # TODO: title is set to label
+        
+        plt.figure()
+
+        plt.scatter(sample['x'], sample['y'], c=sample['stroke_nr'])
+
+        plt.title(sample['label'])
+        plt.savefig(file_path)
+        plt.close()
     
 def get_alphabet_from_dataset(dataset: Dataset) -> List[str]:
     alphabet = []
@@ -355,3 +452,7 @@ def get_number_of_channels_from_dataset(dataset: Dataset) -> List[str]:
     if len(number_of_channels) > 1:
         raise ValueError('the dataset features multiple number of channels.')
     return number_of_channels[0]
+
+if __name__ == '__main__':
+    ds = IAM_OnDB_Dataset(path=Path('data/datasets/IAM-OnDB'), transform=None, limit=4)
+    print(len(ds))
