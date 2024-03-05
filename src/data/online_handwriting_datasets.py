@@ -11,6 +11,7 @@ import logging
 import h5py
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
 import torch
 from torch.utils.data import Dataset, DataLoader
 
@@ -413,17 +414,22 @@ class IAM_OnDB_Dataset(Dataset):
         :param file_path: Path to store image file as. Needs to come with suffix (this is not checked).
         """
 
-        sample = self(sample_index)
+        sample = self[sample_index]
 
         # TODO: each stroke gets a different colour
         # TODO: strokes plotted as dots
         # TODO: title is set to label
         
         plt.figure()
-
-        plt.scatter(sample['x'], sample['y'], c=sample['stroke_nr'])
-
-        plt.title(sample['label'])
+        plt.scatter(
+            sample['x'],
+            sample['y'],
+            c=sample['stroke_nr'],
+            s=1,
+            cmap=matplotlib.colormaps.get_cmap('Set1'),
+        )
+        plt.title(f"{sample['sample_name']}: {sample['label']}")
+        plt.gca().set_aspect('equal')
         plt.savefig(file_path)
         plt.close()
     
@@ -454,5 +460,17 @@ def get_number_of_channels_from_dataset(dataset: Dataset) -> List[str]:
     return number_of_channels[0]
 
 if __name__ == '__main__':
-    ds = IAM_OnDB_Dataset(path=Path('data/datasets/IAM-OnDB'), transform=None, limit=4)
-    print(len(ds))
+    ds = IAM_OnDB_Dataset(path=Path('data/datasets/IAM-OnDB'), transform=None, limit=-1)
+
+    pp = Path('test_imgs')
+    pp.mkdir(exist_ok=True)
+
+    nr_samples = 100
+
+    rng = np.random.default_rng(1337)
+    index_list = np.arange(0, len(ds))
+    rng.shuffle(index_list)
+    index_list = index_list[:nr_samples]
+    
+    for iam_index in index_list:
+        ds.plot_sample_to_image_file(iam_index, pp / Path(f'iam_index.{iam_index}.png'))
