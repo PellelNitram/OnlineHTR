@@ -21,6 +21,7 @@ from src.data.online_handwriting_datamodule import SimpleOnlineHandwritingDataMo
 from src.models.carbune_module import CarbuneLitModule
 from src.models.components.carbune2020_net import Carbune2020NetAttempt1
 from src.data.transforms import TwoChannels
+from src.data.tokenisers import AlphabetMapper
 
 # ==============================================
 # ================== Settings ==================
@@ -53,6 +54,7 @@ ds = XournalPagewiseDatasetPyTorch(
 print( ds[0] )
 
 alphabet = get_alphabet_from_dataset( ds )
+alphabet_mapper = AlphabetMapper(alphabet)
 
 number_of_channels = get_number_of_channels_from_dataset( ds )
 
@@ -94,6 +96,7 @@ model: LightningModule = CarbuneLitModule(
     optimizer=None,
     scheduler=None,
     compile=False,
+    alphabet_mapper=alphabet_mapper,
 )
 
 # log.info("Instantiating callbacks...")
