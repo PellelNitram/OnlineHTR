@@ -1,4 +1,5 @@
 from typing import Any, Dict, Optional, Tuple
+from pathlib import Path
 
 import torch
 from lightning import LightningDataModule
@@ -7,6 +8,7 @@ from torchvision.datasets import MNIST
 from torchvision.transforms import transforms
 
 from src.data.online_handwriting_datasets import XournalPagewiseDatasetPyTorch
+from src.data.online_handwriting_datasets import IAM_OnDB_Dataset
 from src.data.transforms import TwoChannels
 from src.data.transforms import CharactersToIndices
 from src.data.collate_functions import my_collator
@@ -95,6 +97,11 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
         if not self.data_train and not self.data_val and not self.data_test:
 
             dataset = XournalPagewiseDatasetPyTorch(self.hparams.data_dir, transform=self.transform)
+            dataset = IAM_OnDB_Dataset(
+                    Path('data/datasets/IAM-OnDB'),
+                    transform=self.transform,
+                    limit=-1000,
+            )
 
             if sum(self.hparams.train_val_test_split) > len(dataset):
                 raise RuntimeError(
