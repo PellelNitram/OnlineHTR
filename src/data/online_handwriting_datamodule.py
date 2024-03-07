@@ -181,7 +181,7 @@ class IAMOnDBDataModule(LightningDataModule):
         limit: int = -1,
         pin_memory: bool = False,
     ) -> None:
-        """Initialize a `MNISTDataModule`.
+        """Initialize a `IAMOnDBDataModule`.
 
         TODO.
 
