@@ -49,7 +49,7 @@ class TwoChannels(object):
 class CharactersToIndices(object):
     """TODO.
 
-    Return { ink: (x, y), label: label } where label is list of integers. ink remains unchanged.
+    Returns { "label": label, < all others remain unchanged > } where label is list of integers.
     """
 
     def __init__(self, alphabet: list):
@@ -59,7 +59,9 @@ class CharactersToIndices(object):
     def __call__(self, sample):
         """TODO.
 
-        :returns: { ink, label } with ink unmodified and label
+        The sample is changed in-place.
+
+        :returns: { "label": label, < all others remain unchanged > } with label
                   as list integer indices instead of characters.
                   label is returned as torch.int64 tensor.
         """
@@ -67,7 +69,6 @@ class CharactersToIndices(object):
         label = [ self.alphabet_mapper.character_to_index(c) for c in sample['label']]
         label = torch.as_tensor(label, dtype=torch.int64)
 
-        return {
-            'ink': sample['ink'],
-            'label': label,
-        }
+        sample['label'] = label # Updated in-place
+
+        return sample
