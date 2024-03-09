@@ -64,20 +64,6 @@ datamodule: LightningDataModule = IAMOnDBDataModule(
 # exit()
 
 log.info(f"Instantiating model")
-
-
-# model: LightningModule = # TODO
-
-# optimiser = Adam(
-#     # TODO: missing params,
-#     lr=0.001,
-#     weight_decay=0.0,
-# )
-# scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-#     mode='min',
-#     factor=0.1,
-#     patience=10, 
-# )
 model: LightningModule = CarbuneLitModule2()
 
 # log.info("Instantiating callbacks...")
