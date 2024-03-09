@@ -51,10 +51,10 @@ output_dir = Path('/storage/datastore-personal/s1691089/data/code/carbune2020_im
 log.info(f"Instantiating datamodule")
 datamodule: LightningDataModule = IAMOnDBDataModule(
     Path('data/datasets/IAM-OnDB'),
-    (1_000, 0, 0),
+    (12_187, 0, 0),
     64,
     0,
-    1000,
+    -1,
     False,
 )
 
