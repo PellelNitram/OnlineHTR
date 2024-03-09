@@ -21,6 +21,7 @@ from src.data.online_handwriting_datasets import get_number_of_channels_from_dat
 from src.data.online_handwriting_datamodule import SimpleOnlineHandwritingDataModule
 from src.data.online_handwriting_datamodule import IAMOnDBDataModule
 from src.models.carbune_module import CarbuneLitModule
+from src.models.carbune_module import CarbuneLitModule2
 from src.models.components.carbune2020_net import Carbune2020NetAttempt1
 from src.data.transforms import TwoChannels
 from src.data.tokenisers import AlphabetMapper
@@ -66,13 +67,7 @@ log.info(f"Instantiating model")
 
 
 # model: LightningModule = # TODO
-net = Carbune2020NetAttempt1(
-    number_of_channels,
-    nodes_per_layer=64,
-    number_of_layers=3,
-    dropout=0.0,
-    alphabet=alphabet,
-)
+
 # optimiser = Adam(
 #     # TODO: missing params,
 #     lr=0.001,
@@ -83,13 +78,7 @@ net = Carbune2020NetAttempt1(
 #     factor=0.1,
 #     patience=10, 
 # )
-model: LightningModule = CarbuneLitModule(
-    net,
-    optimizer=None,
-    scheduler=None,
-    compile=False,
-    alphabet_mapper=alphabet_mapper,
-)
+model: LightningModule = CarbuneLitModule2()
 
 # log.info("Instantiating callbacks...")
 # callbacks: List[Callback] = # TODO
