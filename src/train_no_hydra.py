@@ -4,9 +4,11 @@
 # and thereby hard-coded settings like data and model.
 
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 
 import lightning as L
 from lightning import Callback, LightningDataModule, LightningModule, Trainer
+from lightning.pytorch.loggers import Logger
 import torch
 from torch.optim import Adam
 from lightning.pytorch.trainer import Trainer
@@ -69,9 +71,8 @@ model: LightningModule = CarbuneLitModule2()
 # log.info("Instantiating callbacks...")
 # callbacks: List[Callback] = # TODO
 
-# log.info("Instantiating loggers...")
-# logger: List[Logger] = # TODO
-logger = [
+log.info("Instantiating loggers...")
+logger: List[Logger] = [
     L.pytorch.loggers.csv_logs.CSVLogger(
         save_dir=output_dir,
         name='csv/',
