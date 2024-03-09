@@ -215,21 +215,21 @@ class IAMOnDBDataModule(LightningDataModule):
 
         if not self.data_train and not self.data_val and not self.data_test:
 
-            dataset = IAM_OnDB_Dataset(
+            self.dataset = IAM_OnDB_Dataset(
                     Path(self.hparams.data_dir),
                     transform=None,
                     limit=self.hparams.limit,
             )
 
-            if sum(self.hparams.train_val_test_split) > len(dataset):
+            if sum(self.hparams.train_val_test_split) > len(self.dataset):
                 raise RuntimeError(
-                    f"Dataset (len={len(dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
+                    f"Dataset (len={len(self.dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
                 )
 
-            self.alphabet = get_alphabet_from_dataset( dataset )
+            self.alphabet = get_alphabet_from_dataset( self.dataset )
             self.alphabet_mapper = AlphabetMapper( self.alphabet )
 
-            self.number_of_channels = get_number_of_channels_from_dataset( dataset )
+            self.number_of_channels = get_number_of_channels_from_dataset( self.dataset )
 
             # TODO: Add transforms as parameter that are then used in setup. So that they
             #       can be parameterised w/ Hydra later on.
@@ -238,10 +238,10 @@ class IAMOnDBDataModule(LightningDataModule):
                 CharactersToIndices( self.alphabet ),
             ])
 
-            dataset.transform = transform
+            self.dataset.transform = transform
             
             self.data_train, self.data_val, self.data_test = random_split(
-                dataset=dataset,
+                dataset=self.dataset,
                 lengths=self.hparams.train_val_test_split,
                 generator=torch.Generator().manual_seed(42),
             )
