@@ -215,16 +215,16 @@ class IAMOnDBDataModule(LightningDataModule):
 
         if not self.data_train and not self.data_val and not self.data_test:
 
-            if sum(self.hparams.train_val_test_split) > len(dataset):
-                raise RuntimeError(
-                    f"Dataset (len={len(dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
-                )
-
             dataset = IAM_OnDB_Dataset(
                     Path(self.hparams.data_dir),
                     transform=None,
                     limit=self.hparams.limit,
             )
+
+            if sum(self.hparams.train_val_test_split) > len(dataset):
+                raise RuntimeError(
+                    f"Dataset (len={len(dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
+                )
 
             self.alphabet = get_alphabet_from_dataset( dataset )
             self.alphabet_mapper = AlphabetMapper( self.alphabet )
