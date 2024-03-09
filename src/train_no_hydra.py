@@ -19,6 +19,7 @@ from src.data.online_handwriting_datasets import IAM_OnDB_Dataset
 from src.data.online_handwriting_datasets import get_alphabet_from_dataset
 from src.data.online_handwriting_datasets import get_number_of_channels_from_dataset
 from src.data.online_handwriting_datamodule import SimpleOnlineHandwritingDataModule
+from src.data.online_handwriting_datamodule import IAMOnDBDataModule
 from src.models.carbune_module import CarbuneLitModule
 from src.models.components.carbune2020_net import Carbune2020NetAttempt1
 from src.data.transforms import TwoChannels
@@ -44,33 +45,14 @@ path = '/storage/datastore-personal/s1691089/data/code/carbune2020_implementatio
 path = '/storage/datastore-personal/s1691089/data/code/carbune2020_implementation/data/datasets/2024-02-16-xournal_dataset.xoj'
 output_dir = Path('/storage/datastore-personal/s1691089/data/code/carbune2020_implementation/data/train_no_hydra')
 
-# log.info(f"Wee test: XournalPagewiseDatasetPyTorch can be initialised")
-# ds = XournalPagewiseDatasetPyTorch(
-#     path,
-#     transform=TwoChannels(),
-# )
-# # Seems to work - good!
-# # -> This can become a test later.
-# # del ds
-# print( ds[0] )
-
-ds = IAM_OnDB_Dataset(
-    Path('data/datasets/IAM-OnDB'),
-    transform=TwoChannels(),
-    limit=-1000,
-)
-# print(len(ds))
-# print(ds[0])
-
-alphabet = get_alphabet_from_dataset( ds )
-alphabet_mapper = AlphabetMapper(alphabet)
-
-number_of_channels = get_number_of_channels_from_dataset( ds )
-
 log.info(f"Instantiating datamodule")
-datamodule: LightningDataModule = SimpleOnlineHandwritingDataModule(
-    # alphabet, path, (1, 0, 0), 64, 0, False,
-    alphabet, path, (12187, 0, 0), 64, 0, False,
+datamodule: LightningDataModule = IAMOnDBDataModule(
+    Path('data/datasets/IAM-OnDB'),
+    (1_000, 0, 0),
+    64,
+    0,
+    1000,
+    False,
 )
 
 # # Code for checking `datamodule`
