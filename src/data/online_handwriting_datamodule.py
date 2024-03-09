@@ -229,8 +229,6 @@ class IAMOnDBDataModule(LightningDataModule):
             self.alphabet = get_alphabet_from_dataset( self.dataset )
             self.alphabet_mapper = AlphabetMapper( self.alphabet )
 
-            self.number_of_channels = get_number_of_channels_from_dataset( self.dataset )
-
             # TODO: Add transforms as parameter that are then used in setup. So that they
             #       can be parameterised w/ Hydra later on.
             transform = transforms.Compose([
@@ -239,6 +237,8 @@ class IAMOnDBDataModule(LightningDataModule):
             ])
 
             self.dataset.transform = transform
+
+            self.number_of_channels = get_number_of_channels_from_dataset( self.dataset )
             
             self.data_train, self.data_val, self.data_test = random_split(
                 dataset=self.dataset,
