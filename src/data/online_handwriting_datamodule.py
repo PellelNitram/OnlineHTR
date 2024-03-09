@@ -172,6 +172,8 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
 class IAMOnDBDataModule(LightningDataModule):
     """TODO."""
 
+    # TODO: Write test!
+
     def __init__(
         self,
         data_dir: str = "data/",
