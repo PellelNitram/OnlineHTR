@@ -1,6 +1,7 @@
 import warnings
 from importlib.util import find_spec
 from typing import Any, Callable, Dict, Optional, Tuple
+from pathlib import Path
 
 from omegaconf import DictConfig
 import git
@@ -17,6 +18,7 @@ def extras(cfg: DictConfig) -> None:
         - Ignoring python warnings
         - Setting tags from command line
         - Rich config printing
+        - Store git code commit hash
 
     :param cfg: A DictConfig object containing the config tree.
     """
@@ -39,6 +41,9 @@ def extras(cfg: DictConfig) -> None:
     if cfg.extras.get("print_config"):
         log.info("Printing config tree with Rich! <cfg.extras.print_config=True>")
         rich_utils.print_config_tree(cfg, resolve=True, save_to_file=True)
+
+    with open(Path(cfg.paths.output_dir, "git_code_commit_hash.log"), "w") as file:
+        file.write(get_git_code_commit_hash(length=-1))
 
 
 def task_wrapper(task_func: Callable) -> Callable:
