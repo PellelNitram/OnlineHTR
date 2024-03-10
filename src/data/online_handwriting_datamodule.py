@@ -71,27 +71,6 @@ class XournalPagewiseDataModule(LightningDataModule):
         :param stage: The stage to setup. Either `"fit"`, `"validate"`, `"test"`, or `"predict"`. Defaults to ``None``.
         """
 
-        # 0. Transform OnlineHandwritingDataset according to settings
-
-        # 1. Create dataset from 0 data.
-        # Build PyTorch Dataset from my OnlineHandwritingDataset by performing transform on my dataset; both can be configured later on
-
-        # 2. perform train/val/test splits
-
-        # 3. build vocabulary
-
-        # load and split datasets only if not loaded already
-        # TODO
-        # if not self.data_train and not self.data_val and not self.data_test:
-        #     trainset = MNIST(self.hparams.data_dir, train=True, transform=self.transforms)
-        #     testset = MNIST(self.hparams.data_dir, train=False, transform=self.transforms)
-        #     dataset = ConcatDataset(datasets=[trainset, testset])
-        #     self.data_train, self.data_val, self.data_test = random_split(
-        #         dataset=dataset,
-        #         lengths=self.hparams.train_val_test_split,
-        #         generator=torch.Generator().manual_seed(42),
-        #     )
-
         if not self.data_train and not self.data_val and not self.data_test:
 
             self.dataset = XournalPagewiseDatasetPyTorch(
