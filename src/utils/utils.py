@@ -3,6 +3,7 @@ from importlib.util import find_spec
 from typing import Any, Callable, Dict, Optional, Tuple
 
 from omegaconf import DictConfig
+import git
 
 from src.utils import pylogger, rich_utils
 
@@ -117,3 +118,19 @@ def get_metric_value(metric_dict: Dict[str, Any], metric_name: Optional[str]) ->
     log.info(f"Retrieved metric value! <{metric_name}={metric_value}>")
 
     return metric_value
+
+def get_git_code_commit_hash(length: int=6) -> str:
+    """Get git code commit hash.
+    
+    Useful for reproducibility purposes.
+    
+    :param length: The git commit hash is cropped from the front to be this long.
+                   If negative, the full-length git commit hash is returned.
+    :returns: The git commit hash of length `length`.
+    """
+    repo = git.Repo(search_parent_directories=True)
+    sha = repo.head.object.hexsha
+    if length < 0:
+        return sha
+    else:
+        return sha[:length]
