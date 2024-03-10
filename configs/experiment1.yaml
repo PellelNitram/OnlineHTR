@@ -13,7 +13,7 @@ data:
   _target_: src.data.online_handwriting_datamodule.XournalPagewiseDataModule
   data_dir: ${paths.data_dir}/datasets/2024-02-16-xournal_dataset.xoj
   batch_size: 64
-  train_val_test_split: [1, 0, 0]
+  train_val_test_split: [4, 0, 0]
   num_workers: 0
   pin_memory: False
 
