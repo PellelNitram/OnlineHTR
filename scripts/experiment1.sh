@@ -1,0 +1,1 @@
+python src/train.py --config-name experiment1.yaml
