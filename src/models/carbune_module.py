@@ -19,6 +19,7 @@ class CarbuneLitModule2(LightningModule):
         decoder,
         net: torch.nn.Module,
         optimizer: torch.optim.Optimizer,
+        scheduler: torch.optim.lr_scheduler,
     ) -> None:
         super().__init__()
 
