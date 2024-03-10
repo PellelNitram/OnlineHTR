@@ -23,7 +23,6 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
 
     def __init__(
         self,
-        alphabet: list,
         data_dir: str = "data/", # TODO: Should I supply the path to build
                                  #       OnlineHandwritingDataset in here or
                                  #       should I supply the OnlineHandwritingDataset.
@@ -60,11 +59,6 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
 
         self.batch_size_per_device = batch_size
 
-        self.transform = transforms.Compose([
-            TwoChannels(),
-            CharactersToIndices(alphabet),
-        ])
-
     def prepare_data(self) -> None:
         """Not implemented because no data needs to be downloaded."""
         pass
@@ -100,20 +94,30 @@ class SimpleOnlineHandwritingDataModule(LightningDataModule):
 
         if not self.data_train and not self.data_val and not self.data_test:
 
-            dataset = XournalPagewiseDatasetPyTorch(self.hparams.data_dir, transform=self.transform)
-            dataset = IAM_OnDB_Dataset(
-                    Path('data/datasets/IAM-OnDB'),
-                    transform=self.transform,
-                    limit=-1000,
+            self.dataset = XournalPagewiseDatasetPyTorch(
+                self.hparams.data_dir,
+                transform=None,
             )
 
-            if sum(self.hparams.train_val_test_split) > len(dataset):
+            if sum(self.hparams.train_val_test_split) > len(self.dataset):
                 raise RuntimeError(
-                    f"Dataset (len={len(dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
+                    f"Dataset (len={len(self.dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
                 )
             
+            self.alphabet = get_alphabet_from_dataset( self.dataset )
+            self.alphabet_mapper = AlphabetMapper( self.alphabet )
+
+            transform = transforms.Compose([
+                TwoChannels(),
+                CharactersToIndices( self.alphabet ),
+            ])
+
+            self.dataset.transform = transform
+
+            self.number_of_channels = get_number_of_channels_from_dataset( self.dataset )
+
             self.data_train, self.data_val, self.data_test = random_split(
-                dataset=dataset,
+                dataset=self.dataset,
                 lengths=self.hparams.train_val_test_split,
                 generator=torch.Generator().manual_seed(42),
             )
