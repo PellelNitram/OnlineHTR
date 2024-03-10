@@ -28,3 +28,4 @@ matplotlib
 lxml
 tensorboard
 pandas
+gitpython
