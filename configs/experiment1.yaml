@@ -1,0 +1,58 @@
+defaults:
+  - _self_
+  - extras: default
+  - paths: default
+  - logger: tensorboard
+  - hydra: default
+
+tags: ["experiment1"]
+
+seed: 42
+
+data:
+  _target_: src.data.online_handwriting_datamodule.XournalPagewiseDataModule
+  data_dir: ${paths.data_dir}/datasets/2024-02-16-xournal_dataset.xoj
+  batch_size: 64
+  train_val_test_split: [1, 0, 0]
+  num_workers: 0
+  pin_memory: False
+
+model:
+  _target_: src.models.carbune_module.CarbuneLitModule2
+  decoder:
+    _target_: src.utils.decoders.GreedyCTCDecoder
+  net:
+    _target_: src.models.components.carbune2020_net.Carbune2020NetAttempt1
+    _partial_: true
+    nodes_per_layer: 64
+    number_of_layers: 3
+    dropout: 0.0
+  optimizer:
+    _target_: torch.optim.Adam
+    _partial_: true
+    lr: 0.001
+    weight_decay: 0.0
+  scheduler: null
+  # scheduler:
+  #   _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  #   _partial_: true
+  #   mode: min
+  #   factor: 0.1
+  #   patience: 10
+
+trainer:
+  _target_: lightning.pytorch.trainer.Trainer
+  default_root_dir: ${paths.output_dir}
+  min_epochs: 1 # prevents early stopping
+  max_epochs: 10000
+  accelerator: cpu
+  devices: 1
+  check_val_every_n_epoch: 1
+  deterministic: False
+  log_every_n_steps: 1
+
+task_name: "train"
+
+train: True
+
+ckpt_path: null
