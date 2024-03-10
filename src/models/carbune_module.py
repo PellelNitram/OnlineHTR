@@ -17,7 +17,7 @@ class CarbuneLitModule2(LightningModule):
     def __init__(
         self,
         decoder,
-        net,
+        net: torch.nn.Module,
     ) -> None:
         super().__init__()
 
