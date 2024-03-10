@@ -18,7 +18,7 @@ from src.data.online_handwriting_datasets import get_alphabet_from_dataset
 from src.data.online_handwriting_datasets import get_number_of_channels_from_dataset
 
 
-class SimpleOnlineHandwritingDataModule(LightningDataModule):
+class XournalPagewiseDataModule(LightningDataModule):
     """`LightningDataModule` for online handwriting datasets using `OnlineHandwritingDataset`."""
 
     def __init__(
