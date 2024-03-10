@@ -120,7 +120,7 @@ def main(cfg: DictConfig) -> Optional[float]:
     """
     # apply extra utilities
     # (e.g. ask for tags if none are provided in cfg, print cfg tree, etc.)
-    extras(cfg) # TODO: Add git commit here and into logger
+    extras(cfg)
 
     # train the model
     metric_dict, _ = train(cfg)
