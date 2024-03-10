@@ -199,6 +199,3 @@ class CarbuneLitModule2(LightningModule):
                 },
             }
         return {"optimizer": optimizer}
-
-if __name__ == "__main__":
-    _ = MNISTLitModule(None, None, None, None)
