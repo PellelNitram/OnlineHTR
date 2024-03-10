@@ -17,6 +17,7 @@ class CarbuneLitModule2(LightningModule):
     def __init__(
         self,
         decoder,
+        net,
     ) -> None:
         super().__init__()
 
@@ -25,6 +26,7 @@ class CarbuneLitModule2(LightningModule):
         self.save_hyperparameters(logger=False)
 
         self.decoder = decoder
+        self.net = net
 
         # loss function
         self.criterion = torch.nn.CTCLoss(blank=0, reduction='mean')
