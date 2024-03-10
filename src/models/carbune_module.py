@@ -51,6 +51,28 @@ class CarbuneLitModule2(LightningModule):
         # for tracking best so far validation accuracy
         self.val_acc_best = MaxMetric()
 
+    def setup(self, stage: str) -> None:
+        """Lightning hook that is called at the beginning of fit (train + validate), validate,
+        test, or predict.
+
+        This is a good hook when you need to build models dynamically or adjust something about
+        them. This hook is called on every process when using DDP.
+
+        :param stage: Either `"fit"`, `"validate"`, `"test"`, or `"predict"`.
+        """
+
+        dm = self.trainer.datamodule
+
+        self.alphabet_mapper = dm.alphabet_mapper
+
+        self.net = Carbune2020NetAttempt1(
+            dm.number_of_channels,
+            nodes_per_layer=64,
+            number_of_layers=3,
+            dropout=0.0,
+            alphabet=dm.alphabet,
+        )
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Perform a forward pass through the model `self.net`.
 
@@ -158,28 +180,6 @@ class CarbuneLitModule2(LightningModule):
         # update and log metrics
         self.test_loss(loss)
         self.log("test/loss", self.test_loss, on_step=False, on_epoch=True, prog_bar=True)
-
-    def setup(self, stage: str) -> None:
-        """Lightning hook that is called at the beginning of fit (train + validate), validate,
-        test, or predict.
-
-        This is a good hook when you need to build models dynamically or adjust something about
-        them. This hook is called on every process when using DDP.
-
-        :param stage: Either `"fit"`, `"validate"`, `"test"`, or `"predict"`.
-        """
-
-        dm = self.trainer.datamodule
-
-        self.alphabet_mapper = dm.alphabet_mapper
-
-        self.net = Carbune2020NetAttempt1(
-            dm.number_of_channels,
-            nodes_per_layer=64,
-            number_of_layers=3,
-            dropout=0.0,
-            alphabet=dm.alphabet,
-        )
 
     def configure_optimizers(self) -> Dict[str, Any]:
         """Choose what optimizers and learning-rate schedulers to use in your optimization.
