@@ -16,6 +16,7 @@ class CarbuneLitModule2(LightningModule):
 
     def __init__(
         self,
+        decoder,
     ) -> None:
         super().__init__()
 
@@ -23,7 +24,7 @@ class CarbuneLitModule2(LightningModule):
         # also ensures init params will be stored in ckpt
         self.save_hyperparameters(logger=False)
 
-        self.decoder = GreedyCTCDecoder()
+        self.decoder = decoder
 
         # loss function
         self.criterion = torch.nn.CTCLoss(blank=0, reduction='mean')
