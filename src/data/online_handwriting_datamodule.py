@@ -214,6 +214,9 @@ class IAMOnDBDataModule(LightningDataModule):
 
             # TODO: Add transforms as parameter that are then used in setup. So that they
             #       can be parameterised w/ Hydra later on.
+            #       Maybe a good design idea is to give names to the transforms. That way
+            #       one does not have to think of how to instantiate them as only CTI needs
+            #       a parameter for now.
             transform = transforms.Compose([
                 TwoChannels(),
                 CharactersToIndices( self.alphabet ),
