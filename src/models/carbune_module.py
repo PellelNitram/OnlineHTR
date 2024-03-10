@@ -28,7 +28,6 @@ class CarbuneLitModule2(LightningModule):
         self.save_hyperparameters(logger=False)
 
         self.decoder = decoder
-        self.net = net
 
         # loss function
         self.criterion = torch.nn.CTCLoss(blank=0, reduction='mean')
@@ -65,11 +64,8 @@ class CarbuneLitModule2(LightningModule):
 
         self.alphabet_mapper = dm.alphabet_mapper
 
-        self.net = Carbune2020NetAttempt1(
-            dm.number_of_channels,
-            nodes_per_layer=64,
-            number_of_layers=3,
-            dropout=0.0,
+        self.net = self.hparams.net(
+            number_of_channels=dm.number_of_channels,
             alphabet=dm.alphabet,
         )
 
