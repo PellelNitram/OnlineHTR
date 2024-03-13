@@ -121,7 +121,7 @@ class Carbune2020(object):
         stroke_lengths = calculate_distance_to_prev_point(df).groupby('stroke_nr').sum()
         stroke_lengths['nr_points'] = stroke_lengths['distances'] * Carbune2020.POINTS_PER_UNIT_LENGTH
         stroke_lengths['nr_points_rounded_up'] = np.ceil( stroke_lengths['nr_points'] )
-        stroke_lengths['nr_points_rounded_up'][ stroke_lengths['nr_points_rounded_up'] == 1.0 ] += 1 # Increase a single point to 2 points
+        stroke_lengths.loc[ stroke_lengths['nr_points_rounded_up'] == 1.0, 'nr_points_rounded_up' ] += 1 # Increase a single point to 2 points
         stroke_lengths['nr_points_rounded_up'] = stroke_lengths['nr_points_rounded_up'].astype(int)
 
         # Perform resampling
