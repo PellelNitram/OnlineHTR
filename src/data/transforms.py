@@ -18,6 +18,7 @@ import pandas as pd
 from scipy.interpolate import interp1d
 
 from src.data.tokenisers import AlphabetMapper
+from src.data import FAILED_SAMPLE
 
 
 class TwoChannels(object):
@@ -96,8 +97,7 @@ class Carbune2020(object):
         :returns: TODO.
         """
 
-        pass
-
+        sample_name = sample['sample_name']
 
         sample_sub = {
             'x': sample['x'],
@@ -135,8 +135,7 @@ class Carbune2020(object):
         for stroke_nr, df_grouped in df.groupby('stroke_nr'):
 
             if df_grouped.shape[0] == 1:
-                raise ValueError('this should never happen?!?!')
-                # logging.info(f'Handle length-one stroke: {sample_name=} - {stroke_nr=} - use it without preprocessing')
+                # print(f'Handle length-one stroke: {sample_name=} - {stroke_nr=} - use it without preprocessing')
                 index_of_value = df_grouped.index[0]
                 data_resampled['t'].append( df_grouped.loc[index_of_value, 't'] )
                 data_resampled['x'].append( df_grouped.loc[index_of_value, 'x'] )
@@ -145,12 +144,12 @@ class Carbune2020(object):
                 continue
 
             if np.allclose( df_grouped['t'].diff()[1:], 0 ):
-                # logging.warning(f'{sample_name=} {stroke_nr=}: time channel is constant - discard sample')
+                # print(f'{sample_name=} {stroke_nr=}: time channel is constant - discard sample')
                 discard_sample = True # Remove full sample as one does not know which stroke the problem is
                 break
 
             if not np.alltrue( df_grouped['t'].diff()[1:] >= 0.0 ):
-                # logging.warning(f'{sample_name=} {stroke_nr=}: time channel is non-monotonous - discard sample')
+                # print(f'{sample_name=} {stroke_nr=}: time channel is non-monotonous - discard sample')
                 discard_sample = True # Remove full sample as one does not know which stroke the problem is
                 break
 
@@ -173,10 +172,8 @@ class Carbune2020(object):
                 data_resampled['stroke_nr'].append(stroke_nr)
 
         if discard_sample:
-            print('sample discarded!')
-            raise Exception
-            logging.warning(f'Skipped sample {sample_name}')
-            return Dataset.FAILED_SAMPLE
+            # print(f'Skipped sample {sample_name}')
+            return FAILED_SAMPLE
         
         df_resampled = pd.DataFrame.from_dict(data_resampled)
 
