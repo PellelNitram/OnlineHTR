@@ -19,7 +19,8 @@ def test_construction_with_limit():
 
     assert len(ds) == limit
 
-    sample = ds[0]
+    for i_sample in range(len(ds)):
+            sample = ds[i_sample]
 
 @pytest.mark.martin
 @pytest.mark.slow
