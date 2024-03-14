@@ -20,7 +20,7 @@ def test_construction_with_limit():
     assert len(ds) == limit
 
     for i_sample in range(len(ds)):
-            sample = ds[i_sample]
+        sample = ds[i_sample]
 
 @pytest.mark.martin
 @pytest.mark.slow
