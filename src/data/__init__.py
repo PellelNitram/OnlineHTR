@@ -1,0 +1,1 @@
+FAILED_SAMPLE = -1
