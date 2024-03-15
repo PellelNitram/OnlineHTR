@@ -48,6 +48,28 @@ class TwoChannels(object):
             'label': label,
         }
 
+class DictToTensor(object):
+    """Transform channels from a dict sample to a tensor."""
+
+    def __init__(self, channel_names: list):
+        self.channel_names = channel_names
+
+    def __call__(self, sample: dict) -> dict:
+        """Get transformed sample.
+
+        :param sample: The sample to transform.
+        :returns: { ink, label } with ink as PyTorch tensor of float type
+                  and label remains unchanged from `sample`.
+        """
+
+        ink = np.vstack([ sample[channel_name] for channel_name in self.channel_names ]).T
+
+        label = sample['label']
+
+        return {
+            'ink': torch.from_numpy(ink).float(),
+            'label': label,
+        }
 
 class CharactersToIndices(object):
     """TODO.
