@@ -29,6 +29,17 @@ def test_construction_no_limit():
 
 @pytest.mark.martin
 @pytest.mark.slow
+def test_construction_no_limit_skip_carbune2020_fails():
+
+    ds = IAM_OnDB_Dataset(path=PATH, transform=None, limit=-1, skip_carbune2020_fails=True)
+
+    length = 12129 # Determined empirically
+
+    assert length == 12187-len( IAM_OnDB_Dataset.SAMPLES_TO_SKIP_BC_CARBUNE2020_FAILS )
+    assert len(ds) == length
+
+@pytest.mark.martin
+@pytest.mark.slow
 def test_correctness_manually(tmp_path: Path):
     # This saves samples to files so that one can inspect the correctness of the
     # dataset manually. Enabling the pytest setting `-s` allows one to see where
