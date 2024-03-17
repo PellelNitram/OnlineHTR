@@ -81,7 +81,7 @@ class CharactersToIndices(object):
         self.alphabet = alphabet
         self.alphabet_mapper = AlphabetMapper(alphabet)
 
-    def __call__(self, sample):
+    def __call__(self, sample: dict) -> dict:
         """TODO.
 
         The sample is changed in-place.
