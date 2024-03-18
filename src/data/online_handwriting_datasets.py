@@ -324,6 +324,8 @@ class IAM_OnDB_Dataset(Dataset):
     This is the raw dataset which can be further processed using downstream transformations.
     """
 
+    LENGTH = 12187 # Determined empirically
+
     SAMPLES_NOT_TO_STORE = [
         'z01-000z-01', # There exists no text for that sample
         'z01-000z-02', # There exists no text for that sample
