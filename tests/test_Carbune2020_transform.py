@@ -44,4 +44,26 @@ def test_construction_no_limit():
             succeeded_sample_names.append( sample_transformed['sample_name'] )
     
     assert len(ds) == len(succeeded_sample_names) + len(IAM_OnDB_Dataset.SAMPLES_TO_SKIP_BC_CARBUNE2020_FAILS)
-    
+
+@pytest.mark.martin
+@pytest.mark.slow
+def test_construction_no_limit_skip_carbune2020_fails():
+
+    ds = IAM_OnDB_Dataset(path=PATH, transform=Carbune2020(), limit=-1, skip_carbune2020_fails=True)
+
+    assert len(ds) == IAM_OnDB_Dataset.LENGTH - len(IAM_OnDB_Dataset.SAMPLES_TO_SKIP_BC_CARBUNE2020_FAILS)
+
+    samples_transformed = []
+    for i_sample in range(len(ds)):
+        samples_transformed.append( ds[i_sample] )
+
+    # Test types: either dict or type of failed indicator variable
+    type_failed = type(FAILED_SAMPLE)
+    type_dict = dict
+    ctr = 0
+    for sample_transformed in samples_transformed:
+        assert type(sample_transformed) in [ type_dict, type_failed ]
+        if type(sample_transformed) == dict:
+            ctr += 1
+
+    assert ctr == IAM_OnDB_Dataset.LENGTH - len(IAM_OnDB_Dataset.SAMPLES_TO_SKIP_BC_CARBUNE2020_FAILS)
