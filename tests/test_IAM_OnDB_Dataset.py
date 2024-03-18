@@ -23,9 +23,7 @@ def test_construction_no_limit():
 
     ds = IAM_OnDB_Dataset(path=PATH, transform=None, limit=-1)
 
-    length = 12187 # Determined empirically
-
-    assert len(ds) == length
+    assert len(ds) == IAM_OnDB_Dataset.LENGTH
 
 @pytest.mark.martin
 @pytest.mark.slow
