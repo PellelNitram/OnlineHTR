@@ -28,7 +28,7 @@ def test_construction_no_limit():
 
     ds = IAM_OnDB_Dataset(path=PATH, transform=Carbune2020(), limit=-1)
 
-    assert len(ds) == 12187
+    assert len(ds) == IAM_OnDB_Dataset.LENGTH
 
     samples_transformed = []
     for i_sample in range(len(ds)):
@@ -37,10 +37,11 @@ def test_construction_no_limit():
     # Test types: either dict or type of failed indicator variable
     type_failed = type(FAILED_SAMPLE)
     type_dict = dict
-    ctr = 0
+    succeeded_sample_names = []
     for sample_transformed in samples_transformed:
         assert type(sample_transformed) in [ type_dict, type_failed ]
-        if type(sample_transformed) == dict:
-            ctr += 1
+        if type(sample_transformed) == type_dict:
+            succeeded_sample_names.append( sample_transformed['sample_name'] )
     
-    assert ctr == 12120
+    assert len(ds) == len(succeeded_sample_names) + len(IAM_OnDB_Dataset.SAMPLES_TO_SKIP_BC_CARBUNE2020_FAILS)
+    
