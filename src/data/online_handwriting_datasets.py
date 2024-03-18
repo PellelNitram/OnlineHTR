@@ -398,6 +398,15 @@ class IAM_OnDB_Dataset(Dataset):
         'l06-644z-02',
         'g10-343z-07',
         'a06-070-03',
+        'a06-114-06',
+        'a06-014-04',
+        'a06-064-04',
+        'f04-083-01',
+        'j01-049-03',
+        'j01-049-02',
+        'j01-007z-07',
+        'j01-063-01',
+        'n10-293z-02',
     ]
 
     # TODO: Enforce sorted-ness to ensure that order of samples is always the same, independent of `os.walk`?
