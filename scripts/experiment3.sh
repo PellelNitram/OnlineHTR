@@ -1,3 +1,5 @@
+# Perform longer trainings full
+
 python src/train.py \
     --config-name experiment2.yaml \
     -m \
