@@ -9,6 +9,7 @@ from torchvision.transforms import transforms
 
 from src.data.online_handwriting_datasets import XournalPagewiseDatasetPyTorch
 from src.data.online_handwriting_datasets import IAM_OnDB_Dataset
+from src.data.online_handwriting_datasets import IAM_OnDB_Dataset_Carbune2020
 from src.data.transforms import TwoChannels
 from src.data.transforms import CharactersToIndices
 from src.data.collate_functions import my_collator
@@ -226,11 +227,10 @@ class IAMOnDBDataModule(LightningDataModule):
 
             elif self.hparams.transform == 'carbune2020_xytn':
 
-                self.dataset = IAM_OnDB_Dataset(
+                self.dataset = IAM_OnDB_Dataset_Carbune2020(
                         Path(self.hparams.data_dir),
                         transform=None,
                         limit=self.hparams.limit,
-                        skip_carbune2020_fails=True,
                 )
 
                 if sum(self.hparams.train_val_test_split) > len(self.dataset):
@@ -242,7 +242,6 @@ class IAMOnDBDataModule(LightningDataModule):
                 self.alphabet_mapper = AlphabetMapper( self.alphabet )
 
                 transform = transforms.Compose([
-                    Carbune2020(),
                     DictToTensor(['x', 'y', 't', 'n']),
                     CharactersToIndices( self.alphabet ), # TODO: Why does it only work if CTI is last?
                 ])
