@@ -165,6 +165,7 @@ class IAMOnDBDataModule(LightningDataModule):
         num_workers: int = 0,
         limit: int = -1,
         pin_memory: bool = False,
+        transform: str = "iam_xy",
     ) -> None:
         """Initialize a `IAMOnDBDataModule`.
 
@@ -198,31 +199,40 @@ class IAMOnDBDataModule(LightningDataModule):
 
         if not self.data_train and not self.data_val and not self.data_test:
 
-            self.dataset = IAM_OnDB_Dataset(
-                    Path(self.hparams.data_dir),
-                    transform=None,
-                    limit=self.hparams.limit,
-            )
+            if self.hparams.transform == 'iam_xy':
 
-            if sum(self.hparams.train_val_test_split) > len(self.dataset):
-                raise RuntimeError(
-                    f"Dataset (len={len(self.dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
+                self.dataset = IAM_OnDB_Dataset(
+                        Path(self.hparams.data_dir),
+                        transform=None,
+                        limit=self.hparams.limit,
                 )
 
-            self.alphabet = get_alphabet_from_dataset( self.dataset )
-            self.alphabet_mapper = AlphabetMapper( self.alphabet )
+                if sum(self.hparams.train_val_test_split) > len(self.dataset):
+                    raise RuntimeError(
+                        f"Dataset (len={len(self.dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
+                    )
 
-            # TODO: Add transforms as parameter that are then used in setup. So that they
-            #       can be parameterised w/ Hydra later on.
-            #       Maybe a good design idea is to give names to the transforms. That way
-            #       one does not have to think of how to instantiate them as only CTI needs
-            #       a parameter for now.
-            transform = transforms.Compose([
-                TwoChannels(),
-                CharactersToIndices( self.alphabet ),
-            ])
+                self.alphabet = get_alphabet_from_dataset( self.dataset )
+                self.alphabet_mapper = AlphabetMapper( self.alphabet )
 
-            self.dataset.transform = transform
+                # TODO: Add transforms as parameter that are then used in setup. So that they
+                #       can be parameterised w/ Hydra later on.
+                #       Maybe a good design idea is to give names to the transforms. That way
+                #       one does not have to think of how to instantiate them as only CTI needs
+                #       a parameter for now.
+                transform = transforms.Compose([
+                    TwoChannels(),
+                    CharactersToIndices( self.alphabet ),
+                ])
+
+                self.dataset.transform = transform
+
+            elif self.hparams.transform == 'carbune_xytn':
+
+                raise NotImplementedError
+
+            else:
+                raise ValueError('`transform` set to non-existent value')
 
             self.number_of_channels = get_number_of_channels_from_dataset( self.dataset )
             
