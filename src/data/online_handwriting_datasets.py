@@ -17,6 +17,7 @@ from torch.utils.data import Dataset, DataLoader
 
 from src.utils.documents import XournalDocument
 from src.utils.io import load_IAM_OnDB_sample
+from src.data.transforms import Carbune2020
 
 
 class OnlineHandwritingDataset:
@@ -310,6 +311,37 @@ class XournalPagewiseDatasetPyTorch(Dataset):
             sample = self.transform(sample)
 
         return sample
+
+class IAM_OnDB_Dataset_Carbune2020(Dataset):
+    """IAM-OnDB dataset that applies Carbune2020 transformation directly.
+
+    This is to increase training performance.
+    """
+
+    def __init__(self, path: Path, transform=None, limit: int=-1) -> None:
+        self.transform = transform
+        self.iam_ondb_dataset = IAM_OnDB_Dataset(
+            path, transform, limit, skip_carbune2020_fails=True)
+        self.carbune2020 = Carbune2020()
+        self.data = self.load_data()
+
+    def load_data(self):
+        result = []
+        for sample in self.iam_ondb_dataset:
+            result.append( self.carbune2020(sample) )
+        return result
+
+    def __getitem__(self, idx):
+
+        sample = self.data[idx]
+
+        if self.transform:
+            sample = self.transform(sample)
+
+        return sample
+
+    def __len__(self):
+        return len(self.data)
 
 class IAM_OnDB_Dataset(Dataset):
     """IAM-OnDB dataset implementation in PyTorch.
