@@ -17,6 +17,7 @@ data:
   num_workers: 0
   pin_memory: False
   limit: 10
+  transform: "iam_xy"
 
 model:
   _target_: src.models.carbune_module.CarbuneLitModule2
