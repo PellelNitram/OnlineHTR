@@ -13,6 +13,8 @@ from src.data.transforms import TwoChannels
 from src.data.transforms import CharactersToIndices
 from src.data.collate_functions import my_collator
 from src.data.transforms import TwoChannels
+from src.data.transforms import Carbune2020
+from src.data.transforms import DictToTensor
 from src.data.tokenisers import AlphabetMapper
 from src.data.online_handwriting_datasets import get_alphabet_from_dataset
 from src.data.online_handwriting_datasets import get_number_of_channels_from_dataset
@@ -222,15 +224,36 @@ class IAMOnDBDataModule(LightningDataModule):
 
                 self.dataset.transform = transform
 
-            elif self.hparams.transform == 'carbune_xytn':
+            elif self.hparams.transform == 'carbune2020_xytn':
 
-                raise NotImplementedError
+                self.dataset = IAM_OnDB_Dataset(
+                        Path(self.hparams.data_dir),
+                        transform=None,
+                        limit=self.hparams.limit,
+                        skip_carbune2020_fails=True,
+                )
+
+                if sum(self.hparams.train_val_test_split) > len(self.dataset):
+                    raise RuntimeError(
+                        f"Dataset (len={len(self.dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
+                    )
+
+                self.alphabet = get_alphabet_from_dataset( self.dataset )
+                self.alphabet_mapper = AlphabetMapper( self.alphabet )
+
+                transform = transforms.Compose([
+                    Carbune2020(),
+                    DictToTensor(['x', 'y', 't', 'n']),
+                    CharactersToIndices( self.alphabet ), # TODO: Why does it only work if CTI is last?
+                ])
+
+                self.dataset.transform = transform
 
             else:
                 raise ValueError('`transform` set to non-existent value')
 
             self.number_of_channels = get_number_of_channels_from_dataset( self.dataset )
-            
+
             self.data_train, self.data_val, self.data_test = random_split(
                 dataset=self.dataset,
                 lengths=self.hparams.train_val_test_split,
