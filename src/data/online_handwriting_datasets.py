@@ -325,13 +325,13 @@ class IAM_OnDB_Dataset_Carbune2020(Dataset):
         self.carbune2020 = Carbune2020()
         self.data = self.load_data()
 
-    def load_data(self):
+    def load_data(self) -> list[dict]:
         result = []
         for sample in self.iam_ondb_dataset:
             result.append( self.carbune2020(sample) )
         return result
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx) -> dict:
 
         sample = self.data[idx]
 
@@ -340,7 +340,7 @@ class IAM_OnDB_Dataset_Carbune2020(Dataset):
 
         return sample
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.data)
 
 class IAM_OnDB_Dataset(Dataset):
