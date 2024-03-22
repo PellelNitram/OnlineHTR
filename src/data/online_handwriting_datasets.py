@@ -513,10 +513,10 @@ class IAM_OnDB_Dataset(Dataset):
 
         return result
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.data)
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx) -> dict:
 
         sample = self.data[idx]
 
