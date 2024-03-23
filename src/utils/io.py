@@ -38,7 +38,7 @@ def load_df_iam_ondb(path):
 
     return df
 
-def load_IAM_OnDB_text_line(path, line_nr):
+def load_IAM_OnDB_text_line(path: Path, line_nr: int) -> str:
     """
     Load text line of IAM OnDB sample.
 
