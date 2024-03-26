@@ -164,6 +164,9 @@ class CarbuneLitModule2(LightningModule):
         self.val_loss(loss)
         self.log("val/loss", self.val_loss, on_step=False, on_epoch=True, prog_bar=True)
 
+        self.val_wer(metrics['wer'])
+        self.log("val/wer", self.val_wer, on_step=False, on_epoch=True, prog_bar=True)
+
         # Log hyperparameter metric as explained here:
         # https://lightning.ai/docs/pytorch/stable/extensions/logging.html#logging-hyperparameters
         self.log("hp_metric", self.val_loss)
