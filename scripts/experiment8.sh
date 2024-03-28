@@ -11,4 +11,5 @@ time python src/train.py \
     data.pin_memory=True \
     data.num_workers=4 \
     data.transform="carbune2020_xyn" \
+    callbacks.model_checkpoint.every_n_epochs=10 \
     tags="experiment8"
