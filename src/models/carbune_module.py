@@ -1,4 +1,5 @@
 from typing import Any, Dict, Tuple
+from pathlib import Path
 
 import torch
 from lightning import LightningModule
@@ -10,6 +11,7 @@ from lightning.pytorch.loggers.tensorboard import TensorBoardLogger
 
 from src.utils.decoders import GreedyCTCDecoder
 from src.models.components.carbune2020_net import Carbune2020NetAttempt1
+from src.utils.io import store_alphabet
 
 
 class CarbuneLitModule2(LightningModule):
@@ -209,3 +211,12 @@ class CarbuneLitModule2(LightningModule):
                 },
             }
         return {"optimizer": optimizer}
+
+    def on_fit_start(self):
+
+        # Store data for subsequent inference: alphabet
+        dm = self.trainer.datamodule
+        store_alphabet(
+            outfile=Path(self.trainer.default_root_dir) / 'alphabet.json',
+            alphabet=dm.alphabet,
+        )
