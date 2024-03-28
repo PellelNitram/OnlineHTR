@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from pathlib import Path
+import json
 
 import pandas as pd
 
@@ -85,3 +86,12 @@ def load_IAM_OnDB_sample(sample, base_path):
     text_line = load_IAM_OnDB_text_line(text_line_file, int(code3)-1)
 
     return df, text_line
+
+def store_alphabet(outfile: Path, alphabet: list[str]) -> None:
+    """Stores the alphabet as JSON.
+
+    :param outfile: The path to store the alphabet under.
+    :param alphabet: The alphabet.
+    """
+    with open(outfile, 'w') as f:
+        json.dump({'alphabet': alphabet}, f, indent=4)
