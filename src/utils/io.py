@@ -5,7 +5,7 @@ import json
 import pandas as pd
 
 
-def load_df_iam_ondb(path):
+def load_df_iam_ondb(path: Path) -> pd.DataFrame:
     """
     Load IAM OnDB strokes file as pd.DataFrame.
 
