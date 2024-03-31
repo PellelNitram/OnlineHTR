@@ -5,6 +5,7 @@ defaults:
   - hydra: default
   - callbacks:
     - model_checkpoint
+    - measure_speed
   - _self_
 
 tags: ["experiment2"]
