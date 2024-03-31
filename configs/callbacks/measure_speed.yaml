@@ -1,2 +1,2 @@
 measure_speed:
-  _target_: src.utils.callbacks.TrainEpochTimeMeasuring
+  _target_: src.utils.callbacks.MeasureSpeed

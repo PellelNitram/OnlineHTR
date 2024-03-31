@@ -3,7 +3,7 @@ import time
 from lightning.pytorch.callbacks import Callback
 
 
-class TrainEpochTimeMeasuring(Callback):
+class MeasureSpeed(Callback):
     """Measures train epoch compute time."""
 
     def __init__(self):
