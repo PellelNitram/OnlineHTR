@@ -271,6 +271,29 @@ class IAMOnDBDataModule(LightningDataModule):
 
                 self.dataset.transform = transform
 
+            elif self.hparams.transform == 'XournalPagewise_carbune_xyn':
+
+                self.dataset = XournalPagewiseDatasetPyTorch(
+                    self.hparams.data_dir,
+                    transform=None,
+                )
+
+                if sum(self.hparams.train_val_test_split) > len(self.dataset):
+                    raise RuntimeError(
+                        f"Dataset (len={len(self.dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
+                    )
+
+                self.alphabet = get_alphabet_from_dataset( self.dataset )
+                self.alphabet_mapper = AlphabetMapper( self.alphabet )
+
+                transform = transforms.Compose([
+                    Carbune2020(),
+                    DictToTensor(['x', 'y', 't', 'n']),
+                    CharactersToIndices( self.alphabet ), # TODO: Why does it only work if CTI is last?
+                ])
+
+                self.dataset.transform = transform
+
             else:
                 raise ValueError('`transform` set to non-existent value')
 
