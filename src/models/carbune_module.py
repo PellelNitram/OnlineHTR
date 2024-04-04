@@ -226,7 +226,6 @@ class LitModule1(LightningModule):
 
     def __init__(
         self,
-        number_of_channels: int,
         nodes_per_layer: int,
         number_of_layers: int,
         dropout: float,
