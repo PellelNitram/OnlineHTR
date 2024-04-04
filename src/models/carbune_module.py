@@ -271,20 +271,22 @@ class LitModule1(LightningModule):
 
         dm = self.trainer.datamodule
 
+        self.batch_size = self.trainer.datamodule.hparams.batch_size
+
         self.alphabet_mapper = dm.alphabet_mapper
 
         self.lstm_stack = torch.nn.LSTM(
             input_size=dm.number_of_channels,
-            hidden_size=self.hparam.nodes_per_layer,
-            num_layers=self.hparam.number_of_layers,
+            hidden_size=self.hparams.nodes_per_layer,
+            num_layers=self.hparams.number_of_layers,
             bias=True,
             batch_first=False,
-            dropout=self.hparam.dropout,
+            dropout=self.hparams.dropout,
             bidirectional=True,
             proj_size=0,
         )
         self.linear = torch.nn.Linear(
-            in_features=2 * self.hparam.nodes_per_layer, # 2 b/c bidirectional=True
+            in_features=2 * self.hparams.nodes_per_layer, # 2 b/c bidirectional=True
             out_features=len(dm.alphabet) + 1, # +1 for blank
             bias=True,
         )
@@ -319,7 +321,7 @@ class LitModule1(LightningModule):
             batch['ink_lengths'],
             batch['label_lengths'],
         )
-        decoded_texts = self.hparam.decoder(log_softmax, self.alphabet_mapper)
+        decoded_texts = self.hparams.decoder(log_softmax, self.alphabet_mapper)
 
         # TODO: Could be pre-computed (using list0 in batch to avoid endless recomputation
         labels = []
@@ -353,9 +355,9 @@ class LitModule1(LightningModule):
         loss, metrics = self.model_step(batch)
 
         # update and log metrics
-        self.log("train/loss", loss, on_step=False, on_epoch=True, prog_bar=True)
-        self.log("train/wer", metrics['wer'], on_step=False, on_epoch=True, prog_bar=True)
-        self.log("train/cer", metrics['cer'], on_step=False, on_epoch=True, prog_bar=True)
+        self.log("train/loss", loss, on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
+        self.log("train/wer", metrics['wer'], on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
+        self.log("train/cer", metrics['cer'], on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
 
         # # TODO: Add text to log like tensorboard - what to save exactly? saving full text is too wasteful every step - every few steps??
         # for logger in self.loggers:
@@ -376,13 +378,13 @@ class LitModule1(LightningModule):
         loss, metrics = self.model_step(batch)
 
         # update and log metrics
-        self.log("val/loss", loss, on_step=False, on_epoch=True, prog_bar=True)
-        self.log("val/wer", metrics['wer'], on_step=False, on_epoch=True, prog_bar=True)
-        self.log("val/cer", metrics['cer'], on_step=False, on_epoch=True, prog_bar=True)
+        self.log("val/loss", loss, on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
+        self.log("val/wer", metrics['wer'], on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
+        self.log("val/cer", metrics['cer'], on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
 
         # Log hyperparameter metric as explained here:
         # https://lightning.ai/docs/pytorch/stable/extensions/logging.html#logging-hyperparameters
-        self.log("hp_metric", loss)
+        self.log("hp_metric", loss, batch_size=self.batch_size)
 
     def test_step(self, batch: Tuple[torch.Tensor, torch.Tensor], batch_idx: int) -> None:
         """Perform a single test step on a batch of data from the test set.
@@ -394,7 +396,7 @@ class LitModule1(LightningModule):
         loss, metrics = self.model_step(batch)
 
         # update and log metrics
-        self.log("test/loss", loss, on_step=False, on_epoch=True, prog_bar=True)
+        self.log("test/loss", loss, on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
 
     def configure_optimizers(self) -> Dict[str, Any]:
         """Choose what optimizers and learning-rate schedulers to use in your optimization.
