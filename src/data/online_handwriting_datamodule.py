@@ -288,7 +288,7 @@ class IAMOnDBDataModule(LightningDataModule):
 
                 transform = transforms.Compose([
                     Carbune2020(),
-                    DictToTensor(['x', 'y', 't', 'n']),
+                    DictToTensor(['x', 'y', 'n']),
                     CharactersToIndices( self.alphabet ), # TODO: Why does it only work if CTI is last?
                 ])
 
