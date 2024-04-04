@@ -1,4 +1,4 @@
-# Run LitModule1 to test if I can easily load it
+# Run LitModule1 to test if I can easily load it and if it reproduces past results
 
 time python src/train.py \
     --config-name experiment_LitModule1.yaml \
