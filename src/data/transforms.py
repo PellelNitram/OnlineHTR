@@ -98,6 +98,10 @@ class CharactersToIndices(object):
 
         return sample
 
+class SimpleNormalise(object):
+    """Simple normalisation based on Carbune2020 w/o linear resampling."""
+    pass
+
 class Carbune2020(object):
     """TODO.
 
