@@ -6,5 +6,5 @@ time python src/train.py \
     trainer.max_epochs=3000 \
     data.limit=-1 \
     data.train_val_test_split="[0.8,0.2,0]" \
-    data.transform="carbune2020_xyn" \
+    data.transform="carbune2020_xyn","carbune2020_xytn" \
     tags="experiment10"
