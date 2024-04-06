@@ -63,8 +63,17 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     log.info(f"Instantiating datamodule <{cfg.data._target_}>")
     datamodule: LightningDataModule = hydra.utils.instantiate(cfg.data)
 
+    # Based on this: https://lightning.ai/docs/pytorch/stable/data/datamodule.html#using-a-datamodule
+    log.info(f"Initialise datamodule <{cfg.data._target_}>")
+    datamodule.prepare_data()
+    datamodule.setup()
+
     log.info(f"Instantiating model <{cfg.model._target_}>")
-    model: LightningModule = hydra.utils.instantiate(cfg.model)
+    model: LightningModule = hydra.utils.instantiate(
+        cfg.model,
+        alphabet=datamodule.alphabet,
+        number_of_channels=datamodule.number_of_channels,
+    )
 
     log.info("Instantiating callbacks...")
     callbacks: List[Callback] = instantiate_callbacks(cfg.get("callbacks"))
