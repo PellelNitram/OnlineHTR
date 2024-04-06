@@ -13,6 +13,7 @@ from lightning.pytorch.loggers.tensorboard import TensorBoardLogger
 from src.utils.decoders import GreedyCTCDecoder
 from src.models.components.carbune2020_net import Carbune2020NetAttempt1
 from src.utils.io import store_alphabet
+from src.data.tokenisers import AlphabetMapper
 
 
 class CarbuneLitModule2(LightningModule):
@@ -232,6 +233,8 @@ class LitModule1(LightningModule):
         decoder,
         optimizer: torch.optim.Optimizer,
         scheduler: torch.optim.lr_scheduler,
+        alphabet: list[str],
+        number_of_channels:int,
     ) -> None:
         super().__init__()
 
@@ -239,12 +242,18 @@ class LitModule1(LightningModule):
         # also ensures init params will be stored in ckpt
         self.save_hyperparameters(logger=False)
 
+        self.alphabet = list(alphabet)
+        self.alphabet_mapper = AlphabetMapper(self.alphabet)
+
         # loss function
         self.criterion = torch.nn.CTCLoss(blank=0, reduction='mean')
 
         # ==============
         # Network layers
         # ==============
+
+        # I would have loved to set up this module in `setup` but I was not able to
+        # load checkpoints then, see e.g. https://github.com/Lightning-AI/pytorch-lightning/issues/5410
 
         # Output layer to be fed into CTC loss; the output must be log probabilities
         # according to https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html
@@ -254,40 +263,21 @@ class LitModule1(LightningModule):
                                                 # https://pytorch.org/docs/stable/generated/torch.nn.LogSoftmax.html#torch.nn.LogSoftmax
 
         # Documentation: https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html
-        self.lstm_stack = None
-
-        # Documentation: https://pytorch.org/docs/stable/generated/torch.nn.Linear.html
-        self.linear = None
-
-    def setup(self, stage: str) -> None:
-        """Lightning hook that is called at the beginning of fit (train + validate), validate,
-        test, or predict.
-
-        This is a good hook when you need to build models dynamically or adjust something about
-        them. This hook is called on every process when using DDP.
-
-        :param stage: Either `"fit"`, `"validate"`, `"test"`, or `"predict"`.
-        """
-
-        dm = self.trainer.datamodule
-
-        self.batch_size = self.trainer.datamodule.hparams.batch_size
-
-        self.alphabet_mapper = dm.alphabet_mapper
-
         self.lstm_stack = torch.nn.LSTM(
-            input_size=dm.number_of_channels,
-            hidden_size=self.hparams.nodes_per_layer,
-            num_layers=self.hparams.number_of_layers,
+            input_size=number_of_channels,
+            hidden_size=nodes_per_layer,
+            num_layers=number_of_layers,
             bias=True,
             batch_first=False,
-            dropout=self.hparams.dropout,
+            dropout=dropout,
             bidirectional=True,
             proj_size=0,
         )
+
+        # Documentation: https://pytorch.org/docs/stable/generated/torch.nn.Linear.html
         self.linear = torch.nn.Linear(
-            in_features=2 * self.hparams.nodes_per_layer, # 2 b/c bidirectional=True
-            out_features=len(dm.alphabet) + 1, # +1 for blank
+            in_features=2 * nodes_per_layer, # 2 b/c bidirectional=True
+            out_features=len(self.alphabet) + 1, # +1 for blank
             bias=True,
         )
 
@@ -354,6 +344,8 @@ class LitModule1(LightningModule):
         """
         loss, metrics = self.model_step(batch)
 
+        self.batch_size = batch['ink'].shape[1]
+
         # update and log metrics
         self.log("train/loss", loss, on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
         self.log("train/wer", metrics['wer'], on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
@@ -377,6 +369,8 @@ class LitModule1(LightningModule):
         """
         loss, metrics = self.model_step(batch)
 
+        self.batch_size = batch['ink'].shape[1]
+
         # update and log metrics
         self.log("val/loss", loss, on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
         self.log("val/wer", metrics['wer'], on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
@@ -394,6 +388,8 @@ class LitModule1(LightningModule):
         :param batch_idx: The index of the current batch.
         """
         loss, metrics = self.model_step(batch)
+
+        self.batch_size = batch['ink'].shape[1]
 
         # update and log metrics
         self.log("test/loss", loss, on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
