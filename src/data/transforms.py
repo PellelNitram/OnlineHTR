@@ -99,8 +99,69 @@ class CharactersToIndices(object):
         return sample
 
 class SimpleNormalise(object):
-    """Simple normalisation based on Carbune2020 w/o linear resampling."""
-    pass
+    """Simple normalisation based on Carbune2020 w/o linear resampling and no time.
+
+    From not using time follows no linear resampling.
+    """
+
+    def __init__(self):
+        pass
+
+    def __call__(self, sample: dict) -> dict:
+        """TODO.
+
+        :returns: TODO.
+        """
+
+        sample_name = sample['sample_name']
+
+        sample_sub = {
+            'x': sample['x'],
+            'y': sample['y'],
+            'stroke_nr': sample['stroke_nr'],
+        }
+        df = pd.DataFrame.from_dict(sample_sub)
+
+        df['x'] = df['x'] - df['x'].iloc[0]
+        df['y'] = df['y'] - df['y'].min()
+        scale_factor = df['y'].max()
+        df['x'] = df['x'] / scale_factor
+        df['y'] = df['y'] / scale_factor
+        if df['x'].iloc[0] != 0:
+            raise ValueError('x shift failed')
+        if df['y'].min() != 0.0 or df['y'].max() != 1.0:
+            raise ValueError('y shift and rescaling failed')
+
+        # Set up X (a.k.a. ink)
+        df_X = pd.DataFrame(index=np.arange(df.shape[0]))
+        df_X['x'] = np.nan
+        df_X['y'] = np.nan
+        df_X['n'] = np.nan
+
+        # Set up x
+        df_X.loc[0, 'x'] = 0
+        df_X.loc[1:, 'x'] = df['x'].diff(periods=1).iloc[1:]
+
+        # Set up y
+        df_X.loc[0, 'y'] = 0
+        df_X.loc[1:, 'y'] = df['y'].diff(periods=1).iloc[1:]
+
+        # Set up n
+        n_values = df['stroke_nr'].diff(periods=1)
+        n_values.iloc[0] = 1.0
+        df_X.loc[:, 'n'] = n_values
+
+        # Ensure that no NaN's are left
+        if df_X.isnull().values.any():
+            raise ValueError('NaN value found in df_X.')
+
+        return {
+            'sample_name': sample['sample_name'],
+            'x': df_X['x'].to_numpy(),
+            'y': df_X['y'].to_numpy(),
+            'n': df_X['n'].to_numpy(),
+            'label': sample['label'],
+        }
 
 class Carbune2020(object):
     """TODO.
