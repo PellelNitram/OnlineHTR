@@ -16,6 +16,7 @@ from src.data.collate_functions import my_collator
 from src.data.transforms import TwoChannels
 from src.data.transforms import Carbune2020
 from src.data.transforms import DictToTensor
+from src.data.transforms import SimpleNormalise
 from src.data.tokenisers import AlphabetMapper
 from src.data.online_handwriting_datasets import get_alphabet_from_dataset
 from src.data.online_handwriting_datasets import get_number_of_channels_from_dataset
@@ -290,6 +291,30 @@ class IAMOnDBDataModule(LightningDataModule):
                     Carbune2020(),
                     DictToTensor(['x', 'y', 'n']),
                     CharactersToIndices( self.alphabet ), # TODO: Why does it only work if CTI is last?
+                ])
+
+                self.dataset.transform = transform
+
+            if self.hparams.transform == 'iam_SimpleNormalise_xyn':
+
+                self.dataset = IAM_OnDB_Dataset(
+                        Path(self.hparams.data_dir),
+                        transform=None,
+                        limit=self.hparams.limit,
+                )
+
+                if sum(self.hparams.train_val_test_split) > len(self.dataset):
+                    raise RuntimeError(
+                        f"Dataset (len={len(self.dataset)}) too short for requested splits ({self.hparams.train_val_test_split})."
+                    )
+
+                self.alphabet = get_alphabet_from_dataset( self.dataset )
+                self.alphabet_mapper = AlphabetMapper( self.alphabet )
+
+                transform = transforms.Compose([
+                    SimpleNormalise(),
+                    DictToTensor(['x', 'y', 'n']),
+                    CharactersToIndices( self.alphabet ),
                 ])
 
                 self.dataset.transform = transform
