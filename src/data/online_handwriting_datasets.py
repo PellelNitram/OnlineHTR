@@ -358,6 +358,8 @@ class IAM_OnDB_Dataset(Dataset):
     This is the raw dataset which can be further processed using downstream transformations.
     """
 
+    # TODO: Add progress bar to this class!
+
     LENGTH = 12187 # Determined empirically
 
     SAMPLES_NOT_TO_STORE = [
