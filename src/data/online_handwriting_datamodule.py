@@ -295,7 +295,7 @@ class IAMOnDBDataModule(LightningDataModule):
 
                 self.dataset.transform = transform
 
-            if self.hparams.transform == 'iam_SimpleNormalise_xyn':
+            elif self.hparams.transform == 'iam_SimpleNormalise_xyn':
 
                 self.dataset = IAM_OnDB_Dataset(
                         Path(self.hparams.data_dir),
@@ -319,7 +319,7 @@ class IAMOnDBDataModule(LightningDataModule):
 
                 self.dataset.transform = transform
 
-            if self.hparams.transform == 'XournalPagewise_SimpleNormalise_xyn':
+            elif self.hparams.transform == 'XournalPagewise_SimpleNormalise_xyn':
 
                 self.dataset = XournalPagewiseDatasetPyTorch(
                     Path(self.hparams.data_dir),
