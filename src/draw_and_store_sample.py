@@ -39,6 +39,9 @@ def plot_strokes(strokes):
         y = stroke[:, 1]
         t = stroke[:, 2]
         plt.scatter(x, y)
+    plt.gca().set_aspect('equal')
+    plt.xlabel('x')
+    plt.ylabel('y')
     plt.show()
 
 def store_strokes(strokes):
