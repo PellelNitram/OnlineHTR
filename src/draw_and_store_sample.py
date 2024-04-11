@@ -18,14 +18,14 @@ class Sketchpad(Canvas):
         
     def start_stroke(self, event):
         self.current_stroke = [
-            (event.x, event.y, time()),
+            (event.x, -event.y, time()),
         ]
 
     def draw_and_store(self, event):
         x1, y1 = (event.x - 1), (event.y - 1)
         x2, y2 = (event.x + 1), (event.y + 1)
         self.create_oval(x1, y1, x2, y2, fill='#000000')
-        self.current_stroke.append( (event.x, event.y, time()) )
+        self.current_stroke.append( (event.x, -event.y, time()) )
         
     def end_stroke(self, event):
         self.draw_and_store(event)
