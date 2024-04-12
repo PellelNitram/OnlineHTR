@@ -83,6 +83,5 @@ store_button.place(x=200,y=50)
 
 root.mainloop()
 
-# TODO: Make sure coordinates are same as in IAMonDB!
 # TODO: Make sure that stored data format is same as IAMonDB!
 # TODO: Later build an app that allows training data acquisition! It would use simple JSON. The UI will then include a button to clean the current sample and a text box to input the text.
