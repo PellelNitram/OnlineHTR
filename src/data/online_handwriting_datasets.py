@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import logging
 
+import pandas as pd
 import h5py
 import numpy as np
 import matplotlib.pyplot as plt
@@ -578,3 +579,72 @@ def get_number_of_channels_from_dataset(dataset: Dataset) -> List[str]:
     if len(number_of_channels) > 1:
         raise ValueError('the dataset features multiple number of channels.')
     return number_of_channels[0]
+
+class Own_Dataset(Dataset):
+    """TODO.
+
+    TODO.
+    Has been captured with `draw_and_store_sample.py` using my own handwriting.
+    """
+
+    LENGTH = 2 # Determined empirically
+
+    def __init__(self, path: Path, transform=None) -> None:
+        """TODO.
+
+
+        TODO: Explain how the dataset needs to be stored on disk to allow access
+        to it using this present class.
+
+        :param path: Path to dataset.
+        :param limit: Limit number of loaded samples to this value if positive.
+        :param skip_carbune2020_fails: Skip all sample that are known to fail when the `Carbune2020` transform is applied.
+        """
+        self.path = path
+        self.transform = transform
+        self.data = self.load_data()
+        # TODO: I'd love to add logging here to understand the skipped images
+
+    def load_data(self) -> List:
+        """
+        Returns IAM-OnDB data.
+         
+        In `__init__`, it is saved as `self.data`.
+        
+        Loading is performed by parsing the XML files and reading the text files.
+        """
+
+        # TODO: Add progress bar?
+
+        result = []
+
+        # TODO: Add verbose parameter to add a progress bar here!
+
+        for f in list(Path('../data/datasets/own_test_dataset').glob('*.csv')):
+
+            sample_name, label = f.name.replace('.csv', '').split('_')
+
+            df = pd.read_csv(f)
+
+            result.append( {
+                'x': df['x'].to_numpy(),
+                'y': df['y'].to_numpy(),
+                't': df['t'].to_numpy(),
+                'stroke_nr': list( df['stroke_nr'] ),
+                'label': label,
+                'sample_name': sample_name,
+            } )
+
+        return result
+
+    def __len__(self) -> int:
+        return len(self.data)
+
+    def __getitem__(self, idx) -> dict:
+
+        sample = self.data[idx]
+
+        if self.transform:
+            sample = self.transform(sample)
+
+        return sample
