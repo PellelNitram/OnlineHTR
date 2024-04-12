@@ -620,7 +620,7 @@ class Own_Dataset(Dataset):
 
         # TODO: Add verbose parameter to add a progress bar here!
 
-        for f in list(Path('../data/datasets/own_test_dataset').glob('*.csv')):
+        for f in list(self.path.glob('*.csv')):
 
             sample_name, label = f.name.replace('.csv', '').split('_')
 
