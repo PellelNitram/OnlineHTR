@@ -648,3 +648,27 @@ class Own_Dataset(Dataset):
             sample = self.transform(sample)
 
         return sample
+
+    def plot_sample_to_image_file(self, sample_index: int, file_path: Path) -> None:
+        """Plot sample data to image file.
+        
+        Helpful for debugging. It uses the `__getitem__` function and thereby applies transforms.
+        
+        :param sample_index: Index of sample to plot.
+        :param file_path: Path to store image file as. Needs to come with suffix (this is not checked).
+        """
+
+        sample = self[sample_index]
+
+        plt.figure()
+        plt.scatter(
+            sample['x'],
+            sample['y'],
+            c=sample['stroke_nr'],
+            s=1,
+            cmap=matplotlib.colormaps.get_cmap('Set1'),
+        )
+        plt.title(f"{sample['sample_name']}: {sample['label']}")
+        plt.gca().set_aspect('equal')
+        plt.savefig(file_path)
+        plt.close()
