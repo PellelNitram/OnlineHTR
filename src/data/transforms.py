@@ -94,6 +94,8 @@ class CharactersToIndices(object):
         label = [ self.alphabet_mapper.character_to_index(c) for c in sample['label']]
         label = torch.as_tensor(label, dtype=torch.int64)
 
+        sample['label_str'] = sample['label']
+
         sample['label'] = label # Updated in-place
 
         return sample
