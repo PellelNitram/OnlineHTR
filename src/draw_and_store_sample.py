@@ -44,7 +44,7 @@ def plot_strokes(strokes):
     plt.ylabel('y')
     plt.show()
 
-def store_strokes(strokes):
+def store_strokes(strokes: list[list[(float, float, float)]]) -> None:
     
     filename = filedialog.asksaveasfilename(
         title='Select a file to store strokes'
