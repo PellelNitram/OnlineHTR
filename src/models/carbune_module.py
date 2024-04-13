@@ -313,14 +313,23 @@ class LitModule1(LightningModule):
         )
         decoded_texts = self.hparams.decoder(log_softmax, self.alphabet_mapper)
 
-        # TODO: Could be pre-computed (using list0 in batch to avoid endless recomputation
-        labels = []
-        for i_batch in range(log_softmax.shape[1]):
-            label_length = batch['label_lengths'][i_batch]
-            label = batch['label'][i_batch, :label_length]
-            label = [ self.alphabet_mapper.index_to_character(c) for c in label ]
-            label = "".join(label)
-            labels.append(label)
+        labels_str = batch['label_str']
+
+        # # TODO: Could be pre-computed (using list0 in batch to avoid endless recomputation
+        # labels = []
+        # for i_batch in range(log_softmax.shape[1]):
+        #     label_length = batch['label_lengths'][i_batch]
+        #     label = batch['label'][i_batch, :label_length]
+        #     label = [ self.alphabet_mapper.index_to_character(c) for c in label ]
+        #     label = "".join(label)
+        #     labels.append(label)
+
+        # # Ensure that pre-computed and computed labels are the same - they are!
+        # print(len(labels_str), len(labels))
+        # for s, l in zip(labels_str, labels):
+        #     print(f'"{s}" -- "{l}"')
+
+        labels = labels_str
 
         cer = char_error_rate(preds=decoded_texts, target=labels)
         wer = word_error_rate(preds=decoded_texts, target=labels)
