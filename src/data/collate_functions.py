@@ -47,4 +47,5 @@ def my_collator(batch): # TODO: rename to ctc_loss_collator() to make more under
         'label': y_tensor_batched,
         'ink_lengths': ink_lengths,
         'label_lengths': label_lengths,
+        'label_str': [ sample['label_str'] for sample in batch ],
      }
