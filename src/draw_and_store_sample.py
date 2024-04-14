@@ -31,7 +31,7 @@ class Sketchpad(Canvas):
         self.draw_and_store(event)
         self.strokes.append(self.current_stroke)
 
-def plot_strokes(strokes):
+def plot_strokes(strokes: list[list[(float, float, float)]]) -> None:
     plt.figure()
     for stroke in strokes:
         stroke = np.array(stroke)
