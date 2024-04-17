@@ -107,6 +107,3 @@ predict_button.place(x=50,y=400)
 root.mainloop()
 
 # TODO: Add status bar
-
-# TODO: Make sure that stored data format is same as IAMonDB!
-# TODO: Later build an app that allows training data acquisition! It would use simple JSON. The UI will then include a button to clean the current sample and a text box to input the text.
