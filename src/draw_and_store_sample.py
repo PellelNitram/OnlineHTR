@@ -27,6 +27,7 @@ def main(args: dict) -> None:
     global_strokes = []
 
     root = Tk()
+    root.title("Draw and Store Sample")
     root.geometry("1024x512")
     root.columnconfigure(0, weight=1)
     root.rowconfigure(0, weight=1)
