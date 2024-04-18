@@ -7,29 +7,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from src.data.acquisition import Sketchpad
 
-class Sketchpad(Canvas):
-    def __init__(self, parent, strokes, **kwargs):
-        super().__init__(parent, **kwargs)
-        self.bind("<Button-1>", self.start_stroke)
-        self.bind("<B1-Motion>", self.draw_and_store)
-        self.bind("<ButtonRelease-1>", self.end_stroke)
-        self.strokes = strokes
-        
-    def start_stroke(self, event):
-        self.current_stroke = [
-            (event.x, -event.y, time()),
-        ]
-
-    def draw_and_store(self, event):
-        x1, y1 = (event.x - 1), (event.y - 1)
-        x2, y2 = (event.x + 1), (event.y + 1)
-        self.create_oval(x1, y1, x2, y2, fill='#000000')
-        self.current_stroke.append( (event.x, -event.y, time()) )
-        
-    def end_stroke(self, event):
-        self.draw_and_store(event)
-        self.strokes.append(self.current_stroke)
 
 def plot_strokes(strokes: list[list[(float, float, float)]]) -> None:
     plt.figure()
@@ -72,7 +51,8 @@ root.geometry("1024x512")
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
-sketch = Sketchpad(root, global_strokes)
+DOT_RADIUS = 3
+sketch = Sketchpad(root, global_strokes, DOT_RADIUS)
 sketch.grid(column=0, row=0, sticky=(N, W, E, S))
 
 plot_button = Button(root, text="Plot strokes", command=lambda: plot_strokes(global_strokes))
