@@ -23,11 +23,19 @@ from src.data.transforms import Carbune2020
 from src.data.collate_functions import my_collator
 
 
+# ========
+# Settings
+# ========
+
+PATH = 'logs/train/multiruns/2024-04-10_20-09-25/8'
+DOT_RADIUS = 1
+DOT_RADIUS = 3
+
 # =====
 # Model
 # =====
 
-BASE_PATH = Path('logs/train/multiruns/2024-04-10_20-09-25/8')
+BASE_PATH = Path(PATH)
 CHECKPOINT_PATH = BASE_PATH / 'checkpoints/epoch000749.ckpt'
 
 model = LitModule1.load_from_checkpoint(CHECKPOINT_PATH)
@@ -45,12 +53,13 @@ decoder = checkpoint['hyper_parameters']['decoder']
 # ==
 
 class Sketchpad(Canvas):
-    def __init__(self, parent, strokes, **kwargs):
+    def __init__(self, parent, strokes, dot_radius, **kwargs):
         super().__init__(parent, **kwargs)
         self.bind("<Button-1>", self.start_stroke)
         self.bind("<B1-Motion>", self.draw_and_store)
         self.bind("<ButtonRelease-1>", self.end_stroke)
         self.strokes = strokes
+        self.dot_radius = dot_radius
         self.configure(bg='white')
         
     def start_stroke(self, event):
@@ -59,8 +68,8 @@ class Sketchpad(Canvas):
         ]
 
     def draw_and_store(self, event):
-        x1, y1 = (event.x - 1), (event.y - 1)
-        x2, y2 = (event.x + 1), (event.y + 1)
+        x1, y1 = (event.x - self.dot_radius), (event.y - self.dot_radius)
+        x2, y2 = (event.x + self.dot_radius), (event.y + self.dot_radius)
         self.create_oval(x1, y1, x2, y2, fill='#000000')
         self.current_stroke.append( (event.x, -event.y, time()) )
         
@@ -181,7 +190,7 @@ root.geometry("1024x512")
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
-sketch = Sketchpad(root, global_strokes)
+sketch = Sketchpad(root, global_strokes, DOT_RADIUS)
 sketch.grid(column=0, row=0, sticky=(N, W, E, S))
 
 prediction_field = Text(root, height=5, width=100)
