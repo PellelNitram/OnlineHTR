@@ -1,6 +1,7 @@
 from tkinter import Canvas
 from tkinter import END
 from tkinter import filedialog
+from tkinter import Event
 from time import time
 from pathlib import Path
 from shutil import rmtree
@@ -126,7 +127,7 @@ def predict(strokes, display, alphabet, model, decoder, alphabet_mapper):
     rmtree(TMP_FOLDER)
 
 class Sketchpad(Canvas):
-    def __init__(self, parent, strokes, dot_radius, **kwargs):
+    def __init__(self, parent, strokes: list, dot_radius: int, **kwargs):
         super().__init__(parent, **kwargs)
         self.bind("<Button-1>", self.start_stroke)
         self.bind("<B1-Motion>", self.draw_and_store)
@@ -135,17 +136,17 @@ class Sketchpad(Canvas):
         self.dot_radius = dot_radius
         self.configure(bg='white')
         
-    def start_stroke(self, event):
+    def start_stroke(self, event: Event) -> None:
         self.current_stroke = [
             (event.x, -event.y, time()),
         ]
 
-    def draw_and_store(self, event):
+    def draw_and_store(self, event: Event) -> None:
         x1, y1 = (event.x - self.dot_radius), (event.y - self.dot_radius)
         x2, y2 = (event.x + self.dot_radius), (event.y + self.dot_radius)
         self.create_oval(x1, y1, x2, y2, fill='#000000')
         self.current_stroke.append( (event.x, -event.y, time()) )
         
-    def end_stroke(self, event):
+    def end_stroke(self, event: Event) -> None:
         self.draw_and_store(event)
         self.strokes.append(self.current_stroke)  
