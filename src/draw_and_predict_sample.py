@@ -71,7 +71,7 @@ store_button.place(x=200,y=50)
 reset_button = Button(root, text="Reset strokes", command=lambda: reset_strokes(global_strokes, sketch, prediction_field))
 reset_button.place(x=800,y=50)
 
-predict_button = Button(root, text="Predict!", command=lambda: predict(global_strokes, prediction_field, alphabet))
+predict_button = Button(root, text="Predict!", command=lambda: predict(global_strokes, prediction_field, alphabet, model, decoder, alphabet_mapper))
 predict_button.place(x=50,y=400)
 
 root.mainloop()
