@@ -22,6 +22,7 @@ from src.data.transforms import Carbune2020
 from src.data.collate_functions import my_collator
 from src.data.acquisition import plot_strokes
 from src.data.acquisition import reset_strokes
+from src.data.acquisition import store_strokes
 from src.data.acquisition import Sketchpad
 
 
