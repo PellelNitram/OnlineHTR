@@ -2,10 +2,22 @@ from tkinter import Canvas
 from tkinter import END
 from tkinter import filedialog
 from time import time
+from pathlib import Path
+from shutil import rmtree
 
+import torch
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+from torchvision.transforms import transforms
+from torch.utils.data import DataLoader
+
+from src.data.online_handwriting_datasets import Own_Dataset
+from src.data.online_handwriting_datasets import get_alphabet_from_dataset
+from src.data.transforms import DictToTensor
+from src.data.transforms import CharactersToIndices
+from src.data.transforms import Carbune2020
+from src.data.collate_functions import my_collator
 
 
 def plot_strokes(strokes: list[list[(float, float, float)]]) -> None:
@@ -50,6 +62,68 @@ def store_strokes(strokes: list[list[(float, float, float)]], filename=None) -> 
     })
     
     df.to_csv(filename) 
+
+def predict(strokes, display, alphabet, model, decoder, alphabet_mapper):
+
+    if len(strokes) == 0:
+        return
+
+    TMP_FOLDER = Path('TMP')
+    TMP_FOLDER.mkdir(parents=True, exist_ok=True)
+
+    TMP_FILENAME = TMP_FOLDER / '0_TMP.csv'
+
+    store_strokes(strokes, filename=TMP_FILENAME)
+
+    # GET STANDALONE DATASET
+
+    # This is the one that I really want to use
+    dataset = Own_Dataset(
+        Path(TMP_FOLDER),
+        transform=None,
+    )
+
+    print(f'Number of samples in dataset: {len(dataset)}')
+
+    alphabet_inference = get_alphabet_from_dataset( dataset )
+    for letter in alphabet_inference: # Confirm that there are no OOV letters
+        assert letter in alphabet
+
+    transform = transforms.Compose([
+        Carbune2020(),
+        DictToTensor(['x', 'y', 't', 'n']),
+        CharactersToIndices( alphabet ), # TODO: Why does it only work if CTI is last?
+    ])
+
+    dataset.transform = transform
+
+    # # GET STANDALONE DATALOADER
+
+    dl_inference = DataLoader(
+        dataset=dataset,
+        batch_size=64,
+        num_workers=4,
+        pin_memory=True,
+        shuffle=False,
+        collate_fn=my_collator,
+    )
+
+    print(f'Number of samples in dataloader: {len(dl_inference)}')
+
+    batch = next(iter(dl_inference))
+
+    with torch.no_grad():
+        log_softmax = model(batch['ink'].to('cuda'))
+
+    decoded_texts = decoder(log_softmax, alphabet_mapper)
+    decoded_text = decoded_texts[0]
+
+    true_labels = batch['label_str']
+
+    display.delete(1.0, END)
+    display.insert(1.0, decoded_text, 'big')
+
+    rmtree(TMP_FOLDER)
 
 class Sketchpad(Canvas):
     def __init__(self, parent, strokes, dot_radius, **kwargs):
