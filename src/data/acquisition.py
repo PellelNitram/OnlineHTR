@@ -1,8 +1,11 @@
+from tkinter import Canvas
 from tkinter import END
 from tkinter import filedialog
+from time import time
 
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 
 
 def plot_strokes(strokes: list[list[(float, float, float)]]) -> None:
@@ -47,3 +50,28 @@ def store_strokes(strokes: list[list[(float, float, float)]], filename=None) -> 
     })
     
     df.to_csv(filename) 
+
+class Sketchpad(Canvas):
+    def __init__(self, parent, strokes, dot_radius, **kwargs):
+        super().__init__(parent, **kwargs)
+        self.bind("<Button-1>", self.start_stroke)
+        self.bind("<B1-Motion>", self.draw_and_store)
+        self.bind("<ButtonRelease-1>", self.end_stroke)
+        self.strokes = strokes
+        self.dot_radius = dot_radius
+        self.configure(bg='white')
+        
+    def start_stroke(self, event):
+        self.current_stroke = [
+            (event.x, -event.y, time()),
+        ]
+
+    def draw_and_store(self, event):
+        x1, y1 = (event.x - self.dot_radius), (event.y - self.dot_radius)
+        x2, y2 = (event.x + self.dot_radius), (event.y + self.dot_radius)
+        self.create_oval(x1, y1, x2, y2, fill='#000000')
+        self.current_stroke.append( (event.x, -event.y, time()) )
+        
+    def end_stroke(self, event):
+        self.draw_and_store(event)
+        self.strokes.append(self.current_stroke)  
