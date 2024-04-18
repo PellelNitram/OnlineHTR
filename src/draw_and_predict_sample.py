@@ -14,7 +14,7 @@ from src.data.acquisition import Sketchpad
 from src.data.acquisition import predict
 
 
-def parse_cli_args():
+def parse_cli_args() -> dict:
     """Parse command-line arguments for this script."""
 
     parser = argparse.ArgumentParser()
