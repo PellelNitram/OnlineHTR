@@ -27,6 +27,10 @@ def parse_cli_args():
     return vars(args)
 
 def main(args):
+    """Main function of this script.
+
+    :param args: Arguments to this main function.
+    """
 
     # =====
     # Model
