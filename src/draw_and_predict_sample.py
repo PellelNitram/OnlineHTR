@@ -1,12 +1,7 @@
 from tkinter import *
-from tkinter import ttk
-from tkinter import filedialog
 from pathlib import Path
 import argparse
 
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
 import torch
 
 from src.models.carbune_module import LitModule1
