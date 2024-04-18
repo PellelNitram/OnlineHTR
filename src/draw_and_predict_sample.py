@@ -82,7 +82,6 @@ def main(args: dict) -> None:
 
     root.mainloop()
 
-
 if __name__ == '__main__':
 
     args = parse_cli_args()
