@@ -68,16 +68,25 @@ def main(args: dict) -> None:
     prediction_field.place(x=300, y=400)
     prediction_field.tag_configure('big', font=('Arial', 20, 'bold', 'italic'))
 
-    plot_button = Button(root, text="Plot strokes", command=lambda: plot_strokes(global_strokes))
+    plot_button = Button(
+        root, text="Plot strokes",
+        command=lambda: plot_strokes(global_strokes))
     plot_button.place(x=50,y=50)
 
-    store_button = Button(root, text="Store strokes", command=lambda: store_strokes(global_strokes))
+    store_button = Button(
+        root, text="Store strokes",
+        command=lambda: store_strokes(global_strokes))
     store_button.place(x=200,y=50)
 
-    reset_button = Button(root, text="Reset strokes", command=lambda: reset_strokes(global_strokes, sketch, prediction_field))
+    reset_button = Button(
+        root, text="Reset strokes",
+        command=lambda: reset_strokes(global_strokes, sketch, prediction_field))
     reset_button.place(x=800,y=50)
 
-    predict_button = Button(root, text="Predict!", command=lambda: predict(global_strokes, prediction_field, alphabet, model, decoder, alphabet_mapper))
+    predict_button = Button(
+        root, text="Predict!",
+        command=lambda: predict(global_strokes, prediction_field, alphabet,
+                                model, decoder, alphabet_mapper))
     predict_button.place(x=50,y=400)
 
     root.mainloop()
