@@ -1,6 +1,6 @@
 from tkinter import END
 
-import matplotlib
+import matplotlib.pyplot as plt
 
 
 def plot_strokes(strokes: list[list[(float, float, float)]]) -> None:
