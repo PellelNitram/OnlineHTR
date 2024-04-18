@@ -6,6 +6,7 @@ import argparse
 from src.data.acquisition import Sketchpad
 from src.data.acquisition import plot_strokes
 from src.data.acquisition import store_strokes
+from src.data.acquisition import reset_strokes
 
 
 def parse_cli_args() -> dict:
@@ -42,6 +43,11 @@ def main(args: dict) -> None:
     store_button = Button(root, text="Store strokes",
                           command=lambda: store_strokes(global_strokes))
     store_button.place(x=200,y=50)
+
+    reset_button = Button(
+        root, text="Reset strokes",
+        command=lambda: reset_strokes(global_strokes, sketch, None))
+    reset_button.place(x=800,y=50)
 
     root.mainloop()
 
