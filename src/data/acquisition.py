@@ -83,7 +83,7 @@ def predict(strokes, display, alphabet, model, decoder, alphabet_mapper):
         transform=None,
     )
 
-    print(f'Number of samples in dataset: {len(dataset)}')
+    assert len(dataset) == 1
 
     alphabet_inference = get_alphabet_from_dataset( dataset )
     for letter in alphabet_inference: # Confirm that there are no OOV letters
