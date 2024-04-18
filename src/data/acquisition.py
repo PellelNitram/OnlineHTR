@@ -37,7 +37,8 @@ def plot_strokes(strokes: list[list[(float, float, float)]]) -> None:
 def reset_strokes(strokes, canvas, display):
     strokes.clear()
     canvas.delete("all")
-    display.delete(1.0, END)
+    if display:
+        display.delete(1.0, END)
 
 def store_strokes(strokes: list[list[(float, float, float)]], filename=None) -> None:
     
