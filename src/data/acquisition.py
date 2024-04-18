@@ -108,7 +108,7 @@ def predict(strokes, display, alphabet, model, decoder, alphabet_mapper):
         collate_fn=my_collator,
     )
 
-    print(f'Number of samples in dataloader: {len(dl_inference)}')
+    assert len(dl_inference) == 1
 
     batch = next(iter(dl_inference))
 
