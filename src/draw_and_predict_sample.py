@@ -75,5 +75,3 @@ predict_button = Button(root, text="Predict!", command=lambda: predict(global_st
 predict_button.place(x=50,y=400)
 
 root.mainloop()
-
-# TODO: Add status bar
