@@ -15,6 +15,7 @@ from src.data.acquisition import plot_strokes
 from src.data.acquisition import reset_strokes
 from src.data.acquisition import store_strokes
 from src.data.acquisition import Sketchpad
+from src.data.acquisition import predict
 
 
 # ========
