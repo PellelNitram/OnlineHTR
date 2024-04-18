@@ -26,7 +26,7 @@ def parse_cli_args() -> dict:
     
     return vars(args)
 
-def main(args):
+def main(args: dict) -> None:
     """Main function of this script.
 
     :param args: Arguments to this main function.
