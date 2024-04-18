@@ -1,4 +1,7 @@
-from tkinter import *
+from tkinter import Tk
+from tkinter import Button
+from tkinter import Text
+from tkinter import N, W, E, S
 from pathlib import Path
 import argparse
 
