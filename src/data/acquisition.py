@@ -1,3 +1,5 @@
+from tkinter import END
+
 import matplotlib
 
 
@@ -13,3 +15,8 @@ def plot_strokes(strokes: list[list[(float, float, float)]]) -> None:
     plt.xlabel('x')
     plt.ylabel('y')
     plt.show()
+
+def reset_strokes(strokes, canvas, display):
+    strokes.clear()
+    canvas.delete("all")
+    display.delete(1.0, END)

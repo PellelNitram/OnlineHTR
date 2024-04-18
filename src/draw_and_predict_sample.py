@@ -22,6 +22,7 @@ from src.data.transforms import CharactersToIndices
 from src.data.transforms import Carbune2020
 from src.data.collate_functions import my_collator
 from src.data.acquisition import plot_strokes
+from src.data.acquisition import reset_strokes
 
 
 # ========
@@ -102,11 +103,6 @@ def store_strokes(strokes: list[list[(float, float, float)]], filename=None) -> 
     })
     
     df.to_csv(filename)   
-
-def reset_strokes(strokes, canvas, display):
-    strokes.clear()
-    canvas.delete("all")
-    display.delete(1.0, END)
     
 def predict(strokes, display, alphabet):
 
