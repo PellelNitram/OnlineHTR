@@ -9,28 +9,8 @@ import pandas as pd
 
 from src.data.acquisition import Sketchpad
 from src.data.acquisition import plot_strokes
+from src.data.acquisition import store_strokes
 
-
-def store_strokes(strokes: list[list[(float, float, float)]]) -> None:
-    
-    filename = filedialog.asksaveasfilename(
-        title='Select a file to store strokes'
-    )
-    
-    all_stroke_data = []
-    for i_stroke, stroke in enumerate(strokes):
-        for x, y, t in stroke:
-            all_stroke_data.append((x, y, t, i_stroke))
-    strokes = np.array(all_stroke_data)
-       
-    df = pd.DataFrame.from_dict({
-        'x': strokes[:, 0],
-        'y': strokes[:, 1],
-        't': strokes[:, 2],
-        'stroke_nr': strokes[:, 3],
-    })
-    
-    df.to_csv(filename)   
 
 global_strokes = []
 
