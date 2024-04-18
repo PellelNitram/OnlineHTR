@@ -36,12 +36,14 @@ def main(args: dict) -> None:
     sketch = Sketchpad(root, global_strokes, args['dot_radius'])
     sketch.grid(column=0, row=0, sticky=(N, W, E, S))
 
-    plot_button = Button(root, text="Plot strokes",
-                         command=lambda: plot_strokes(global_strokes))
+    plot_button = Button(
+        root, text="Plot strokes",
+        command=lambda: plot_strokes(global_strokes))
     plot_button.place(x=50,y=50)
 
-    store_button = Button(root, text="Store strokes",
-                          command=lambda: store_strokes(global_strokes))
+    store_button = Button(
+        root, text="Store strokes",
+        command=lambda: store_strokes(global_strokes))
     store_button.place(x=200,y=50)
 
     reset_button = Button(
