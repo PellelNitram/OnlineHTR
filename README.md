@@ -10,11 +10,11 @@ This work is part of my attempt to build a handwriting recognition system for [X
 
 The scaffold of this code is based on [this awesome template](https://github.com/ashleve/lightning-hydra-template)!
 
-## Project demo
+## Project Demo
 
 TODO: Add video of demo.
 
-## Project video
+## Project Video
 
 TODO!
 
