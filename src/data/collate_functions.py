@@ -4,7 +4,7 @@ import torch
 import numpy as np
 
 
-def ctc_loss_collator(batch): # TODO: rename to ctc_loss_collator() to make more understandable
+def ctc_loss_collator(batch):
     """TODO.
 
     TODO: Check https://github.com/pytorch/pytorch/blob/main/torch/utils/data/_utils/collate.py#L216 to check
