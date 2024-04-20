@@ -33,6 +33,8 @@ TODO!
 
 ## 🚀 Installation
 
+TODO: Use conda env file to make installation process easier.
+
 The installation process is for now:
 
 1. `conda create --prefix <path> python=3.10.11`
