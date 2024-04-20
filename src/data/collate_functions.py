@@ -2,7 +2,7 @@ import torch
 import numpy as np
 
 
-def ctc_loss_collator(batch):
+def ctc_loss_collator(batch: list[dict]) -> dict:
     """Collator to prepare batches that are compatible with CTC loss.
 
     This collator is used in `torch.utils.data.DataLoader` instances.
