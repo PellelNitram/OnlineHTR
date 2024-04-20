@@ -12,7 +12,7 @@ from src.data.online_handwriting_datasets import IAM_OnDB_Dataset
 from src.data.online_handwriting_datasets import IAM_OnDB_Dataset_Carbune2020
 from src.data.transforms import TwoChannels
 from src.data.transforms import CharactersToIndices
-from src.data.collate_functions import my_collator
+from src.data.collate_functions import ctc_loss_collator
 from src.data.transforms import TwoChannels
 from src.data.transforms import Carbune2020
 from src.data.transforms import DictToTensor
@@ -116,7 +116,7 @@ class XournalPagewiseDataModule(LightningDataModule):
             num_workers=self.hparams.num_workers,
             pin_memory=self.hparams.pin_memory,
             shuffle=True,
-            collate_fn=my_collator,
+            collate_fn=ctc_loss_collator,
         )
 
     def val_dataloader(self) -> DataLoader[Any]:
@@ -130,7 +130,7 @@ class XournalPagewiseDataModule(LightningDataModule):
             num_workers=self.hparams.num_workers,
             pin_memory=self.hparams.pin_memory,
             shuffle=False,
-            collate_fn=my_collator,
+            collate_fn=ctc_loss_collator,
         )
 
     def test_dataloader(self) -> DataLoader[Any]:
@@ -144,7 +144,7 @@ class XournalPagewiseDataModule(LightningDataModule):
             num_workers=self.hparams.num_workers,
             pin_memory=self.hparams.pin_memory,
             shuffle=False,
-            collate_fn=my_collator,
+            collate_fn=ctc_loss_collator,
         )
 
     def teardown(self, stage: Optional[str] = None) -> None:
@@ -364,7 +364,7 @@ class IAMOnDBDataModule(LightningDataModule):
             num_workers=self.hparams.num_workers,
             pin_memory=self.hparams.pin_memory,
             shuffle=True,
-            collate_fn=my_collator,
+            collate_fn=ctc_loss_collator,
         )
 
     def val_dataloader(self) -> DataLoader[Any]:
@@ -378,7 +378,7 @@ class IAMOnDBDataModule(LightningDataModule):
             num_workers=self.hparams.num_workers,
             pin_memory=self.hparams.pin_memory,
             shuffle=False,
-            collate_fn=my_collator,
+            collate_fn=ctc_loss_collator,
         )
 
     def test_dataloader(self) -> DataLoader[Any]:
@@ -392,5 +392,5 @@ class IAMOnDBDataModule(LightningDataModule):
             num_workers=self.hparams.num_workers,
             pin_memory=self.hparams.pin_memory,
             shuffle=False,
-            collate_fn=my_collator,
+            collate_fn=ctc_loss_collator,
         )

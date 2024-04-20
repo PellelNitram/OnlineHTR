@@ -18,7 +18,7 @@ from src.data.online_handwriting_datasets import get_alphabet_from_dataset
 from src.data.transforms import DictToTensor
 from src.data.transforms import CharactersToIndices
 from src.data.transforms import Carbune2020
-from src.data.collate_functions import my_collator
+from src.data.collate_functions import ctc_loss_collator
 
 
 def plot_strokes(strokes: list[list[(float, float, float)]]) -> None:
@@ -107,7 +107,7 @@ def predict(strokes, display, alphabet, model, decoder, alphabet_mapper):
         num_workers=4,
         pin_memory=True,
         shuffle=False,
-        collate_fn=my_collator,
+        collate_fn=ctc_loss_collator,
     )
 
     assert len(dl_inference) == 1
