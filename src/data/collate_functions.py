@@ -1,5 +1,3 @@
-# TODO: Add function here to allow usage of model with CTC loss.
-
 import torch
 import numpy as np
 
