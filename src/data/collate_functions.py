@@ -3,10 +3,12 @@ import numpy as np
 
 
 def ctc_loss_collator(batch):
-    """TODO.
+    """Collator to prepare batches that are compatible with CTC loss.
 
-    TODO: Check https://github.com/pytorch/pytorch/blob/main/torch/utils/data/_utils/collate.py#L216 to check
-    if this function here is efficient and good enough and how it compares to PyTorch authors' work.
+    This collator is used in `torch.utils.data.DataLoader` instances.
+
+    :param batch: List of samples that are converted into a batch.
+    :returns: The batch formatted to be suitable for CTC loss.
     """
 
     batch_size = len(batch)
