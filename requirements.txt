@@ -29,3 +29,4 @@ lxml
 tensorboard
 pandas
 gitpython
+torch-tb-profiler
