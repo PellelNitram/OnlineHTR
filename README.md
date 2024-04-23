@@ -24,6 +24,8 @@ TODO!
 - [ ] Implement Bezier curve fitting algorithm. TODO: Note that I will not do that for now.
 - [ ] Publish trained model on [Hugging Face](https://huggingface.co/) for easy access. TODO: Do that after publication of repo if there is interest and if I have time.
 
+- [ ] Allow inference on own handwriting.
+
 ## 🚀 Installation
 
 TODO: Use conda env file to make installation process easier.
