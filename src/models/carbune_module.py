@@ -311,32 +311,8 @@ class LitModule1(LightningModule):
             batch['ink_lengths'],
             batch['label_lengths'],
         )
-        decoded_texts = self.hparams.decoder(log_softmax, self.alphabet_mapper)
-
-        labels_str = batch['label_str']
-
-        # # TODO: Could be pre-computed (using list0 in batch to avoid endless recomputation
-        # labels = []
-        # for i_batch in range(log_softmax.shape[1]):
-        #     label_length = batch['label_lengths'][i_batch]
-        #     label = batch['label'][i_batch, :label_length]
-        #     label = [ self.alphabet_mapper.index_to_character(c) for c in label ]
-        #     label = "".join(label)
-        #     labels.append(label)
-
-        # # Ensure that pre-computed and computed labels are the same - they are!
-        # print(len(labels_str), len(labels))
-        # for s, l in zip(labels_str, labels):
-        #     print(f'"{s}" -- "{l}"')
-
-        labels = labels_str
-
-        cer = char_error_rate(preds=decoded_texts, target=labels)
-        wer = word_error_rate(preds=decoded_texts, target=labels)
 
         metrics = {
-            'cer': cer,
-            'wer': wer,
         }
 
         return loss, metrics
@@ -357,8 +333,6 @@ class LitModule1(LightningModule):
 
         # update and log metrics
         self.log("train/loss", loss, on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
-        self.log("train/wer", metrics['wer'], on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
-        self.log("train/cer", metrics['cer'], on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
 
         # # TODO: Add text to log like tensorboard - what to save exactly? saving full text is too wasteful every step - every few steps??
         # for logger in self.loggers:
@@ -382,8 +356,6 @@ class LitModule1(LightningModule):
 
         # update and log metrics
         self.log("val/loss", loss, on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
-        self.log("val/wer", metrics['wer'], on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
-        self.log("val/cer", metrics['cer'], on_step=False, on_epoch=True, prog_bar=True, batch_size=self.batch_size)
 
         # Log hyperparameter metric as explained here:
         # https://lightning.ai/docs/pytorch/stable/extensions/logging.html#logging-hyperparameters
