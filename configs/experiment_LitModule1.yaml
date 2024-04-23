@@ -46,6 +46,23 @@ trainer:
   check_val_every_n_epoch: 50
   deterministic: False
   log_every_n_steps: 1
+  #  profiler:
+  #    _target_: pytorch_lightning.profilers.PyTorchProfiler
+  #   on_trace_ready:
+  #      _target_: torch.profiler.tensorboard_trace_handler
+  #      dir_name: "${paths.output_dir}/profiler/"
+  #    schedule:
+  #      _target_: torch.profiler.schedule
+  #      skip_first: 3
+  #      wait: 1
+  #      warmup: 1
+  #      active: 20
+  #    trace_memory: True
+  # profiler:
+  #   _target_: lightning.pytorch.profilers.AdvancedProfiler
+  #   dirpath: .
+  #   filename: test_log
+  # profiler: null
 
 task_name: "train"
 
