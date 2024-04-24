@@ -4,7 +4,7 @@ from pathlib import Path
 import torch
 from torch import nn
 from lightning import LightningModule
-from torchmetrics import MaxMetric, MeanMetric
+from torchmetrics import MaxMetric, MeanMetric, MinMetric
 from torchmetrics.classification.accuracy import Accuracy
 from torchmetrics.functional.text import word_error_rate
 from torchmetrics.functional.text import char_error_rate
@@ -281,6 +281,8 @@ class LitModule1(LightningModule):
             bias=True,
         )
 
+        self.hp_metric = MinMetric() # Set min(val_loss) as hp_metric
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Perform a forward pass through the model.
 
@@ -359,7 +361,8 @@ class LitModule1(LightningModule):
 
         # Log hyperparameter metric as explained here:
         # https://lightning.ai/docs/pytorch/stable/extensions/logging.html#logging-hyperparameters
-        self.log("hp_metric", loss, batch_size=self.batch_size)
+        self.hp_metric.update(loss.item())
+        self.log("hp_metric", self.hp_metric.compute(), batch_size=self.batch_size)
 
     def test_step(self, batch: Tuple[torch.Tensor, torch.Tensor], batch_idx: int) -> None:
         """Perform a single test step on a batch of data from the test set.
