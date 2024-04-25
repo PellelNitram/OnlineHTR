@@ -452,6 +452,8 @@ class IAM_OnDB_Dataset(Dataset):
             s=1,
             cmap=matplotlib.colormaps.get_cmap('Set1'),
         )
+        plt.xlabel('x')
+        plt.ylabel('y')
         plt.title(f"{sample['sample_name']}: {sample['label']}")
         plt.gca().set_aspect('equal')
         plt.savefig(file_path)
