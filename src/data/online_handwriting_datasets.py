@@ -1,7 +1,3 @@
-from __future__ import annotations # See https://stackoverflow.com/a/33533514 why
-                                   # I use it for OnlineHandwritingDataset.map()
-                                   # type annotation.
-
 from typing import List
 import os
 
