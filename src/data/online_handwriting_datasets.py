@@ -429,13 +429,16 @@ def get_alphabet_from_dataset(dataset: Dataset) -> List[str]:
     return alphabet
 
 def get_number_of_channels_from_dataset(dataset: Dataset) -> List[str]:
-    """TODO.
+    """Determine number of feature channels of dataset by iterating over it.
     
     Assumes data to be stored in "ink" field and number_of_channels to come last.
     This is in agreement with both LSTM and CTC loss from PyTorch.
 
     The ink needs to provide the field `.shape`, for example either as numpy
     array or as PyTorch tensor.
+
+    :param dataset: The dataset to determine number of feature channels of.
+    :returns: Number of feature channels this `dataset` features.
     """
     number_of_channels = []
     for sample in dataset:
