@@ -13,4 +13,6 @@ time python src/train.py \
     model.nodes_per_layer=64 \
     model.optimizer.lr=0.0001 \
     model.optimizer.weight_decay=0.0,1e-4 \
-    tags="experiment12"
+    tags="experiment12" \
+    experiment_name="experiment12" \
+    trial_name="trial1"
