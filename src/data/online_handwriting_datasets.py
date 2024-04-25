@@ -161,13 +161,6 @@ class OnlineHandwritingDataset:
         """
         raise NotImplementedError
 
-class IAMonDB_Dataset(OnlineHandwritingDataset):
-
-    # TODO: Should be compatible with the plain IAMonDB
-    #       folder structure.
-
-    pass
-
 class XournalPagewiseDataset(OnlineHandwritingDataset):
     """
     Load an online text dataset from pages of a Xournal file.
