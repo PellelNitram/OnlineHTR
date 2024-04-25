@@ -363,6 +363,7 @@ class LitModule1(LightningModule):
         # https://lightning.ai/docs/pytorch/stable/extensions/logging.html#logging-hyperparameters
         self.hp_metric.update(loss.item())
         self.log("hp_metric", self.hp_metric.compute(), batch_size=self.batch_size)
+        # TODO: CHECK IF THIS WORKS!!! I need it for larger parameter sweep.
 
     def test_step(self, batch: Tuple[torch.Tensor, torch.Tensor], batch_idx: int) -> None:
         """Perform a single test step on a batch of data from the test set.
