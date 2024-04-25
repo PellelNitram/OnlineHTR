@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import torch
 from torch.utils.data import Dataset, DataLoader
+from tqdm import tqdm
 
 from src.utils.documents import XournalDocument
 from src.utils.io import load_IAM_OnDB_sample
@@ -89,7 +90,7 @@ class IAM_OnDB_Dataset_Carbune2020(Dataset):
 
     def load_data(self) -> list[dict]:
         result = []
-        for sample in self.iam_ondb_dataset:
+        for sample in tqdm(self.iam_ondb_dataset, desc='Load data for IAM_OnDB_Dataset_Carbune2020'):
             result.append( self.carbune2020(sample) )
         return result
 
