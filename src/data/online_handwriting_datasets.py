@@ -413,6 +413,13 @@ class Own_Dataset(Dataset):
         plt.close()
 
 def get_alphabet_from_dataset(dataset: Dataset) -> List[str]:
+    """Obtain alphabet from dataset by iterating over it.
+
+    This extracts all characters used in the labels of the `dataset`.
+
+    :param dataset: The dataset to compute alphabet for.
+    :returns: List of characters that make up the alphabet.
+    """
     alphabet = []
     for sample in dataset:
         for letter in sample['label']:
