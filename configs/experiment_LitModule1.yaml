@@ -77,3 +77,7 @@ callbacks:
     every_n_epochs: 50
     save_top_k: -1
     auto_insert_metric_name: False
+
+experiment_name: "experiment"
+
+trial_name: "trial"
