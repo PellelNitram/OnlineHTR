@@ -243,7 +243,7 @@ class IAM_OnDB_Dataset(Dataset):
 
         # TODO: Add verbose parameter to add a progress bar here!
 
-        for root, dirs, files in os.walk(self.path / 'lineStrokes-all'):
+        for root, dirs, files in tqdm( os.walk(self.path / 'lineStrokes-all'), desc='Load data for IAM_OnDB_Dataset' ):
 
             if ended:
                 break
