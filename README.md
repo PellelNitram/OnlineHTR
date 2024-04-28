@@ -42,6 +42,10 @@ Test installations with those commands:
 1. `make test`
 2. `python src/train.py`
 
+## Training data
+
+TODO
+
 ## 🏋️ Training from scratch
 
 1. Follow installation procedure provided in [Installation](#installation).
