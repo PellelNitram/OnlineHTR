@@ -46,6 +46,8 @@ Test installations with those commands:
 
 TODO
 
+[IAM On-Line Handwriting Database](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) is used for training.
+
 ## 🏋️ Training from scratch
 
 1. Follow installation procedure provided in [Installation](#installation).
