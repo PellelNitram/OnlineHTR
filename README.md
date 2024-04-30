@@ -46,7 +46,18 @@ Test installations with those commands:
 
 TODO
 
-[IAM On-Line Handwriting Database](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) is used for training.
+[IAM On-Line Handwriting Database](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) is used for training. Place the following data in the subfolder `data/datasets/IAM-OnDB`:
+
+```
+├── data/datasets/IAM-OnDB
+│   ├── ascii-all/
+│   ├── forms.txt
+│   ├── lineImages-all
+│   ├── lineStrokes-all
+│   ├── original-xml-all
+│   ├── original-xml-part
+│   └── writers.xml
+```
 
 ## 🏋️ Training from scratch
 
