@@ -75,9 +75,11 @@ callbacks:
   model_checkpoint:
     dirpath: ${paths.output_dir}/checkpoints
     filename: "epoch{epoch:06d}"
-    every_n_epochs: 50
-    save_top_k: -1
+    every_n_epochs: 1
+    save_top_k: 1
     auto_insert_metric_name: False
+    monitor: "val/loss" # name of the logged metric which determines when model is improving
+    save_last: True
   # early_stopping:
   #   monitor: "val/loss" # quantity to be monitored, must be specified !!!
   #   patience: 20 # number of checks with no improvement after which training will be stopped
