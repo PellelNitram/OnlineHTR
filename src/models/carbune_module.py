@@ -203,3 +203,22 @@ class LitModule1(LightningModule):
             outfile=Path(self.trainer.default_root_dir) / 'alphabet.json',
             alphabet=dm.alphabet,
         )
+
+    # def on_fit_end(self):
+
+    #     # Store hparams
+    #     print('finiiiished test')
+
+    #     for logger in self.trainer.loggers:
+    #         logger.log_hyperparams(
+    #             {
+    #                 'p1': 3.0,
+    #                 'p2': 'foo'
+    #                 # TODO: Add all relevant parameters here
+    #             },
+    #             {
+    #                 "hp/metric_1": 0,
+    #                 "hp/metric_2": 0,
+    #                 # TODO: Add best val_loss and CER/WER w/ all specified decoders
+    #             }
+    #         )
