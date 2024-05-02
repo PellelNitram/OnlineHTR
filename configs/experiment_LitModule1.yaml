@@ -5,6 +5,7 @@ defaults:
   - hydra: default
   - callbacks:
     - model_checkpoint
+    # - early_stopping
     # - measure_speed
   - _self_
 
@@ -77,6 +78,10 @@ callbacks:
     every_n_epochs: 50
     save_top_k: -1
     auto_insert_metric_name: False
+  # early_stopping:
+  #   monitor: "val/loss" # quantity to be monitored, must be specified !!!
+  #   patience: 20 # number of checks with no improvement after which training will be stopped
+  #   verbose: True
 
 experiment_name: "experiment"
 
