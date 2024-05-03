@@ -233,8 +233,6 @@ class IAM_OnDB_Dataset(Dataset):
         Loading is performed by parsing the XML files and reading the text files.
         """
 
-        # TODO: Add progress bar?
-
         result = []
 
         ctr = 0 # Starts at 1
