@@ -205,9 +205,11 @@ class IAM_OnDB_Dataset(Dataset):
     ]
 
     def __init__(self, path: Path, transform=None, limit: int=-1, skip_carbune2020_fails: bool=False) -> None:
-        """
-        TODO: Explain how the dataset needs to be stored on disk to allow access
-        to it using this present class.
+        """Initialise an `IAM_OnDB_Dataset`.
+
+        The data of the dataset needs to be stored on disk as follows to be readable by this present class:
+        - `path`/lineStrokes-all/lineStrokes/
+        - `path`/ascii-all/ascii/
 
         :param path: Path to dataset.
         :param limit: Limit number of loaded samples to this value if positive.
