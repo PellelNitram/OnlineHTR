@@ -342,8 +342,6 @@ class Own_Dataset(Dataset):
         Loading is performed by parsing the XML files and reading the text files.
         """
 
-        # TODO: Add progress bar?
-
         result = []
 
         # TODO: Add verbose parameter to add a progress bar here!
