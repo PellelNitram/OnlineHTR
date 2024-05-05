@@ -204,8 +204,6 @@ class IAM_OnDB_Dataset(Dataset):
         'n10-293z-02',
     ]
 
-    # TODO: Enforce sorted-ness to ensure that order of samples is always the same, independent of `os.walk`?
-
     def __init__(self, path: Path, transform=None, limit: int=-1, skip_carbune2020_fails: bool=False) -> None:
         """
         TODO: Explain how the dataset needs to be stored on disk to allow access
@@ -268,6 +266,8 @@ class IAM_OnDB_Dataset(Dataset):
                     } )
 
                     ctr += 1
+
+        result.sort(key=lambda sample: sample['sample_name'])
 
         return result
 
