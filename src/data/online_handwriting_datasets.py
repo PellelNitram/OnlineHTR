@@ -312,10 +312,11 @@ class IAM_OnDB_Dataset(Dataset):
         plt.close()
 
 class Own_Dataset(Dataset):
-    """TODO.
+    """Dataset class around data captured by `draw_and_store_sample.py` script.
 
-    TODO.
-    Has been captured with `draw_and_store_sample.py` using my own handwriting.
+    This class allows accessing your own handwriting (that you previous captured
+    with `draw_and_store_sample.py`) in a way that is compatible with training
+    and inference pipelines of the implemented models.
     """
 
     LENGTH = 2 # Determined empirically
