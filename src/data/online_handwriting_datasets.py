@@ -79,8 +79,6 @@ class IAM_OnDB_Dataset_Carbune2020(Dataset):
     This is to increase training performance.
     """
 
-    # TODO: Add tests!
-
     def __init__(self, path: Path, transform=None, limit: int=-1) -> None:
         self.transform = transform
         self.iam_ondb_dataset = IAM_OnDB_Dataset(
