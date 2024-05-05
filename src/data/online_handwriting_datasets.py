@@ -322,15 +322,14 @@ class Own_Dataset(Dataset):
     LENGTH = 2 # Determined empirically
 
     def __init__(self, path: Path, transform=None) -> None:
-        """TODO.
+        """Initialise an `Own_Dataset`.
 
-
-        TODO: Explain how the dataset needs to be stored on disk to allow access
-        to it using this present class.
+        The data of the dataset needs to be stored on disk as follows to be readable by this present class:
+        `path`/*.csv. The CSV files contain the ink data and the name of the CSV is the label of the
+        underlying text.
 
         :param path: Path to dataset.
         :param limit: Limit number of loaded samples to this value if positive.
-        :param skip_carbune2020_fails: Skip all sample that are known to fail when the `Carbune2020` transform is applied.
         """
         self.path = path
         self.transform = transform
