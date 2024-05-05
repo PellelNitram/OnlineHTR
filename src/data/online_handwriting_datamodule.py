@@ -23,7 +23,8 @@ from src.data.online_handwriting_datasets import get_number_of_channels_from_dat
 
 
 class IAMOnDBDataModule(LightningDataModule):
-    """TODO."""
+    """DataModule that wraps around datasets, provides data loaders
+    and is used by PyTorch Lightning Trainer."""
 
     # TODO: Write test!
 
