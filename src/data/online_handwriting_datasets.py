@@ -220,7 +220,6 @@ class IAM_OnDB_Dataset(Dataset):
         self.limit = limit
         self.skip_carbune2020_fails = skip_carbune2020_fails
         self.data = self.load_data()
-        # TODO: I'd love to add logging here to understand the skipped images
 
     def load_data(self) -> List:
         """
