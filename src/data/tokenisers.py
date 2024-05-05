@@ -1,5 +1,6 @@
 class AlphabetMapper:
-    """TODO.
+    """Helper class to map between characters and indices that
+    respects blank character used by CTC loss.
     
     The blank is inserted as 0th object in a hard-coded fashion.
     """
