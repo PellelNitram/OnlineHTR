@@ -332,7 +332,6 @@ class Own_Dataset(Dataset):
         self.path = path
         self.transform = transform
         self.data = self.load_data()
-        # TODO: I'd love to add logging here to understand the skipped images
 
     def load_data(self) -> List:
         """
