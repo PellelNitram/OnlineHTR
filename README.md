@@ -31,9 +31,25 @@ This work is part of my attempt to build a handwriting recognition system for [X
 
 TODO: Add video of demo.
 
+<div align="center">
+
+[![Demo CountPages alpha](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGQ4MXJlcTh6ZDNoNGV6a3I2YTBmd2F1aGhyMWRob3c4cGVteWdiaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3orieS4jfHJaKwkeli/giphy.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
+
+*(Click to get to video.)*
+
+</div>
+
 ## Project Video
 
 TODO!
+
+<div align="center">
+
+[![Demo CountPages alpha](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGQ4MXJlcTh6ZDNoNGV6a3I2YTBmd2F1aGhyMWRob3c4cGVteWdiaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3orieS4jfHJaKwkeli/giphy.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
+
+*(Click to get to video.)*
+
+</div>
 
 ## 🚀 Installation
 
