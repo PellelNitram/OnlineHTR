@@ -22,6 +22,8 @@ In this repository I provide a [PyTorch](https://pytorch.org/) implementation of
 
 This work is part of my attempt to build a handwriting recognition system for [Xournal++](https://github.com/xournalpp/xournalpp), a fabulous open-source handwriting notetaking software. Most of this aforementioned attempt is captured in the [Xournal++ HTR](https://github.com/PellelNitram/xournalpp_htr) repository where I publish working solutions.
 
+TODO: Add project website.
+
 ## TODOs in this repo and README
 
 - [ ] Add license
