@@ -75,9 +75,7 @@ TODO.
 
 ## Training data
 
-TODO
-
-[IAM On-Line Handwriting Database](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) is used for training. Place the following data in the subfolder `data/datasets/IAM-OnDB`:
+[IAM On-Line Handwriting Database](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) is used as training and validation data. Register on their website to obtain the dataset for free. Afterwards, place the following folders and files from their dataset in this repository's subfolder `data/datasets/IAM-OnDB`. This is how it should look like:
 
 ```
 ├── data/datasets/IAM-OnDB
