@@ -35,14 +35,6 @@ TODO: Add video of demo.
 
 TODO!
 
-## Goals / Features TODO
-
-- [ ] Train model using the awesome [lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template/generate) by [ashleve](https://github.com/ashleve).
-- [ ] Implement Bezier curve fitting algorithm. TODO: Note that I will not do that for now.
-- [ ] Publish trained model on [Hugging Face](https://huggingface.co/) for easy access. TODO: Do that after publication of repo if there is interest and if I have time.
-
-- [ ] Allow inference on own handwriting.
-
 ## 🚀 Installation
 
 TODO: Use conda env file to make installation process easier.
@@ -58,6 +50,10 @@ The installation process is for now:
 Test installations with those commands:
 1. `make test`
 2. `python src/train.py`
+
+## 🚀 Quickstart
+
+TODO.
 
 ## Training data
 
@@ -82,6 +78,14 @@ TODO
 2. Download the [IAM-OnDB](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) dataset to `{data_dir}/datasets/IAM-OnDB` where `{data_dir}` is defined in the [paths config](configs/paths/default.yaml). This download process is as follows:
    1. Download the following files that are listed on the above stated dataset website: `data/original-xml-part.tar.gz`, `data/writers.xml`, `data/lineStrokes-all.tar.gz`, `data/lineImages-all.tar.gz`, `data/original-xml-all.tar.gz`, `data/forms.txt` & `ascii-all.tar.gz`.
    2. Extract the content of each of those files into the `{data_dir}/datasets/IAM-OnDB/<file_base_name>` folder where `<file_base_name>` denote the basenames of all downloaded files.
+
+## Goals / Features TODO
+
+- [ ] Train model using the awesome [lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template/generate) by [ashleve](https://github.com/ashleve).
+- [ ] Implement Bezier curve fitting algorithm. TODO: Note that I will not do that for now.
+- [ ] Publish trained model on [Hugging Face](https://huggingface.co/) for easy access. TODO: Do that after publication of repo if there is interest and if I have time.
+
+- [ ] Allow inference on own handwriting.
 
 ## Contributing
 
