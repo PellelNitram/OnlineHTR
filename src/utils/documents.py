@@ -67,8 +67,6 @@ class Document(ABC):
         """
         Save document page as image.
 
-        #TODO: I am using `matplotlib` here. Alternatively, OpenCV could do the trick as well.
-
         :param page_index: Index of page to save.
         :param output: Output path. Its file type determines output file type.
         :param black_white: Save image as black/white image if True.
