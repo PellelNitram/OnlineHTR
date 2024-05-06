@@ -2,7 +2,13 @@
 
 # Carbune2020 Implementation
 
+_Contributions are always welcome!_
+
 </div>
+
+<br>
+
+## 📌 Introduction
 
 In this repository I provide a [PyTorch](https://pytorch.org/) implementation of the paper "Fast multi-language [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory)-based online handwriting recognition" by Victor Carbune *et al.* (see paper here: [10.1007/s10032-020-00350-4](http://doi.org/10.1007/s10032-020-00350-4)), hence the name of this repository.
 
@@ -13,6 +19,7 @@ The scaffold of this code is based on [this awesome template](https://github.com
 ## TODOs in this repo and README
 
 - [ ] Add license
+- [ ] Add badges
 
 ## Project Demo
 
