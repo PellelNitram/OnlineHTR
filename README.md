@@ -22,8 +22,6 @@ In this repository I provide a [PyTorch](https://pytorch.org/) implementation of
 
 This work is part of my attempt to build a handwriting recognition system for [Xournal++](https://github.com/xournalpp/xournalpp), a fabulous open-source handwriting notetaking software. Most of this aforementioned attempt is captured in the [Xournal++ HTR](https://github.com/PellelNitram/xournalpp_htr) repository where I publish working solutions.
 
-The scaffold of this code is based on [this awesome template](https://github.com/ashleve/lightning-hydra-template)!
-
 ## TODOs in this repo and README
 
 - [ ] Add license
@@ -94,6 +92,8 @@ I would love you to contribute! Let's make it a great project that people can be
 *(TODO)*.
 
 I thank the department where I do my PhD, the [School of Physics and Astronomy](https://www.ph.ed.ac.uk/) of [The University of Edinburgh](https://www.ed.ac.uk/), for providing computational resources to train the models.
+
+The scaffold of this code is based on [this awesome template](https://github.com/ashleve/lightning-hydra-template) - thank you for providing this!
 
 <div align="center">
 
