@@ -64,14 +64,16 @@ The installation process is for now:
 3. `pip3 install torch torchvision torchaudio`
 4. `pip install -r requirements.txt`
 5. `pip install -e .` (do not forget the dot, `.`)
-
-Test installations with those commands:
-1. `make test`
-2. `python src/train.py`
+6. `make test` to confirm that installation was successful
 
 ## 🚀 Quickstart
 
 TODO.
+
+- Activate your environment and place training data according to below section
+- To do inference on your own writing: `python src/draw_and_predict_sample.py`
+- To capture your own handwriting into a file: `python src/draw_and_store_sample.py`
+- To train: `python src/train.py`
 
 ## Training data
 
