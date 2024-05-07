@@ -1,6 +1,6 @@
 <div align="center">
 
-# Carbune2020 Implementation
+# Carbune2020 Online HTR PyTorch Implementation
 
 [![python](https://img.shields.io/badge/-Python_3.10-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![pytorch](https://img.shields.io/badge/PyTorch_2.0+-ee4c2c?logo=pytorch&logoColor=white)](https://pytorch.org/get-started/locally/)
@@ -8,7 +8,7 @@
 [![hydra](https://img.shields.io/badge/Config-Hydra_1.3-89b8cd)](https://hydra.cc/) <br>
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ashleve/lightning-hydra-template/pulls)
 
-A clean PyTorch implementation of ["Fast multi-language LSTM-based online handwriting recognition"](https://doi.org/10.1007/s10032-020-00350-4) by Carbune *et al.* (2020) 🚀⚡🔥<br>
+A clean PyTorch implementation of ["Fast multi-language LSTM-based online handwriting recognition"](https://doi.org/10.1007/s10032-020-00350-4) by Carbune *et al.* (2020) 🚀⚡🔥.<br>
 
 _Contributions are always welcome!_
 
@@ -22,12 +22,11 @@ In this repository I provide a [PyTorch](https://pytorch.org/) implementation of
 
 This work is part of my attempt to build a handwriting recognition system for [Xournal++](https://github.com/xournalpp/xournalpp), a fabulous open-source handwriting notetaking software. Most of this aforementioned attempt is captured in the [Xournal++ HTR](https://github.com/PellelNitram/xournalpp_htr) repository where I publish working solutions.
 
-TODO: Add project website.
-
 ## TODOs in this repo and README
 
 - [ ] Add license
 - [ ] Add badges
+- [ ] Add project website in description and here in README. Sth like `http://lellep.xyz/blog/?utm_campaign=github`.
 
 ## Project Demo
 
