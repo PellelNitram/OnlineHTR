@@ -40,7 +40,7 @@ TODO: Add video of demo.
 
 </div>
 
-## Project Video
+## 📺 Project Video
 
 TODO!
 
