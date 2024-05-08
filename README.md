@@ -30,13 +30,13 @@ This work is part of my attempt to build a handwriting recognition system for [X
 
 ## Project Demo
 
-TODO: Add video of demo.
-
 <div align="center">
 
-[![Demo CountPages alpha](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGQ4MXJlcTh6ZDNoNGV6a3I2YTBmd2F1aGhyMWRob3c4cGVteWdiaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3orieS4jfHJaKwkeli/giphy.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
+<a href="https://youtu.be/H62bjwNkMvc?utm_source=github&utm_medium=readme&utm_campaign=github_readme">
+    <img src="docs/static/demo.gif" width="700">
+</a>
 
-*(Click to get to video.)*
+*([Click on GIF or here to get to video](https://youtu.be/H62bjwNkMvc?utm_source=github&utm_medium=readme&utm_campaign=github_readme).)*
 
 </div>
 
