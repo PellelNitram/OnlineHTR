@@ -101,7 +101,7 @@ class CharactersToIndices(object):
         return sample
 
 class SimpleNormalise(object):
-    """Simple normalisation based on Carbune2020 w/o linear resampling and no time.
+    """Simple normalisation based on [Carbune2020] without linear resampling and no time.
 
     From not using time follows no linear resampling.
     """
@@ -110,9 +110,15 @@ class SimpleNormalise(object):
         pass
 
     def __call__(self, sample: dict) -> dict:
-        """TODO.
+        """Transform sample according to transform described in [Carbune2020]
+        but without time and without resampling.
 
-        :returns: TODO.
+        The keys `sample_name` and `label` are copied over without modification.
+        The keys `x`, `y` & `n` are transformed. The output sample is a new dict.
+
+        :param sample: Input sample.
+        :returns: Transformed sample as output with keys `sample_name`,
+                  `x`, `y`, `n`, `label`.
         """
 
         sample_name = sample['sample_name']
