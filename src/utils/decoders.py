@@ -4,21 +4,24 @@ import torch
 
 
 class GreedyCTCDecoder(torch.nn.Module):
-    """TODO.
+    """Greedy CTC (Connectionist Temporal Classification) Decoder implementation.
 
-    Loosely based on [this](https://pytorch.org/audio/main/tutorials/asr_inference_with_ctc_decoder_tutorial.html#greedy-decoder).
+    Loosely based on [this tutorial](https://pytorch.org/audio/main/tutorials/asr_inference_with_ctc_decoder_tutorial.html#greedy-decoder).
     """
 
     def __init__(self):
         super().__init__()
 
     def forward(self, log_probabilities: torch.Tensor, alphabet_mapper) -> List[str]:
-        """TODO. Given a sequence emission over labels, get the best path
-        Args:
-          emission (Tensor): Logit tensors. Shape `[num_seq, num_label]`.
+        """Decode log probabilities into text using a greedy algorithm.
 
-        Returns:
-          List[str]: The resulting transcript
+        :param log_probabilities: Log probability tensor of emissions.
+            Shape `[seq_length, batch_size, num_labels]`.
+        :type log_probabilities: torch.Tensor
+        :param alphabet_mapper: An instance of AlphabetMapper class to map label indices to characters.
+        :type alphabet_mapper: AlphabetMapper
+        :return: List of decoded transcripts for each input sequence.
+        :rtype: List[str]
         """
 
         probabilities = torch.exp(log_probabilities)
