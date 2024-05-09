@@ -22,18 +22,20 @@ from src.data import FAILED_SAMPLE
 
 
 class TwoChannels(object):
-    """TODO.
+    """Transform `x` and `y` channels from a dict sample to a tensor.
 
-    Return { ink: (x, y), label: label } where label is list of letters.
+    Return { ink: (x, y), label: label } where label is list of characters.
     """
 
     def __init__(self):
         pass
 
     def __call__(self, sample):
-        """TODO.
+        """Get transformed sample.
 
-        :returns: { ink, label } with ink as PyTorch tensor of float type.
+        :param sample: The sample to transform.
+        :returns: { ink, label } with ink as PyTorch tensor of float type
+                  and label remains unchanged from `sample`.
         """
 
         x = sample['x']
