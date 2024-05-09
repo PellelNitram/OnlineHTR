@@ -72,3 +72,8 @@ def test_XournalDocument():
     assert x_document.pages[0].layers[0].texts[0].meta_data == {
         'font': 'Sans', 'size': '12.00', 'x': '75.68', 'y': '88.34', 'color': 'black'
     }
+
+@pytest.mark.martin
+def test_todo():
+
+    assert 0 == 1, 'Add tests for `documents` module from the same source, namely xournalpp_htr repo.'
