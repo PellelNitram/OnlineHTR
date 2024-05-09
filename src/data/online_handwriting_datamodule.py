@@ -36,15 +36,15 @@ class IAMOnDBDataModule(LightningDataModule):
         pin_memory: bool = False,
         transform: str = "iam_xy",
     ) -> None:
-        """Initialize a `IAMOnDBDataModule`.
-
-        TODO.
+        """Initialize an `IAMOnDBDataModule` instance.
 
         :param data_dir: The data directory. Defaults to `"data/"`.
         :param train_val_test_split: The train, validation and test split. Defaults to `(55_000, 5_000, 10_000)`.
         :param batch_size: The batch size. Defaults to `64`.
         :param num_workers: The number of workers. Defaults to `0`.
+        :param limit: Limit the number of samples to this value. Useful for debugging.
         :param pin_memory: Whether to pin memory. Defaults to `False`.
+        :param transform: Determines the dataset and transform to use.
         """
         super().__init__()
 
