@@ -166,11 +166,10 @@ class SimpleNormalise(object):
         }
 
 class Carbune2020(object):
-    """TODO.
+    """Transform described in [Carbune2020] paper.
 
-    Returns TODO.
-    - `label` key is copied over from sample w/o change.
-    - `ink` is computed according to [Carbune2020].
+    It first shifts and rescales the (x, y) coordinates. Then it
+    resamples the strokes and computes differences as final result.
     """
 
     POINTS_PER_UNIT_LENGTH = 20.0
