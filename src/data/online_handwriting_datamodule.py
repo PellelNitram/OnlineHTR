@@ -26,8 +26,6 @@ class IAMOnDBDataModule(LightningDataModule):
     """DataModule that wraps around datasets, provides data loaders
     and is used by PyTorch Lightning Trainer."""
 
-    # TODO: Write test!
-
     def __init__(
         self,
         data_dir: str = "data/",
