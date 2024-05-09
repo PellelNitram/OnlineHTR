@@ -109,7 +109,7 @@ class IAMOnDBDataModule(LightningDataModule):
 
                 transform = transforms.Compose([
                     DictToTensor(['x', 'y', 't', 'n']),
-                    CharactersToIndices( self.alphabet ), # TODO: Why does it only work if CTI is last?
+                    CharactersToIndices( self.alphabet ),
                 ])
 
                 self.dataset.transform = transform
@@ -132,7 +132,7 @@ class IAMOnDBDataModule(LightningDataModule):
 
                 transform = transforms.Compose([
                     DictToTensor(['x', 'y', 'n']),
-                    CharactersToIndices( self.alphabet ), # TODO: Why does it only work if CTI is last?
+                    CharactersToIndices( self.alphabet ),
                 ])
 
                 self.dataset.transform = transform
@@ -155,7 +155,7 @@ class IAMOnDBDataModule(LightningDataModule):
                 transform = transforms.Compose([
                     Carbune2020(),
                     DictToTensor(['x', 'y', 'n']),
-                    CharactersToIndices( self.alphabet ), # TODO: Why does it only work if CTI is last?
+                    CharactersToIndices( self.alphabet ),
                 ])
 
                 self.dataset.transform = transform
@@ -202,7 +202,7 @@ class IAMOnDBDataModule(LightningDataModule):
                 transform = transforms.Compose([
                     SimpleNormalise(),
                     DictToTensor(['x', 'y', 'n']),
-                    CharactersToIndices( self.alphabet ), # TODO: Why does it only work if CTI is last?
+                    CharactersToIndices( self.alphabet ),
                 ])
 
                 self.dataset.transform = transform

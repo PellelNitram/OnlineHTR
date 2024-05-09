@@ -69,6 +69,9 @@ class CharactersToIndices(object):
 
     Returns a dictionary where the `label` key is replaced with a list of integer indices,
     and all other keys remain unchanged.
+
+    Note: Needs to be placed last in a composed transform because of the in-place operation.
+          I don't quite understand for now why this is necessary but that's how it is.
     """
 
     def __init__(self, alphabet: list):
