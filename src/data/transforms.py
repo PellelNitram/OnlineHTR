@@ -178,11 +178,15 @@ class Carbune2020(object):
         pass
 
     def __call__(self, sample: dict) -> dict:
-        """TODO.
+        """Transform sample according to transform described in [Carbune2020].
 
-        The sample is changed in-place.
+        The keys `sample_name` and `label` are copied over without modification.
+        The keys `x`, `y`, `t` & `n` are transformed according to transform
+        described in [Carbune2020]. The output sample is a new dict.
 
-        :returns: TODO.
+        :param sample: Input sample.
+        :returns: Transformed sample as output with keys `sample_name`,
+                  `x`, `y`, `t`, `n`, `label`.
         """
 
         sample_name = sample['sample_name']
