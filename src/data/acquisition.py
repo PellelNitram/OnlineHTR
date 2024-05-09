@@ -94,7 +94,7 @@ def predict(strokes, display, alphabet, model, decoder, alphabet_mapper):
     transform = transforms.Compose([
         Carbune2020(),
         DictToTensor(['x', 'y', 't', 'n']),
-        CharactersToIndices( alphabet ), # TODO: Why does it only work if CTI is last?
+        CharactersToIndices( alphabet ),
     ])
 
     dataset.transform = transform
