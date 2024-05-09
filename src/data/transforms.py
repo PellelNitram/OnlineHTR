@@ -74,25 +74,30 @@ class DictToTensor(object):
         }
 
 class CharactersToIndices(object):
-    """TODO.
+    """Converts character labels to integer indices.
 
-    Returns { "label": label, < all others remain unchanged > } where label is list of integers.
+    Returns a dictionary where the `label` key is replaced with a list of integer indices,
+    and all other keys remain unchanged.
     """
 
     def __init__(self, alphabet: list):
+        """Initialize the CharactersToIndices object.
+
+        :param alphabet: List of characters representing the alphabet.
+        """
         self.alphabet = alphabet
         self.alphabet_mapper = AlphabetMapper(alphabet)
 
     def __call__(self, sample: dict) -> dict:
-        """TODO.
+        """Convert character labels to integer indices in the sample.
 
-        The sample is changed in-place.
+        The sample is changed in-place. The old character-based label can be
+        accessed with the key `label_str`.
 
-        :returns: { "label": label, < all others remain unchanged > } with label
-                  as list integer indices instead of characters.
-                  label is returned as torch.int64 tensor.
+        :param sample: Dictionary containing data with a `label` key.
+        :return: A dictionary with the `label` key replaced with a list of integer indices
+                 and all other keys unchanged. `label` is returned as `torch.int64` tensor.
         """
-
         label = [ self.alphabet_mapper.character_to_index(c) for c in sample['label']]
         label = torch.as_tensor(label, dtype=torch.int64)
 
