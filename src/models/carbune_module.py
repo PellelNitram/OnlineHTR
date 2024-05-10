@@ -82,7 +82,7 @@ class LitModule1(LightningModule):
         :param x: The input tensor.
         :return: A tensor of predictions. TODO: What's the shape? Needs to be added b/c useful.
         """
-        result, (h_n, c_n) = self.lstm_stack(x) # TODO: Add explicit (h_0, c_0)
+        result, (h_n, c_n) = self.lstm_stack(x)
         result = self.linear(result)
         result = self.log_softmax(result)
         return result
