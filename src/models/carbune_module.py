@@ -17,6 +17,11 @@ from src.data.tokenisers import AlphabetMapper
 
 
 class LitModule1(LightningModule):
+    """Attempt 1 of neural network described in [Carbune2020] paper.
+
+    The description in [Carbune2020] is not clear w.r.t. the last layer,
+    hence this is my first interpretation of the network that they use.
+    """
 
     def __init__(
         self,
@@ -29,6 +34,17 @@ class LitModule1(LightningModule):
         alphabet: list[str],
         number_of_channels:int,
     ) -> None:
+        """Initialize a `Carbune2020NetAttempt1` module.
+
+        :param nodes_per_layer: The dimension of the hidden state in the stack of LSTM cells.
+        :param number_of_layers: The number of LSTM layers.
+        :param dropout: Dropout value to use in stack of LSTM cells.
+        :param decoder: CTC decoder for decoding log probabilities to characters.
+        :param optimizer: The optimizer for training.
+        :param scheduler: The learning rate scheduler.
+        :param alphabet: The alphabet of tokens to use.
+        :param number_of_channels: The number of input channels per time step in the time series.
+        """
         super().__init__()
 
         # this line allows to access init params with 'self.hparams' attribute
