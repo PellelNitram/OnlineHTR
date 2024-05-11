@@ -1,4 +1,5 @@
-# Experiment to understand how useful a scheduler is
+# Experiment to understand how useful a scheduler is.
+# Does it improve validation loss?
 
 time python src/train.py \
     --config-name experiment_LitModule1_w_scheduler.yaml \
