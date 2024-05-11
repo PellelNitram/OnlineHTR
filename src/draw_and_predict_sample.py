@@ -67,9 +67,9 @@ def main(args: dict) -> None:
     sketch = Sketchpad(root, global_strokes, args['dot_radius'])
     sketch.grid(column=0, row=0, sticky=(N, W, E, S))
 
-    prediction_field = Text(root, height=5, width=100)
+    prediction_field = Text(root, height=4, width=100)
     prediction_field.place(x=300, y=400)
-    prediction_field.tag_configure('big', font=('Arial', 20, 'bold', 'italic'))
+    prediction_field.tag_configure('big', font=('Arial', 20, 'bold'))
 
     plot_button = Button(
         root, text="Plot strokes",
@@ -88,6 +88,9 @@ def main(args: dict) -> None:
 
     predict_button = Button(
         root, text="Predict!",
+        bg='black',
+        fg='white',
+        font=('Arial', 20, 'bold'),
         command=lambda: predict(global_strokes, prediction_field, alphabet,
                                 model, decoder, alphabet_mapper))
     predict_button.place(x=50,y=400)
