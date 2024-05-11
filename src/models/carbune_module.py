@@ -190,7 +190,7 @@ class LitModule1(LightningModule):
                     "scheduler": scheduler,
                     "monitor": "val/loss",
                     "interval": "epoch",
-                    "frequency": 1,
+                    "frequency": self.trainer.check_val_every_n_epoch, # I.e. every available val epoch
                 },
             }
         return {"optimizer": optimizer}
