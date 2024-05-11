@@ -80,7 +80,8 @@ class LitModule1(LightningModule):
         """Perform a forward pass through the model.
 
         :param x: The input tensor.
-        :return: A tensor of predictions. TODO: What's the shape? Needs to be added b/c useful.
+        :return: A tensor of predictions that is compatible with CTC loss.
+                 Shape: `[sequence length, batch size, len(self.alphabet) + 1]`.
         """
         result, (h_n, c_n) = self.lstm_stack(x)
         result = self.linear(result)
