@@ -7,6 +7,7 @@
 [![lightning](https://img.shields.io/badge/-Lightning_2.0+-792ee5?logo=pytorchlightning&logoColor=white)](https://pytorchlightning.ai/)
 [![hydra](https://img.shields.io/badge/Config-Hydra_1.3-89b8cd)](https://hydra.cc/) <br>
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ashleve/lightning-hydra-template/pulls)
+[![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](#license)
 
 A clean PyTorch implementation of ["Fast multi-language LSTM-based online handwriting recognition"](https://doi.org/10.1007/s10032-020-00350-4) by Carbune *et al.* (2020) 🚀⚡🔥.<br>
 
@@ -24,7 +25,6 @@ This work is part of my attempt to build a handwriting recognition system for [X
 
 ## TODOs in this repo and README
 
-- [ ] Add license
 - [ ] Add badges
 - [ ] Add project website in description and here in README. Sth like `http://lellep.xyz/blog/?utm_campaign=github`.
 
@@ -118,6 +118,10 @@ I would love you to contribute! Let's make it a great project that people can be
 I thank the department where I do my PhD, the [School of Physics and Astronomy](https://www.ph.ed.ac.uk/) of [The University of Edinburgh](https://www.ed.ac.uk/), for providing computational resources to train the models.
 
 The scaffold of this code is based on [the awesome lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template) by [ashleve](https://github.com/ashleve) - thank you for providing this!
+
+## License
+
+This repository is licensed under the [MIT License](LICENSE.md).
 
 <div align="center">
 
