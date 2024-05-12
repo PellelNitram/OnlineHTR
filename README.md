@@ -98,17 +98,14 @@ TODO.
 
 ## Goals / Features TODO
 
-- [ ] Train model using the awesome [lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template/generate) by [ashleve](https://github.com/ashleve).
-- [ ] Implement Bezier curve fitting algorithm. TODO: Note that I will not do that for now.
-- [ ] Publish trained model on [Hugging Face](https://huggingface.co/) for easy access. TODO: Do that after publication of repo if there is interest and if I have time.
-
-- [ ] Allow inference on own handwriting.
+- [x] Allow inference on own handwriting.
 
 ## ⌛ Open tasks
 
 *All contributions are welcome! :-)*
 
-- [ ] Publish models on [🤗 Hugging Face](https://huggingface.co/).
+- [ ] Implement Bezier curve fitting algorithm as data preprocessor.
+- [ ] Publish trained models on [🤗 Hugging Face](https://huggingface.co/) for easy access.
 
 ## 🙏🏼 Contributing
 
@@ -120,7 +117,7 @@ I would love you to contribute! Let's make it a great project that people can be
 
 I thank the department where I do my PhD, the [School of Physics and Astronomy](https://www.ph.ed.ac.uk/) of [The University of Edinburgh](https://www.ed.ac.uk/), for providing computational resources to train the models.
 
-The scaffold of this code is based on [this awesome template](https://github.com/ashleve/lightning-hydra-template) - thank you for providing this!
+The scaffold of this code is based on [the awesome lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template) by [ashleve](https://github.com/ashleve) - thank you for providing this!
 
 <div align="center">
 
