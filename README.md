@@ -104,6 +104,10 @@ TODO.
 
 - [ ] Allow inference on own handwriting.
 
+## ⌛ Open tasks
+
+- [ ] Publish models on [🤗 Hugging Face](https://huggingface.co/).
+
 ## 🙏🏼 Contributing
 
 I would love you to contribute! Let's make it a great project that people can benefit from :-).
