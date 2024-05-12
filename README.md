@@ -106,6 +106,8 @@ TODO.
 
 ## ⌛ Open tasks
 
+*All contributions are welcome! :-)*
+
 - [ ] Publish models on [🤗 Hugging Face](https://huggingface.co/).
 
 ## 🙏🏼 Contributing
