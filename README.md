@@ -116,6 +116,8 @@ I would love you to contribute! Let's make it a great project that people can be
 
 *(TODO)*.
 
+[Harald Scheidl](https://githubharald.github.io/) for providing both great content and code around handwritten text recognition.
+
 I thank the department where I do my PhD, the [School of Physics and Astronomy](https://www.ph.ed.ac.uk/) of [The University of Edinburgh](https://www.ed.ac.uk/), for providing computational resources to train the models.
 
 The scaffold of this code is based on [the awesome lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template) by [ashleve](https://github.com/ashleve) - thank you for providing this!
