@@ -143,6 +143,8 @@ I would love you to contribute! Let's make it a great project that people can be
 
 *(TODO)*.
 
+Thanks [Leonard Salewski](https://twitter.com/l_salewski) and [Jonathan Prexl](https://scholar.google.de/citations?user=pqep1wkAAAAJ&hl=de) for super useful discussions on training PyTorch models!
+
 [Harald Scheidl](https://githubharald.github.io/) for providing both great content and code around handwritten text recognition.
 
 I thank the department where I do my PhD, the [School of Physics and Astronomy](https://www.ph.ed.ac.uk/) of [The University of Edinburgh](https://www.ed.ac.uk/), for providing computational resources to train the models.
