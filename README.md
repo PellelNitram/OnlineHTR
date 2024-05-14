@@ -206,53 +206,6 @@ _Suggestions are always welcome!_
 - [**Continuous Integration**](#continuous-integration): automatically test and lint your repo with Github Actions
 - [**Best Practices**](#best-practices): a couple of recommended tools, practices and standards
 
-## Experiment Tracking
-
-PyTorch Lightning supports many popular logging frameworks: [Weights&Biases](https://www.wandb.com/), [Neptune](https://neptune.ai/), [Comet](https://www.comet.ml/), [MLFlow](https://mlflow.org), [Tensorboard](https://www.tensorflow.org/tensorboard/).
-
-These tools help you keep track of hyperparameters and output metrics and allow you to compare and visualize results. To use one of them simply complete its configuration in [configs/logger](configs/logger) and run:
-
-```bash
-python train.py logger=logger_name
-```
-
-You can use many of them at once (see [configs/logger/many_loggers.yaml](configs/logger/many_loggers.yaml) for example).
-
-You can also write your own logger.
-
-Lightning provides convenient method for logging custom metrics from inside LightningModule. Read the [docs](https://pytorch-lightning.readthedocs.io/en/latest/extensions/logging.html#automatic-logging) or take a look at [MNIST example](src/models/mnist_module.py).
-
-<br>
-
-## Tests
-
-Template comes with generic tests implemented with `pytest`.
-
-```bash
-# run all tests
-pytest
-
-# run tests from specific file
-pytest tests/test_train.py
-
-# run all tests except the ones marked as slow
-pytest -k "not slow"
-```
-
-Most of the implemented tests don't check for any specific output - they exist to simply verify that executing some commands doesn't end up in throwing exceptions. You can execute them once in a while to speed up the development.
-
-Currently, the tests cover cases like:
-
-- running 1 train, val and test step
-- running 1 epoch on 1% of data, saving ckpt and resuming for the second epoch
-- running 2 epochs on 1% of data, with DDP simulated on CPU
-
-And many others. You should be able to modify them easily for your use case.
-
-There is also `@RunIf` decorator implemented, that allows you to run tests only if certain conditions are met, e.g. GPU is available or system is not windows. See the [examples](tests/test_train.py).
-
-<br>
-
 ## Hyperparameter Search
 
 You can define hyperparameter search by adding new config file to [configs/hparams_search](configs/hparams_search).
@@ -309,32 +262,6 @@ You can use different optimization frameworks integrated with Hydra, like [Optun
 The `optimization_results.yaml` will be available under `logs/task_name/multirun` folder.
 
 This approach doesn't support resuming interrupted search and advanced techniques like prunning - for more sophisticated search and workflows, you should probably write a dedicated optimization task (without multirun feature).
-
-<br>
-
-## Continuous Integration
-
-Template comes with CI workflows implemented in Github Actions:
-
-- `.github/workflows/test.yaml`: running all tests with pytest
-- `.github/workflows/code-quality-main.yaml`: running pre-commits on main branch for all files
-- `.github/workflows/code-quality-pr.yaml`: running pre-commits on pull requests for modified files only
-
-<br>
-
-## Distributed Training
-
-Lightning supports multiple ways of doing distributed training. The most common one is DDP, which spawns separate process for each GPU and averages gradients between them. To learn about other approaches read the [lightning docs](https://lightning.ai/docs/pytorch/latest/advanced/speed.html).
-
-You can run DDP on mnist example with 4 GPUs like this:
-
-```bash
-python train.py trainer=ddp
-```
-
-> **Note**: When using DDP you have to be careful how you write your models - read the [docs](https://lightning.ai/docs/pytorch/latest/advanced/speed.html).
-
-<br>
 
 ## Accessing Datamodule Attributes In Model
 
