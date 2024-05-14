@@ -61,6 +61,27 @@ TODO!
 
 </div>
 
+## 🚀 Quickstart
+
+TODO.
+
+- Activate your environment and place training data according to below section
+- To do inference on your own writing: `python src/draw_and_predict_sample.py`
+- To capture your own handwriting into a file: `python src/draw_and_store_sample.py`
+- To train: `python src/train.py`
+
+### Inference
+
+...
+
+### Storing own dataset
+
+...
+
+### Training
+
+...
+
 ## 🚀 Installation
 
 TODO: Use conda env file to make installation process easier.
@@ -73,15 +94,6 @@ The installation process is for now:
 4. `pip install -r requirements.txt`
 5. `pip install -e .` (do not forget the dot, `.`)
 6. `make test` to confirm that installation was successful
-
-## 🚀 Quickstart
-
-TODO.
-
-- Activate your environment and place training data according to below section
-- To do inference on your own writing: `python src/draw_and_predict_sample.py`
-- To capture your own handwriting into a file: `python src/draw_and_store_sample.py`
-- To train: `python src/train.py`
 
 ## Training data
 
