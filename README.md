@@ -28,6 +28,14 @@ This work is part of my attempt to build a handwriting recognition system for [X
 
 - [ ] Add badges
 - [ ] Add project website in description and here in README. Sth like `http://lellep.xyz/blog/?utm_campaign=github`.
+- [ ] remove obsolete details from this readme
+
+Tweak readme structure:
+1. demo
+1. quick start
+2. install; also provide quick video
+3. train yourself
+    - explain how to install data; also provide quick video
 
 ## Project Demo
 
