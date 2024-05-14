@@ -123,11 +123,11 @@ TODO.
 - [ ] Implement Bezier curve fitting algorithm as data preprocessor.
 - [ ] Publish trained models on [🤗 Hugging Face](https://huggingface.co/) for easy access.
 
-## 🙏🏼 Contributing
+## 👩‍💻 Contributing
 
 I would love you to contribute! Let's make it a great project that people can benefit from :-).
 
-## Acknowledgments
+## 🙏🏼 Acknowledgments
 
 *(TODO)*.
 
