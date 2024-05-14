@@ -63,6 +63,13 @@ TODO!
 
 ## 🚀 Quickstart
 
+The following explanation sets you up to use both `src/draw_and_predict_sample.py` and `src/draw_and_store_sample.py` to both predict your own handwritten text and to store it.
+
+This is the written form of the quickstart. TODO [Here](), you can find a video of it.
+
+1. Install the project according to the installation section in this README and activate the corresponding environment. I decribe it below in text form and TODO [here]() in video form.
+3. Download the model `....` (see all available models in section ...) and place it in `...`
+
 TODO.
 
 - Activate your environment and place training data according to below section
