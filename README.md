@@ -38,7 +38,7 @@ Tweak readme structure:
 3. train yourself
     - explain how to install data; also provide quick video
 
-## Project Demo
+## 📺 Project Demo
 
 <div align="center">
 
@@ -47,18 +47,6 @@ Tweak readme structure:
 </a>
 
 *([Click on GIF or here to get to video](https://youtu.be/H62bjwNkMvc?utm_source=github&utm_medium=readme&utm_campaign=github_readme).)*
-
-</div>
-
-## 📺 Project Video
-
-TODO!
-
-<div align="center">
-
-[![Demo CountPages alpha](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGQ4MXJlcTh6ZDNoNGV6a3I2YTBmd2F1aGhyMWRob3c4cGVteWdiaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3orieS4jfHJaKwkeli/giphy.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
-
-*(Click to get to video.)*
 
 </div>
 
