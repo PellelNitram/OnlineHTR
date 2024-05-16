@@ -25,19 +25,6 @@ In this repository I provide a [PyTorch](https://pytorch.org/) implementation of
 
 This work is part of my attempt to build a handwriting recognition system for [Xournal++](https://github.com/xournalpp/xournalpp), a fabulous open-source handwriting notetaking software. Most of this aforementioned attempt is captured in the [Xournal++ HTR](https://github.com/PellelNitram/xournalpp_htr) repository where I publish working solutions.
 
-## TODOs in this repo and README
-
-- [ ] Add badges
-- [ ] Add project website in description and here in README. Sth like `http://lellep.xyz/blog/?utm_campaign=github`.
-- [ ] remove obsolete details from this readme
-
-Tweak readme structure:
-1. demo
-1. quick start
-2. install; also provide quick video
-3. train yourself
-    - explain how to install data; also provide quick video
-
 ## 📺 Project Demo
 
 <div align="center">
@@ -54,35 +41,17 @@ Tweak readme structure:
 
 The following explanation sets you up to use both `src/draw_and_predict_sample.py` and `src/draw_and_store_sample.py` to both predict your own handwritten text and to store it.
 
-This is the written form of the quickstart. TODO [Here](), you can find a video of it.
+1. Install the project according to [the installation section](#installation) in this README and activate the corresponding environment.
+2. Download the model `....` (see all available models in section ...) and place it in `...`.
+3. Invoke the following command from the root of this repository: `python src/draw_and_predict_sample.py TODO`.
 
-1. Install the project according to the installation section in this README and activate the corresponding environment. I decribe it below in text form and TODO [here]() in video form.
-3. Download the model `....` (see all available models in section ...) and place it in `...`
+If you want to store your own handwriting sample in a CSV file, then execute `python src/draw_and_store_sample.py`.
 
-TODO.
+## Installation
 
-- Activate your environment and place training data according to below section
-- To do inference on your own writing: `python src/draw_and_predict_sample.py`
-- To capture your own handwriting into a file: `python src/draw_and_store_sample.py`
-- To train: `python src/train.py`
+This repository uses a conda environment in which packages are installed using pip.
 
-### Inference
-
-...
-
-### Storing own dataset
-
-...
-
-### Training
-
-...
-
-## 🚀 Installation
-
-TODO: Use conda env file to make installation process easier.
-
-The installation process is for now:
+Follow these steps to install this package:
 
 1. `conda create --prefix <path> python=3.10.11`
 2. `conda activate <path>`
@@ -91,7 +60,19 @@ The installation process is for now:
 5. `pip install -e .` (do not forget the dot, `.`)
 6. `make test` to confirm that installation was successful
 
+## 🏋️ Training from scratch
+
+- TODO Activate your environment and place training data according to below section
+- TODO To train: `python src/train.py` - use `scripts/train ... .sh` instead!
+
+1. Follow installation procedure provided in [Installation](#installation).
+2. Download the [IAM-OnDB](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) dataset to `{data_dir}/datasets/IAM-OnDB` where `{data_dir}` is defined in the [paths config](configs/paths/default.yaml). This download process is as follows:
+   1. Download the following files that are listed on the above stated dataset website: `data/original-xml-part.tar.gz`, `data/writers.xml`, `data/lineStrokes-all.tar.gz`, `data/lineImages-all.tar.gz`, `data/original-xml-all.tar.gz`, `data/forms.txt` & `ascii-all.tar.gz`.
+   2. Extract the content of each of those files into the `{data_dir}/datasets/IAM-OnDB/<file_base_name>` folder where `<file_base_name>` denote the basenames of all downloaded files.
+
 ## Training data
+
+TODO: explain how to install data; also provide quick video
 
 [IAM On-Line Handwriting Database](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) is used as training and validation data. Register on their website to obtain the dataset for free. Afterwards, place the following folders and files from their dataset in this repository's subfolder `data/datasets/IAM-OnDB`. This is how it should look like:
 
@@ -106,28 +87,19 @@ The installation process is for now:
 │   └── writers.xml
 ```
 
-## 🏋️ Training from scratch
-
-1. Follow installation procedure provided in [Installation](#installation).
-2. Download the [IAM-OnDB](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) dataset to `{data_dir}/datasets/IAM-OnDB` where `{data_dir}` is defined in the [paths config](configs/paths/default.yaml). This download process is as follows:
-   1. Download the following files that are listed on the above stated dataset website: `data/original-xml-part.tar.gz`, `data/writers.xml`, `data/lineStrokes-all.tar.gz`, `data/lineImages-all.tar.gz`, `data/original-xml-all.tar.gz`, `data/forms.txt` & `ascii-all.tar.gz`.
-   2. Extract the content of each of those files into the `{data_dir}/datasets/IAM-OnDB/<file_base_name>` folder where `<file_base_name>` denote the basenames of all downloaded files.
-
-## Available models & model cards - TODO
+## Available models & model cards
 
 - [x] `featuresRaw_decoderGreedy_...`
   - TODO: describe how it's trained
   - TODO: download here (link to blog article w/ bitly)
   - TODO: replicate this in `scripts/`
 
-## Goals / Features TODO
-
-- [x] Allow inference on own handwriting.
-
 ## ⌛ Open tasks
 
 *All contributions are welcome! :-)*
 
+- [x] Allow inference on own handwriting.
+- [ ] Implement CTC beam decoding with language model.
 - [ ] Implement Bezier curve fitting algorithm as data preprocessor.
 - [ ] Publish trained models on [🤗 Hugging Face](https://huggingface.co/) for easy access.
 
