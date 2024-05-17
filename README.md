@@ -21,7 +21,7 @@ _Contributions are always welcome!_
 
 ## 📌 Introduction
 
-In this repository I provide a [PyTorch](https://pytorch.org/) implementation of the paper "Fast multi-language [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory)-based online handwriting recognition" by Victor Carbune *et al.* (see paper here: [10.1007/s10032-020-00350-4](http://doi.org/10.1007/s10032-020-00350-4)), hence the name of this repository.
+In this repository I provide a [PyTorch](https://pytorch.org/) implementation of the paper "Fast multi-language [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory)-based online handwriting recognition" by Victor Carbune *et al.*; see [here](http://doi.org/10.1007/s10032-020-00350-4).
 
 This work is part of my attempt to build a handwriting recognition system for [Xournal++](https://github.com/xournalpp/xournalpp), a fabulous open-source handwriting notetaking software. Most of this aforementioned attempt is captured in the [Xournal++ HTR](https://github.com/PellelNitram/xournalpp_htr) repository where I publish working solutions.
 
