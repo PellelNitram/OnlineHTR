@@ -21,9 +21,11 @@ _Contributions are always welcome!_
 
 ## 📌 Introduction
 
-In this repository I provide a [PyTorch](https://pytorch.org/) implementation of the paper "Fast multi-language [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory)-based online handwriting recognition" by Victor Carbune *et al.*; see [here](http://doi.org/10.1007/s10032-020-00350-4).
+In this repository I provide a clean [PyTorch](https://pytorch.org/) model implementation of the paper "Fast multi-language [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory)-based online handwriting recognition" by Carbune *et al.* (2020) from Google; see [this paper](http://doi.org/10.1007/s10032-020-00350-4).
 
-This work is part of my attempt to build a handwriting recognition system for [Xournal++](https://github.com/xournalpp/xournalpp), a fabulous open-source handwriting notetaking software. Most of this aforementioned attempt is captured in the [Xournal++ HTR](https://github.com/PellelNitram/xournalpp_htr) repository where I publish working solutions.
+This model lets you predict handwritten text as shown in the project demo below.
+
+The present work is part of my attempt to build a handwriting recognition system for [Xournal++](https://github.com/xournalpp/xournalpp), a fabulous open-source handwriting notetaking software. Most of this aforementioned attempt is captured in the [Xournal++ HTR](https://github.com/PellelNitram/xournalpp_htr) repository where I publish working solutions based on models like the one implemented in this repository.
 
 ## 📺 Project Demo
 
@@ -39,39 +41,39 @@ This work is part of my attempt to build a handwriting recognition system for [X
 
 ## 🚀 Quickstart
 
-The following explanation sets you up to use both `src/draw_and_predict_sample.py` and `src/draw_and_store_sample.py` to both predict your own handwritten text and to store it.
+The following explanation sets you up to use the scripts `src/draw_and_predict_sample.py` and `src/draw_and_store_sample.py` to predict your own handwritten text as shown in the 📺 project demo and to store the written sample, respectively:
 
 1. Install the project according to [the installation section](#installation) in this README and activate the corresponding environment.
-2. Download the model weights [here](http://lellep.xyz/blog/online-htr.html#download_weights) and place it in `models/dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy`.
-3. Invoke the following command from the root of this repository: `bash scripts/train_dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy.sh`.
+2. Download the model weights [here](http://lellep.xyz/blog/online-htr.html#download_weights) and place it in `models/dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy/` after unpacking it.
+3. Invoke the following command from the root of this repository: `python scr/draw_and_predict_sample.py`.
 
 If you want to store your own handwriting sample in a CSV file, then execute `python src/draw_and_store_sample.py`.
 
 ## 🏋️ Training from scratch
 
 1. Follow installation procedure provided in [Installation](#installation).
-2. Set up the training data as described [in the training data](#training-data) section below.
+2. Set up the training data as described [in the training data](#training-data) section.
 3. Start training with `bash scripts/train_dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy.sh` from repository root directory after you activated the conda environment that you use.
 
 ## Installation
 
 This repository uses a conda environment in which packages are installed using pip.
 
-Follow these steps to install this package:
+Follow these steps from the root of the repository to install this package:
 
 1. `conda create --prefix <path> python=3.10.11`
 2. `conda activate <path>`
 3. `pip3 install torch torchvision torchaudio`
 4. `pip install -r requirements.txt`
 5. `pip install -e .` (do not forget the dot, `.`)
-6. `make test` to confirm that installation was successful
+6. `make test` to confirm that installation was successful. Alternatively, you can run `make test-full` to run all tests including the slow ones.
 
 ## Training data
 
 [IAM On-Line Handwriting Database](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database) is used as training and validation data. Register on their website to download the dataset for free. Afterwards, place the following folders and files from their dataset in this repository's subfolder `data/datasets/IAM-OnDB`:
 
 1. Download the following files that are listed on the above stated dataset website: `data/original-xml-part.tar.gz`, `data/writers.xml`, `data/lineStrokes-all.tar.gz`, `data/lineImages-all.tar.gz`, `data/original-xml-all.tar.gz`, `data/forms.txt` & `ascii-all.tar.gz`.
-2. Extract the content of each of those files into the `{data_dir}/datasets/IAM-OnDB/<file_base_name>` folder where `<file_base_name>` denote the basenames of all downloaded files.
+2. Extract the content of each of those files into the `data/datasets/IAM-OnDB/<file_base_name>` folder where `<file_base_name>` denote the basenames of each of the downloaded files.
 3. This is how it should look like:
 
 ```
@@ -85,12 +87,14 @@ Follow these steps to install this package:
 │   └── writers.xml
 ```
 
+4. Confirm with `make test-training-data` that you placed the training data correctly.
+
 ## Available models & their model cards
 
 - [x] `dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy`
-  - How it was trained: Using IAM-OnDB, Trained on raw stroke data with channels (dx, dy, dt, n) where (dx, dy) are coordinate differences, dt is time difference and n denotes if a point was the start of a new stroke. Prior to computing the differences and n, the raw stroke data was linearly interpolated to feature 20 points per unit length.
+  - How it was trained: Using the IAM-OnDB dataset, this model is obtained by training on raw stroke data with channels (dx, dy, dt, n) where (dx, dy) are coordinate differences, dt is time difference and n is 1 if a point is the start of a new stroke with 0 otherwise. Prior to computing the differences and n, the raw stroke data is linearly interpolated to feature 20 points per unit length.
   - Download the model weights [here](http://lellep.xyz/blog/online-htr.html#download_weights).
-  - Train this model yourself using `bash scripts/train_dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy.sh` after you activated the conda environment that you use.
+  - Train this model yourself executing `bash scripts/train_dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy.sh` after you activated the conda environment that you use.
 
 ## ⌛ Open tasks
 
