@@ -87,12 +87,12 @@ TODO: explain how to install data; also provide quick video
 │   └── writers.xml
 ```
 
-## Available models & model cards
+## Available models & their model cards
 
-- [x] `featuresRaw_decoderGreedy_...`
-  - TODO: describe how it's trained
-  - TODO: download here (link to blog article w/ bitly)
-  - TODO: replicate this in `scripts/`
+- [x] `dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy`
+  - How it was trained: Using IAM-OnDB, Trained on raw stroke data with channels (dx, dy, dt, n) where (dx, dy) are coordinate differences, dt is time difference and n denotes if a point was the start of a new stroke. Prior to computing the differences and n, the raw stroke data was linearly interpolated to feature 20 points per unit length.
+  - Download the model weights [here](http://lellep.xyz/blog/online-htr.html#download_weights).
+  - Train this model yourself using [this script](scripts/train_dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy.sh) in the `scripts/` folder.
 
 ## ⌛ Open tasks
 
