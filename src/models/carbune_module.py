@@ -34,7 +34,7 @@ class LitModule1(LightningModule):
         alphabet: list[str],
         number_of_channels:int,
     ) -> None:
-        """Initialize a `Carbune2020NetAttempt1` module.
+        """Initialize a `LitModule1` module.
 
         :param nodes_per_layer: The dimension of the hidden state in the stack of LSTM cells.
         :param number_of_layers: The number of LSTM layers.
