@@ -11,7 +11,6 @@ from torchmetrics.functional.text import char_error_rate
 from lightning.pytorch.loggers.tensorboard import TensorBoardLogger
 
 from src.utils.decoders import GreedyCTCDecoder
-from src.models.components.carbune2020_net import Carbune2020NetAttempt1
 from src.utils.io import store_alphabet
 from src.data.tokenisers import AlphabetMapper
 
