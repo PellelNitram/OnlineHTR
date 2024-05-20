@@ -23,7 +23,7 @@ def parse_cli_args() -> dict:
     parser = argparse.ArgumentParser()
     parser.add_argument('-dot-radius', '--dot-radius', type=int,
                         default=3)
-    parser.add_argument('-model-folder-path', '--model-folder-paths', type=Path,
+    parser.add_argument('-model-folder-path', '--model-folder-path', type=Path,
                         default=Path('logs/train/multiruns/2024-04-10_20-09-25/8'))
     args = parser.parse_args()
     
