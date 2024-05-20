@@ -39,7 +39,7 @@ def main(args: dict) -> None:
     # Model
     # =====
 
-    BASE_PATH = Path(args['base_path'])
+    BASE_PATH = Path(args['model_folder_path'])
     CHECKPOINT_PATH = BASE_PATH / 'checkpoints/epoch000749.ckpt'
 
     model = LitModule1.load_from_checkpoint(CHECKPOINT_PATH)
