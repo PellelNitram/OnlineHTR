@@ -105,3 +105,23 @@ def load_alphabet(infile: Path) -> list[str]:
     with open(infile, 'r') as f:
         json_data = json.load(f)
     return json_data['alphabet']
+
+def get_best_checkpoint_path(checkpoints_path: Path) -> Path:
+    """Get best checkpoint based on filename.
+
+    The best checkpoint is determined by picking the checkpoint file with the lowest
+    `val_loss` value in its filename.
+
+    :param checkpoints_path: The path that contains the checkpoints.
+    :returns: The path to the best checkpoint.
+    """
+    best_path = ''
+    best_value = 100_000.0
+    for f in checkpoints_path.glob('*'):
+        if 'val_loss' in f.name:
+            i_val_loss = f.name.index('val_loss')
+            value = float(f.name[i_val_loss:].replace('.ckpt', '').split('=')[1])
+            if value < best_value:
+                best_value = value
+                best_path = f
+    return best_path
