@@ -9,6 +9,7 @@ import torch
 
 from src.models.carbune_module import LitModule1
 from src.utils.io import load_alphabet
+from src.utils.io import get_best_checkpoint_path
 from src.data.tokenisers import AlphabetMapper
 from src.data.acquisition import plot_strokes
 from src.data.acquisition import reset_strokes
@@ -40,7 +41,7 @@ def main(args: dict) -> None:
     # =====
 
     BASE_PATH = Path(args['model_folder_path'])
-    CHECKPOINT_PATH = BASE_PATH / 'checkpoints/epoch000749.ckpt'
+    CHECKPOINT_PATH = get_best_checkpoint_path( BASE_PATH / 'checkpoints' )
 
     model = LitModule1.load_from_checkpoint(CHECKPOINT_PATH)
 
