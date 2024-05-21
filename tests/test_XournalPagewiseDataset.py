@@ -6,51 +6,30 @@ import pytest
 from src.data.online_handwriting_datasets import XournalPagewiseDataset
 
 
+PATH = Path('data/datasets/2024-02-16-xournal_dataset.xoj') # Needs to be parameterised
+
 @pytest.mark.martin
 def test_construction():
 
-    logger = logging.getLogger('test_construction')
-    logger.setLevel(logging.INFO)
-
     ds = XournalPagewiseDataset(
-        path=Path.home() / Path('data/code/carbune2020_implementation/data/datasets/2024-01-20-xournal_dataset.xoj'),
-        logger=logger
+        path=PATH,
     )
 
 @pytest.mark.martin
-def test_load_data():
-
-    logger = logging.getLogger('test_load_data')
-    logger.setLevel(logging.INFO)
+def test_loaded_data():
 
     ds = XournalPagewiseDataset(
-        path=Path.home() / Path('data/code/carbune2020_implementation/data/datasets/2024-01-20-xournal_dataset.xoj'),
-        logger=logger
+        path=PATH,
     )
 
-    ds.load_data()
+    assert len( ds ) == len( ds.data )
+    assert len( ds ) == 4
 
-    assert len( ds.data ) == 1
-
-    assert min( ds.data[0]['stroke_nr'] ) == 0
-    assert max( ds.data[0]['stroke_nr'] ) == 9
-
-    assert len( ds.data[0]['stroke_nr'] ) == len( ds.data[0]['x'] ) == len( ds.data[0]['y'] ) == 1026
-
-    assert ds.data[0]['label'] == 'Hello World!'
-
-    assert ds.data[0]['sample_name'] == 'hello_world'
-
-@pytest.mark.martin
-def test_to_images(tmp_path):
-
-    logger = logging.getLogger('test_to_images')
-    logger.setLevel(logging.INFO)
-
-    ds = XournalPagewiseDataset(
-        path=Path.home() / Path('data/code/carbune2020_implementation/data/datasets/2024-01-20-xournal_dataset.xoj'),
-        logger=logger
-    )
-    ds.load_data()
-
-    ds.to_images(path=tmp_path, format='jpg')
+    sample = ds[0]
+    assert type( sample ) == dict
+    assert len( sample ) == 5
+    assert min( sample['stroke_nr'] ) == 0
+    assert max( sample['stroke_nr'] ) == 9
+    assert len( sample['stroke_nr'] ) == len( sample['x'] ) == len( sample['y'] ) == 1026
+    assert sample['label'] == 'Hello World!'
+    assert sample['sample_name'] == 'hello_world'
