@@ -18,7 +18,7 @@ from src.utils.io import load_IAM_OnDB_sample
 from src.data.transforms import Carbune2020
 
 
-class XournalPagewiseDatasetPyTorch(Dataset):
+class XournalPagewiseDataset(Dataset):
 
     def __init__(self, path, transform=None):
         self.path = path

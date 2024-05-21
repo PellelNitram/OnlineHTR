@@ -7,7 +7,7 @@ from torch.utils.data import ConcatDataset, DataLoader, Dataset, random_split
 from torchvision.datasets import MNIST
 from torchvision.transforms import transforms
 
-from src.data.online_handwriting_datasets import XournalPagewiseDatasetPyTorch
+from src.data.online_handwriting_datasets import XournalPagewiseDataset
 from src.data.online_handwriting_datasets import IAM_OnDB_Dataset
 from src.data.online_handwriting_datasets import IAM_OnDB_Dataset_Carbune2020
 from src.data.transforms import TwoChannels
@@ -139,7 +139,7 @@ class IAMOnDBDataModule(LightningDataModule):
 
             elif self.hparams.transform == 'XournalPagewise_carbune_xyn':
 
-                self.dataset = XournalPagewiseDatasetPyTorch(
+                self.dataset = XournalPagewiseDataset(
                     self.hparams.data_dir,
                     transform=None,
                 )
@@ -186,7 +186,7 @@ class IAMOnDBDataModule(LightningDataModule):
 
             elif self.hparams.transform == 'XournalPagewise_SimpleNormalise_xyn':
 
-                self.dataset = XournalPagewiseDatasetPyTorch(
+                self.dataset = XournalPagewiseDataset(
                     Path(self.hparams.data_dir),
                     transform=None,
                 )
