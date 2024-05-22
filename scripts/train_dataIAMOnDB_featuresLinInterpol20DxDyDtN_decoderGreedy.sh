@@ -8,7 +8,7 @@ time python src/train.py \
     data.limit=-1 \
     data.train_val_test_split="[0.8,0.2,0]" \
     data.transform="carbune2020_xytn" \
-    model.dropout=0.0 \
+    model.dropout=0.25 \
     model.number_of_layers=3 \
     model.nodes_per_layer=64 \
     model.optimizer.lr=0.0001 \
