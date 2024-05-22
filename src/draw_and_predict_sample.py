@@ -25,7 +25,7 @@ def parse_cli_args() -> dict:
     parser.add_argument('-dot-radius', '--dot-radius', type=int,
                         default=3)
     parser.add_argument('-model-folder-path', '--model-folder-path', type=Path,
-                        default=Path('logs/train/multiruns/2024-04-10_20-09-25/8'))
+                        default=Path('models/dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy'))
     args = parser.parse_args()
     
     return vars(args)
