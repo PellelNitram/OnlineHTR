@@ -20,6 +20,9 @@ sync: ## Merge changes from main branch to your current branch
 	git pull
 	git pull origin main
 
+test-installation:
+	pytest -k "installation"
+
 test: ## Run not slow tests
 	pytest -k "not slow"
 
