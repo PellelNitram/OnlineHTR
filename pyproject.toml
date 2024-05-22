@@ -12,6 +12,9 @@ filterwarnings = [
 log_cli = "True"
 markers = [
   "slow: slow tests",
+  "installation: test installation",
+  "data: test data location",
+  "ci_cd: tests for CI/CD ",
   "martin: implemented to customise the template by Martin Lellep",
 ]
 minversion = "6.0"
