@@ -23,6 +23,9 @@ sync: ## Merge changes from main branch to your current branch
 test-installation:
 	pytest -k "installation"
 
+test-data:
+	pytest -k "data"
+
 test: ## Run not slow tests
 	pytest -k "not slow"
 
