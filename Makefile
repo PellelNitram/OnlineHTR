@@ -26,6 +26,9 @@ test-installation:
 test-data:
 	pytest -k "data"
 
+test-ci_cd:
+	pytest -k "ci_cd"
+
 test: ## Run not slow tests
 	pytest -k "not slow"
 
