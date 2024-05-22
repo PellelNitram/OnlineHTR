@@ -45,7 +45,7 @@ The following explanation sets you up to use the scripts `src/draw_and_predict_s
 
 1. Install the project according to [the installation section](#installation) in this README and activate the corresponding environment.
 2. Download the model weights [here](http://lellep.xyz/blog/online-htr.html#download_weights) and place it in `models/dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy/` after unpacking it.
-3. Invoke the following command from the root of this repository: `python scr/draw_and_predict_sample.py`.
+3. Invoke the following command from the root of this repository: `python src/draw_and_predict_sample.py`.
 
 If you want to store your own handwriting sample in a CSV file, then execute `python src/draw_and_store_sample.py`.
 
