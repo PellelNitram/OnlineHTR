@@ -40,11 +40,10 @@ def test_Stroke_class():
 @pytest.mark.martin
 def test_XournalDocument():
 
-    path = Path('data/datasets/2024-01-20-xournal_dataset.xoj')
-    x_document = documents.XournalDocument( path )
+    x_document = documents.XournalDocument( PATH )
 
     # Check document properties
-    assert x_document.path == path
+    assert x_document.path == PATH
     assert x_document.DPI == 72
     assert len(x_document.pages) == 2
 
