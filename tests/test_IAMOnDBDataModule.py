@@ -8,13 +8,16 @@ from src.data.online_handwriting_datamodule import IAMOnDBDataModule
 
 PATH = Path('data/datasets/IAM-OnDB') # Needs to be parameterised
 
-@pytest.mark.martin
 @pytest.mark.parametrize(
     "batch_size,limit",
     [
-        (32, 100),
-        (64, 200),
-        (16, 75),
+        pytest.param(32, 100, marks=pytest.mark.data),
+        pytest.param(64, 200, marks=pytest.mark.data),
+        pytest.param(16, 75, marks=pytest.mark.data),
+        pytest.param(512, -1, marks=[
+            pytest.mark.data,
+            pytest.mark.slow,
+        ], id='all'),
     ])
 def test_carbune2020_xytn_transform(batch_size: int, limit: int) -> None:
     """Tests the data loading and transformation functionality of `IAMOnDBDataModule` using
