@@ -9,6 +9,8 @@ from src.utils import documents
 
 # Note: I don't test the dataclasses in excess to what I have done so already for Stroke class above.
 
+PATH = Path('data/datasets/2024-01-20-xournal_dataset.xoj')
+
 @pytest.mark.martin
 def test_Stroke_class():
 
@@ -37,8 +39,6 @@ def test_Stroke_class():
 
 @pytest.mark.martin
 def test_XournalDocument():
-
-    # TODO: Maybe add test of save_page_as_image method?
 
     path = Path('data/datasets/2024-01-20-xournal_dataset.xoj')
     x_document = documents.XournalDocument( path )
@@ -72,3 +72,33 @@ def test_XournalDocument():
     assert x_document.pages[0].layers[0].texts[0].meta_data == {
         'font': 'Sans', 'size': '12.00', 'x': '75.68', 'y': '88.34', 'color': 'black'
     }
+
+@pytest.mark.installation
+@pytest.mark.ci_cd
+def test_XournalDocument_save_page_as_image(tmp_path: Path) -> None:
+    """Tests `XournalDocument.save_page_as_image` method.
+
+    This saves a page to a file so that one can inspect the correctness of the
+    saved page manually. Enabling the `pytest` setting `-s` allows one to see where
+    the files were saved temporarily.
+
+    :param tmp_path: Temporary path the file is saved to; managed by `pytest`.
+    :type tmp_path: Path
+    """
+
+    print()
+    print(f'Samples saved at: "{tmp_path}"')
+    print()
+
+    x_document = documents.XournalDocument( PATH )
+
+    output_path = tmp_path / 'page1.png'
+
+    output_path_result = x_document.save_page_as_image(
+        page_index=1,
+        out_path=output_path,
+        black_white=False,
+        dpi=72.0,
+    )
+
+    assert output_path == output_path_result
