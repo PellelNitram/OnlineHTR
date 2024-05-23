@@ -40,7 +40,7 @@ def test_XournalDocument():
 
     # TODO: Maybe add test of save_page_as_image method?
 
-    path = path=Path.home() / Path('data/code/carbune2020_implementation/data/datasets/2024-01-20-xournal_dataset.xoj')
+    path = Path('data/datasets/2024-01-20-xournal_dataset.xoj')
     x_document = documents.XournalDocument( path )
 
     # Check document properties
