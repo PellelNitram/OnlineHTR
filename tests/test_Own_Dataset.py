@@ -8,7 +8,7 @@ from src.data.online_handwriting_datasets import Own_Dataset
 
 
 PATH_IAM = Path('data/datasets/IAM-OnDB') # Needs to be parameterised
-PATH_OWN_DATASET = Path('data/datasets/own_test_dataset') # Needs to be parameterised
+PATH_OWN_DATASET = Path('data/datasets/own_dataset') # Needs to be parameterised
 
 # TODO: See more tests to implement here in `test_IAM_OnDB_Dataset.py`
 
