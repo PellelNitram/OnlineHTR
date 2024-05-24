@@ -15,7 +15,6 @@ markers = [
   "installation: test installation",
   "data: test data and its location",
   "ci_cd: tests for CI/CD ",
-  "martin: implemented to customise the template by Martin Lellep",
 ]
 minversion = "6.0"
 testpaths = "tests/"
