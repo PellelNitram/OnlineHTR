@@ -29,7 +29,7 @@ test-data:
 test-ci_cd:
 	pytest -k "ci_cd"
 
-test: ## Run not slow tests
+test-not-slow: ## Run not slow tests
 	pytest -k "not slow"
 
 test-full: ## Run all tests
