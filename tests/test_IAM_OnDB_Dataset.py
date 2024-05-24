@@ -8,7 +8,7 @@ from src.data.online_handwriting_datasets import IAM_OnDB_Dataset
 
 PATH = Path('data/datasets/IAM-OnDB') # Needs to be parameterised
 
-@pytest.mark.martin
+@pytest.mark.data
 def test_construction_with_limit():
 
     limit = 5
@@ -17,7 +17,7 @@ def test_construction_with_limit():
 
     assert len(ds) == limit
 
-@pytest.mark.martin
+@pytest.mark.data
 @pytest.mark.slow
 def test_construction_no_limit():
 
@@ -25,7 +25,7 @@ def test_construction_no_limit():
 
     assert len(ds) == IAM_OnDB_Dataset.LENGTH
 
-@pytest.mark.martin
+@pytest.mark.data
 @pytest.mark.slow
 def test_construction_no_limit_skip_carbune2020_fails():
 
@@ -33,7 +33,7 @@ def test_construction_no_limit_skip_carbune2020_fails():
 
     assert len(ds) == IAM_OnDB_Dataset.LENGTH-len(IAM_OnDB_Dataset.SAMPLES_TO_SKIP_BC_CARBUNE2020_FAILS)
 
-@pytest.mark.martin
+@pytest.mark.data
 @pytest.mark.slow
 def test_correctness_manually(tmp_path: Path):
     # This saves samples to files so that one can inspect the correctness of the

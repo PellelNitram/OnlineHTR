@@ -10,7 +10,7 @@ from src.data import FAILED_SAMPLE
 
 PATH = Path('data/datasets/IAM-OnDB') # Needs to be parameterised
 
-@pytest.mark.martin
+@pytest.mark.data
 def test_construction_with_limit():
 
     limit = 5
@@ -22,7 +22,7 @@ def test_construction_with_limit():
     for i_sample in range(len(ds)):
         sample = ds[i_sample]
 
-@pytest.mark.martin
+@pytest.mark.data
 @pytest.mark.slow
 def test_construction_no_limit():
 
@@ -45,7 +45,7 @@ def test_construction_no_limit():
     
     assert len(ds) == len(succeeded_sample_names) + len(IAM_OnDB_Dataset.SAMPLES_TO_SKIP_BC_CARBUNE2020_FAILS)
 
-@pytest.mark.martin
+@pytest.mark.data
 @pytest.mark.slow
 def test_construction_no_limit_skip_carbune2020_fails():
 

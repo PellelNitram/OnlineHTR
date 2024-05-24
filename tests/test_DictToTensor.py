@@ -6,12 +6,12 @@ import numpy as np
 from src.data.transforms import DictToTensor
 
 
-@pytest.mark.martin
+@pytest.mark.installation
 def test_construction():
 
     DictToTensor(channel_names=['x', 'a', 'z'])
 
-@pytest.mark.martin
+@pytest.mark.installation
 def test_call():
 
     t = DictToTensor(channel_names=['x', 'z'])

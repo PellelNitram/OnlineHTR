@@ -12,7 +12,8 @@ PATH_OWN_DATASET = Path('data/datasets/own_dataset') # Needs to be parameterised
 
 # TODO: See more tests to implement here in `test_IAM_OnDB_Dataset.py`
 
-@pytest.mark.martin
+@pytest.mark.data
+@pytest.mark.slow
 def test_correctness_against_IAM_manually(tmp_path: Path):
     # This is to ensure that the data captured by `draw_and_store_sample.py` (which is
     # then cast into `Own_Dataset` class) matches that of the IAM_OnDB_Dataset. For example

@@ -1,8 +1,10 @@
 import torch
+import pytest
 
 from src.data.transforms import CharactersToIndices
 
 
+@pytest.mark.installation
 def test_instantiate():
 
     alphabet = [
@@ -13,6 +15,7 @@ def test_instantiate():
 
     transform = CharactersToIndices(alphabet)
 
+@pytest.mark.installation
 def test_call():
 
     alphabet = [

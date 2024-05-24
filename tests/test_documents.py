@@ -11,7 +11,7 @@ from src.utils import documents
 
 PATH = Path('data/datasets/2024-01-20-xournal_dataset.xoj')
 
-@pytest.mark.martin
+@pytest.mark.installation
 def test_Stroke_class():
 
     # Create test data
@@ -37,7 +37,7 @@ def test_Stroke_class():
     for key in stroke.meta_data:
         assert stroke.meta_data[key] == test_meta_data[key]
 
-@pytest.mark.martin
+@pytest.mark.installation
 def test_XournalDocument():
 
     x_document = documents.XournalDocument( PATH )

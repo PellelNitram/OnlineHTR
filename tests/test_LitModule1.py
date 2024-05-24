@@ -9,7 +9,7 @@ from src.models.carbune_module import LitModule1
 
 # Note: I only test functions that I overwrote myself.
 
-@pytest.mark.martin
+@pytest.mark.installation
 def test_construction():
 
     net = LitModule1(
@@ -23,7 +23,7 @@ def test_construction():
         scheduler=None,
     )
 
-@pytest.mark.martin
+@pytest.mark.installation
 def test_forward():
 
     alphabet = ['a', 'b', 'c', 'd']

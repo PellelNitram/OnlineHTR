@@ -8,14 +8,14 @@ from src.data.online_handwriting_datasets import XournalPagewiseDataset
 
 PATH = Path('data/datasets/2024-02-16-xournal_dataset.xoj') # Needs to be parameterised
 
-@pytest.mark.martin
+@pytest.mark.installation
 def test_construction():
 
     ds = XournalPagewiseDataset(
         path=PATH,
     )
 
-@pytest.mark.martin
+@pytest.mark.installation
 def test_loaded_data():
 
     ds = XournalPagewiseDataset(
