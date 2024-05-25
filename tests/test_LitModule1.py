@@ -11,6 +11,11 @@ from src.models.carbune_module import LitModule1
 
 @pytest.mark.installation
 def test_construction():
+    """Test the construction of a `LitModule1` instance.
+
+    This test ensures that a `LitModule1` object is created correctly using
+    a set of example parameters.
+    """
 
     net = LitModule1(
         number_of_channels=4,
