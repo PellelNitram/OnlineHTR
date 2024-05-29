@@ -44,7 +44,7 @@ The present work is part of my attempt to build a handwriting recognition system
 The following explanation sets you up to use the scripts `src/draw_and_predict_sample.py` and `src/draw_and_store_sample.py` to predict your own handwritten text as shown in the 📺 project demo and to store the written sample, respectively:
 
 1. Install the project according to [the installation section](#installation) in this README and activate the corresponding environment.
-2. Download the model weights [here](http://lellep.xyz/blog/online-htr.html#download_weights) and place it in `models/dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy/` after unpacking it.
+2. Download the model weights [here](https://lellep.xyz/blog/online-htr.html?utm_campaign=githubWeights#the-model-weights) and place it in `models/dataIAMOnDB_featuresLinInterpol20DxDyDtN_decoderGreedy/` after unpacking it.
 3. Invoke the following command from the root of this repository: `python src/draw_and_predict_sample.py`.
 
 If you want to store your own handwriting sample in a CSV file, then execute `python src/draw_and_store_sample.py`.
