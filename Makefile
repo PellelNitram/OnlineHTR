@@ -39,4 +39,6 @@ train: ## Train the model
 	python src/train.py
 
 docs: ## Render docs w/ MMkDocs similar to https://docs.kidger.site/diffrax/
-	# TODO!
+	@echo "NOT YET IMPLEMENTED!"
+
+.PHONY: docs
