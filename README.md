@@ -66,7 +66,7 @@ Follow these steps from the root of the repository to install this package:
 3. `pip3 install torch torchvision torchaudio`
 4. `pip install -r requirements.txt`
 5. `pip install -e .` (do not forget the dot, `.`)
-6. `make test` to confirm that installation was successful. Alternatively, you can run `make test-full` to run all tests including the slow ones.
+6. `make test-installation` to confirm that installation was successful. Alternatively, you can run `make test-full` to run all tests including the slow ones.
 
 ## Training data
 
